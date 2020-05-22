@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="client.book.db.BookDAO">
+	<select id="cntItem" resultType="java.lang.Integer">
+		select count(*) from item
+	</select>
+	<select id="itemList" resultType="item" parameterType="Filter">
+		select no, i_name, content, cnt, tot, price, st_date, ed_date, img, categ, up_date from item
+		where st_date >= current_date and categ like #{categ}
+		order by no desc
+		limit #{limit} offset #{offset}
+	</select>
+	<select id="itemInfo" resultType="item">
+		select no, i_name, content, cnt, tot, price, st_date, ed_date, img, categ, up_date from item
+		where no = #{no}
+	</select>
+	<select id="bookedList" resultType="booked">
+		select b.pno, b.ref_ino, i_name, img, content, b.cnt, price, st_date, ed_date, b.up_date from item i join book b
+		on i.no = b.ref_ino
+		where b.ref_id = #{ref_id} and st_date &gt;= current_date
+		order by b.up_date desc, b.pno desc
+	</select>
+	<select id="lastBookedList" resultType="booked">
+		select b.pno, b.ref_ino, i_name, img, content, b.cnt, price, st_date, ed_date, b.up_date from item i join book b
+		on i.no = b.ref_ino
+		where b.ref_id = #{ref_id} and st_date &lt; current_date
+		order by b.up_date desc, i.no desc
+	</select>
+	<select id="getPno" resultType="java.lang.Integer" parameterType="book">
+		select pno from book
+		where ref_id = #{ref_id} and ref_ino = #{ref_ino} and up_date = #{up_date} and cnt = #{cnt}
+	</select>
+	<select id="bookInfo" resultType="book">
+		select * from book
+		where pno = #{pno}
+	</select>
+	<insert id="bookIns" parameterType="book">
+		insert into book(ref_id, ref_ino, up_date, cnt)
+		values(#{ref_id}, #{ref_ino}, current_date, #{cnt})
+	</insert>
+	<update id="itemCntDown">
+		update item
+		set cnt = cnt - 1
+		where no = #{no}
+	</update>
+	<update id="itemCntUp" parameterType="book">
+		update item
+		set cnt = cnt + #{cnt}
+		where no = #{ref_ino}
+	</update>
+	<update id="updateBook" parameterType="book">
+		update book
+		set cnt = #{cnt}
+		where pno = #{pno}
+	</update>
+	<update id="updateItem" parameterType="item">
+		update item
+		set cnt = #{cnt}
+		where no = #{no}
+	</update>
+	<delete id="bookDel">
+		delete from book
+		where pno = #{pno}
+	</delete>
+	<select id="cntBookId" resultType="java.lang.Integer">
+		select count(*) from book
+		where ref_id = #{ref_id}
+	</select>
+</mapper>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.member.db.MemberDAO">
+	<select id="list" resultType="admin.member.db.MemberBean">
+ 	select * from member order by num
+ 	</select>
+ 	<select id="memberDetail" parameterType="String" resultType="admin.member.db.MemberBean">
+ 	select * from member where id = #{id}
+ 	</select>
+ 	 	<select id="memberSearchid" parameterType="String" resultType="String">
+ 	select id from member where id = #{name}
+ 	</select>
+ 	<select id="memberSearch" parameterType="String" resultType="admin.member.db.MemberBean">
+ 	select * from member where id like CONCAT('%',#{id},'%')
+ 	</select>
+ 	<select id="memberDelete" >
+ 	delete from member where id = #{id}
+ 	</select>
+ 	<select id="memberInsert"  parameterType="hashMap">
+ 	insert into member (id,pass,name,addr,birthday,gen,email,phone,joindate)
+ 	values (#{id},#{pass},#{name},#{addr},#{birthday},#{gen},#{email},#{phone},sysdate())
+ 	</select>
+ 	<select id="memberUpdate"  parameterType="hashMap">
+ 	update member set addr=#{addr}, birthday=#{birthday}, gen=#{gen}, email=#{email}, phone=#{phone}
+ 	where id = #{id}
+ 	</select>
+ 	<select id="adminpassmodi" parameterType="String">
+ 	update member set pass=#{pass} where id=#{id}
+ 	</select>
+ </mapper>

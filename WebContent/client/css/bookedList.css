@@ -1,0 +1,107 @@
+html,body{
+	height: 100%;
+}
+
+nav a.btn{
+	display: none;
+    left: 32px;
+}
+
+#content{
+ display: block;
+ overflow-y: auto;
+ height: 60px;
+}
+
+.itemBox{
+	display: flex;
+	align-items: center;
+	
+}
+article.marg-bt-14{
+	margin-bottom: 14px;
+}
+div.hidden-xs{
+	text-align: center;
+}
+img.thumbnail{
+	width: 100%;
+	margin: 0;
+}
+
+.row div {
+	text-align: center;
+}
+
+.itemBox>div:first-child,.itemBox>div:nth-child(2){
+	padding: 0;
+}
+
+.noItem{
+	text-align: center;
+}
+
+#pager {
+	display: flex;
+	flex-flow: direction wrap;
+	justify-content: center;
+}
+label{
+	margin:0 14px;
+}
+#checkall{
+	margin:0;
+}
+li.d-none{
+	display: none;
+}
+
+ul.nav a{
+	color: black;
+}
+h2.no-margin{
+	margin: 0;
+}
+
+.wrap {
+   min-height:100%;
+   position:relative;
+   padding-bottom:100px;
+}
+
+.non-pad-item div {
+	padding: 0;
+}
+
+label.pull-left{
+	margin-left: 35px;
+}
+
+.marg-top{
+	margin-top: 30px;
+}
+
+/* For small screen */
+@media screen and (max-width: 815px) {
+  
+  .carousel-caption {
+    display: none;
+  }
+  .carousel-inner {
+    height: auto;
+    overflow-y: auto;
+  }
+  #content{
+    display: inline;overflow: auto;white-space: normal;
+  }
+  #iName{
+  	text-align: right;
+  }
+  .itemBox{
+  	display: block;
+  	margin: auto;
+  }
+  .no_pad{
+  	padding: 0;
+  }
+}

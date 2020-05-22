@@ -1,0 +1,33 @@
+a.black {
+	color: #000000;
+}
+
+div.panel-body {
+	word-break:break-all;
+}
+
+div.content_list table tr.replylist {
+	background-color:#E2E2E2;
+}
+
+#accordion {
+	margin:0;
+}
+
+#accordion2 {
+	margin:0;
+}
+
+tr.page td {
+	text-align: center;
+}
+
+h4.no-access {
+	color: red;
+}
+
+button.panel-heading{
+	width:100%;
+    text-align:left; 
+    border: none;
+}

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="admin.item.db.ItemDAO">
+	<select id="itemPageList" resultType="itemAdmin" parameterType="hashmap">
+		select no, i_name, content, cnt, tot, price, categ, img, up_date, ed_date, st_date 
+		from item
+		order by no 
+		limit #{startNo}, #{recordsPerPage}
+	</select>
+	<select id="itemListCount" resultType="int">
+		select count(no) from item
+	</select>
+	<select id="itemInfo" resultType="itemAdmin">
+		select no, i_name, content, cnt, tot, price, categ, img, up_date, ed_date, st_date 
+		from item 
+		where no = #{no}
+	</select>
+	<insert id="itemInsert" parameterType="itemAdmin">
+		insert into item ( i_name, content, cnt, tot, price, categ, img, up_date, ed_date, st_date)
+		values ( #{i_name}, #{content}, #{cnt}, #{tot}, #{price}, #{categ}, #{img}, #{up_date}, #{ed_date}, #{st_date})
+	</insert>
+	<update id="itemUpdate" parameterType="itemAdmin">
+		update item set
+		i_name = #{i_name},
+		content = #{content},
+		cnt = #{cnt},
+		tot = #{tot},
+		price = #{price},
+		categ = #{categ},
+		img = #{img},
+		ed_date = #{ed_date},
+		st_date = #{st_date},
+		up_date = #{up_date}
+		where no = #{no}
+	</update>
+	<delete id="itemDelete">
+		delete from
+		item where no = #{no}
+	</delete>
+</mapper>

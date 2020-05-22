@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+ <configuration>
+	<properties resource="./client/mapping/db.properties" />
+	<typeAliases>
+		<typeAlias alias="item" type="client.book.db.Item"/>
+		<typeAlias alias="filter" type="client.book.db.Filter"/>
+		<typeAlias alias="book" type="client.book.db.Book"/>
+		<typeAlias alias="booked" type="client.book.db.Booked"/>
+		<typeAlias alias="clientMember" type="client.member.db.MemberBean" />
+	</typeAliases>
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${driver}"/>
+				<property name="url" value="${url}"/>
+				<property name="username" value="${username}"/>
+				<property name="password" value="${password}"/>
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+		<mapper resource="./client/mapping/Book.xml"/>
+		<mapper resource="./client/mapping/memberMapper.xml"/>
+	</mappers>
+</configuration>

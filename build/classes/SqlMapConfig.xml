@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias alias="itemAdmin" type="admin.item.db.ItemVO"/>
+		<typeAlias alias="bookAdmin" type="admin.book.db.BookVO"/>
+		<typeAlias alias="qna" type="client.qna.db.QnaBoardBean"/>
+		<typeAlias alias="board" type="admin.notice.db.NoticeBean"/>
+	</typeAliases>
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="org.mariadb.jdbc.Driver" />
+				<property name="url" value="jdbc:mariadb://localhost:3306/aqua"/>
+				<property name="username" value="root" />
+				<property name="password" value="1234" />
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+		<mapper resource="ItemAdmin.xml" />
+		<mapper resource="BookAdmin.xml" />
+		<mapper resource="Member.xml"/>
+		<mapper resource="qnaMapping.xml" />
+		<mapper resource="AQUA_Comment.xml" />
+		<mapper resource="AQUA_Notice.xml" />
+	</mappers>
+</configuration>

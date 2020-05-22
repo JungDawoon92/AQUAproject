@@ -1,0 +1,14 @@
+
+  .affix {
+    top: 20px;
+    z-index: 9999 !important;
+  	}
+  
+  .write {
+  	margin-top: 20px;
+  	}
+  
+  .content_div a  {
+  	text-decoration: none;
+  	color: black;
+	}

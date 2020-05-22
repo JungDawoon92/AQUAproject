@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="qna.db.QnaBoardDAO">
+	
+	<select id="getQnaAllBoardList" resultType="qna">
+		select * from board
+		order by RE_REF desc,RE_LEV asc
+	</select>
+	
+	<select id="getQnaBoardList" resultType="qna" parameterType="int">
+		select * from board
+		order by RE_REF desc,RE_LEV asc
+		LIMIT
+		#{startrow},10
+	</select>
+	
+	<select id="getQBoardList" resultType="qna" parameterType="int">
+		select * from board
+		where RE_LEV = 0
+		order by RE_REF desc,RE_LEV asc
+		LIMIT
+		#{startrow},10
+	</select>
+	
+	<select id="getRBoardList" resultType="qna" parameterType="java.util.HashMap">
+		select * from board
+		where RE_LEV = 1 and RE_REF BETWEEN #{q2} and #{q1}
+		order by RE_REF desc,RE_LEV asc
+	</select>
+	
+	<select id="getQnaBoard" resultType="qna">
+		select * from board
+		order by NUM desc
+		LIMIT 0 , 1
+	</select>
+
+	<select id="QnaListCount" resultType="int">
+		select count(*) from board where RE_LEV = 0
+	</select>
+
+	<select id="Qnainsert" parameterType="qna">
+		insert into board
+		(NUM,ID,SUBJECT,CONTENT,RE_REF,RE_LEV,RE_CHE,DATE,RE_ID,DEL,CATEGORY)
+		values(default,#{ID},#{SUBJECT},#{CONTENT},1,0,0,sysdate(),#{RE_ID},"N",#{CATEGORY})
+	</select>
+	<select id="QnainsertReply" parameterType="qna">
+		insert into board
+		(NUM,ID,SUBJECT,CONTENT,RE_REF,RE_LEV,RE_CHE,DATE,RE_ID,DEL,CATEGORY)
+		values(default,#{ID},#{SUBJECT},#{CONTENT},#{NUM},1,0,sysdate(),#{RE_ID},"N","답변")
+	</select>
+	
+	<select id="QnaUpdate_ref" parameterType="qna">
+		update board set
+		RE_REF=#{NUM}
+		where NUM=#{NUM}
+	</select>
+	
+	<select id="QnaUpdateChe" parameterType="qna">
+		update board set
+		RE_CHE=#{RE_CHE}+1
+		where NUM=#{NUM}
+	</select>
+
+	<select id="getQnaDetail" resultType="qna"
+		parameterType="int">
+		select * from board where NUM = #{num}
+	</select>
+
+	<select id="Qnamax_num" resultType="int">
+		select max(NUM) from board
+	</select>
+
+	<select id="Qnamodify" parameterType="qna">
+		update board set
+		SUBJECT=#{SUBJECT}, CONTENT=#{CONTENT},CATEGORY=#{CATEGORY} where NUM=#{NUM}
+	</select>
+
+	<select id="Qnadelete" parameterType="int">
+		update board set DEL = "Y"
+		where NUM=#{num}
+	</select>
+	
+	<select id="QnaReplyDelete" parameterType="int">
+		delete from board where NUM=#{num}
+	</select>
+	
+	<select id="QnaReplyDeleteUpdate" parameterType="int">
+		update board set
+		RE_CHE=0
+		where NUM=#{num}
+	</select>
+	<select id="QnaAllListCount" resultType="int">
+		select count(*) from board where RE_LEV = 0
+	</select>
+</mapper>

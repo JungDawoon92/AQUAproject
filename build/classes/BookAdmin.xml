@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="admin.book.db.BookDAO">
+	<select id="bookPageList" resultType="hashmap" parameterType="hashmap">
+		select R.pno, R.ref_id, R.ref_ino, I.i_name, I.price, R.cnt, I.st_date, I.ed_date, R.up_date
+		from item I inner join book R
+		on R.ref_ino = I.no
+		order by pno desc
+		limit #{startNo}, #{recordsPerPage}
+	</select>
+	<select id="bookListCount" resultType="int">
+		select count(pno) from book
+	</select>
+	<select id="bookInfo" resultType="hashmap">
+		select M.id, M.name, M.birthday, M.gen, M.email, M.phone, M.joindate, Q.pno, Q.ref_ino, Q.i_name, Q.price, Q.cnt, Q.categ, Q.st_date, Q.ed_date, Q.up_date
+		from member as M join ( select R.pno, R.ref_id, R.ref_ino, I.i_name, I.price, R.cnt, I.categ, I.st_date, I.ed_date, R.up_date
+								from item I inner join book R
+								on R.ref_ino = I.no
+								where pno = #{pno}) as Q 
+		on M.id = Q.ref_id
+	</select>
+	<insert id="bookInsert" parameterType="bookAdmin">
+		insert into book ( ref_id, ref_ino, cnt, up_date)
+		values ( #{ref_id}, #{ref_ino}, #{cnt}, #{up_date} )
+	</insert>
+	<update id="bookUpdate" parameterType="hashmap">
+		update book set
+		ref_ino = #{ref_ino},
+		cnt = #{cnt},
+		up_date = #{up_date}
+		where pno = #{pno}
+	</update>
+	<delete id="bookDelete" parameterType="int">
+		delete from book 
+		where pno = #{pno}
+	</delete>
+</mapper>
