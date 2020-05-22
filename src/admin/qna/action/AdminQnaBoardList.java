@@ -24,9 +24,14 @@ public class AdminQnaBoardList implements Action {
 		int page = 1;
 
 		if (request.getParameter("page") != null) {
-			page = Integer.parseInt(request.getParameter("page"));
-			if(page < 1) {
-				page = 1;
+			try {
+				page = Integer.parseInt(request.getParameter("page"));
+				if(page < 1) {
+					page = 1;
+				}
+			} catch (NumberFormatException e) {
+				System.out.println("문자로 숫자 변환 ㄴㄴ" + e.getMessage());
+				
 			}
 		}
 
@@ -45,6 +50,7 @@ public class AdminQnaBoardList implements Action {
 		if(page > maxpage) {
 			page = maxpage;
 		}
+		boardlist = boarddao.getBoardList(page); 
 		
 		request.setAttribute("listcount", listcount);
 		request.setAttribute("page", page);
