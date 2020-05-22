@@ -26,29 +26,34 @@ public class MemberQnaBoardListAction implements Action {
 //		int limit = 10;
 
 		if (request.getParameter("page") != null) {
-			page = Integer.parseInt(request.getParameter("page"));
-			if(page < 1) {
-				page = 1;
+			try {
+				page = Integer.parseInt(request.getParameter("page"));
+				if(page < 1) {
+					page = 1;
+				}
+			} catch (NumberFormatException e) {
+				System.out.println("문자로 숫자 변환 ㄴㄴ" + e.getMessage());
+				
 			}
 		}
 
 		int listcount = boarddao.getListCount();
-		
-		qboardlist = boarddao.getQBoardList(page);
-		QnaBoardBean q1 = (QnaBoardBean) qboardlist.get(0);
-		QnaBoardBean q2 = (QnaBoardBean) qboardlist.get(qboardlist.size()-1);
-		rboardlist = boarddao.getRBoardList(q1.getNUM(),q2.getNUM());
-		
-		QnABoardPaging paging = new QnABoardPaging(page,listcount); 
-		
+		 
+		QnABoardPaging paging = new QnABoardPaging(page,listcount);
 		int endpage = paging.endPage();
 		int beginpage = paging.beginPage();
 		int prevpage = paging.prevPage();
 		int nextpage = paging.nextPage();
 		int maxpage = paging.totalPage();
+
 		if(page > maxpage) {
 			page = maxpage;
 		}
+		
+		qboardlist = boarddao.getQBoardList(page);
+		QnaBoardBean q1 = (QnaBoardBean) qboardlist.get(0);
+		QnaBoardBean q2 = (QnaBoardBean) qboardlist.get(qboardlist.size()-1);
+		rboardlist = boarddao.getRBoardList(q1.getNUM(),q2.getNUM());
 		
 		request.setAttribute("listcount", listcount);
 		request.setAttribute("page", page);
