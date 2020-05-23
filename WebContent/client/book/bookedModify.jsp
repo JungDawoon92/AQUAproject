@@ -32,6 +32,7 @@
 					<h2>${iinf.i_name}</h2><br>
 		    		<ul>
 			    		<li>비용 : ${iinf.price}</li><br>
+			    		<li>분류 : ${iinf.categ}</li><br>
 			    		<li>상세 내용 : ${iinf.content}</li><br>
 			    		<li>여행 기간 : ${iinf.st_date} ~ ${iinf.ed_date}</li><br>
 			    		<li>남은 수량 : ${iinf.cnt}/${iinf.tot}</li><br>

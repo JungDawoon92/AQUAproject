@@ -23,14 +23,20 @@
 	<jsp:include page="/client/include/nav.jsp"></jsp:include>
 <section class="wrap">
 <div class="row">
-<article class="container marg-bt-14 marg-top">
-	<h2 class="no-margin pull-right">종료된 목록</h2>
-	<ul class="nav nav-tabs">
-	  <li><a href="MemberViewAction.me">내 정보</a></li>
-	  <li><a href="bookedList.bk">예약된 목록</a></li>
-	  <li class="active"><a href="#">종료된 목록</a></li>
-	</ul>
-	<br>
+<article class="container marg-bott">
+	<section class="row">
+		<div class="col-xs-12">
+			<h2 class="pull-right">종료된 목록</h2>
+		</div>
+		<div class="col-xs-12">
+			<ul class="nav nav-tabs">
+			  <li><a href="MemberViewAction.me">내 정보</a></li>
+			  <li><a href="bookedList.bk">예약된 목록</a></li>
+			  <li class="active"><a href="#">종료된 목록</a></li>
+			</ul>
+			<br>
+		</div>
+	</section>
 </article>
 </div>	
 <article id="bookedlist" class="container">
@@ -76,7 +82,7 @@
 		<div class="row">
 			<div class="col-xs-12">
 				<br>
-				<button type="button" class="btn btn-primary btn-lg pull-left" onclick='location.href="bookList.bk"'>예약페이지</button>
+				<button type="button" class="btn btn-primary btn-lg pull-left" onclick='location.href="bookList.bk?page=1&ft=all"'>예약페이지</button>
 			</div>
 		</div>
 	</div>

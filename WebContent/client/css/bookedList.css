@@ -18,8 +18,8 @@ nav a.btn{
 	align-items: center;
 	
 }
-article.marg-bt-14{
-	margin-bottom: 14px;
+.marg-bt-30{
+	margin-bottom: 30px;
 }
 div.hidden-xs{
 	text-align: center;
@@ -78,7 +78,7 @@ label.pull-left{
 }
 
 .marg-top{
-	margin-top: 30px;
+	margin-top: 45px;
 }
 
 /* For small screen */

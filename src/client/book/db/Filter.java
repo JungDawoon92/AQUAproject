@@ -8,23 +8,23 @@ public class Filter {
 	private int offset;
 	private Date st_date;
 	private Date ed_date;
-	private int price;
-	private String priceDesc;
-	private Date up_date;
-	private String up_dateDesc;
+	private boolean dateSel_option;
+	private boolean ascNo;
+	private boolean orderByPrice;
+	private boolean ascPrice;
 	public Filter() {	}
-	public Filter(String categ, int limit, int offset, Date st_date, Date ed_date, int price, String priceDesc,
-			Date up_date, String up_dateDesc) {
+	public Filter(String categ, int limit, int offset, Date st_date, Date ed_date, boolean dateSel_option,
+			boolean ascNo, boolean orderByPrice, boolean ascPrice) {
 		super();
 		this.categ = categ;
 		this.limit = limit;
 		this.offset = offset;
 		this.st_date = st_date;
 		this.ed_date = ed_date;
-		this.price = price;
-		this.priceDesc = priceDesc;
-		this.up_date = up_date;
-		this.up_dateDesc = up_dateDesc;
+		this.dateSel_option = dateSel_option;
+		this.ascNo = ascNo;
+		this.orderByPrice = orderByPrice;
+		this.ascPrice = ascPrice;
 	}
 	public String getCateg() {
 		return categ;
@@ -56,29 +56,29 @@ public class Filter {
 	public void setEd_date(Date ed_date) {
 		this.ed_date = ed_date;
 	}
-	public int getPrice() {
-		return price;
+	public boolean isDateSel_option() {
+		return dateSel_option;
 	}
-	public void setPrice(int price) {
-		this.price = price;
+	public void setDateSel_option(boolean dateSel_option) {
+		this.dateSel_option = dateSel_option;
 	}
-	public String getPriceDesc() {
-		return priceDesc;
+	public boolean isAscNo() {
+		return ascNo;
 	}
-	public void setPriceDesc(String priceDesc) {
-		this.priceDesc = priceDesc;
+	public void setAscNo(boolean ascNo) {
+		this.ascNo = ascNo;
 	}
-	public Date getUp_date() {
-		return up_date;
+	public boolean isOrderByPrice() {
+		return orderByPrice;
 	}
-	public void setUp_date(Date up_date) {
-		this.up_date = up_date;
+	public void setOrderByPrice(boolean orderByPrice) {
+		this.orderByPrice = orderByPrice;
 	}
-	public String getUp_dateDesc() {
-		return up_dateDesc;
+	public boolean isAscPrice() {
+		return ascPrice;
 	}
-	public void setUp_dateDesc(String up_dateDesc) {
-		this.up_dateDesc = up_dateDesc;
+	public void setAscPrice(boolean ascPrice) {
+		this.ascPrice = ascPrice;
 	}
 	
 	

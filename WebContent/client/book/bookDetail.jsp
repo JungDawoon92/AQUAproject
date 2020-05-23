@@ -32,6 +32,7 @@
 					<h2><%=it.getI_name() %></h2><br>
 		    		<ul>
 			    		<li>비용 : <%=it.getPrice() %> 원</li><br>
+			    		<li>분류 : <%=it.getCateg() %></li><br>
 			    		<li>상세 내용 : <%=it.getContent() %></li><br>
 			    		<li>여행 기간 : <%=it.getSt_date() %> ~ <%=it.getEd_date() %></li><br>
 			    		<li>남은 수량 : <%=it.getCnt() %>/<%=it.getTot() %></li><br>

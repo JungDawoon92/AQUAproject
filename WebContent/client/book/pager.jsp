@@ -10,7 +10,7 @@
 <body>
 	<article class="container">
 		<div id="pager" class="flex-container">
-			<c:set var="pg" value="${(param.page == null) ? 1 : param.page}"/>
+			<c:set var="pg" value="${(param.page == null || param.page le 0) ? 1 : param.page}"/>
 			<c:set var="ftr" value="${(param.ft == null)? all : param.ft }"/>
 			<c:set var="stNum" value="${pg-(pg-1)%5}"/>
 			<ul class="pager pagination">

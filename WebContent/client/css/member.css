@@ -148,3 +148,6 @@ section.row{
 img.logo{
 	margin-top: 10%;
 }
+section.no-pad{
+	padding: 0;
+}

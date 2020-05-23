@@ -12,17 +12,17 @@ public class MybatisDAO {
 	private static SqlSessionFactory sqlSessionFactory;
 	static {
 		try {
-			Reader reader = Resources.getResourceAsReader("client/mapping/SqlMapConfig.xml");
+			Reader reader = Resources.getResourceAsReader("./client/mapping/SqlMapConfig.xml");
 			sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
 			reader.close();
 		} catch (Exception e) {
 			throw new RuntimeException("SqlSessionFactory instance." + e, e);
 		} 
 	}
-	public static int cntItem() {
+	public static int cntItem(Filter filter) {
 		int cnt = 0;
 		SqlSession session = sqlSessionFactory.openSession();
-		cnt = session.selectOne("cntItem");
+		cnt = session.selectOne("cntItem", filter);
 		session.close();
 		return cnt;
 	}

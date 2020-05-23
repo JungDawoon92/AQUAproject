@@ -28,19 +28,25 @@
 </head>
 <body>
 <jsp:include page="/client/include/nav.jsp"></jsp:include>
-    <article role="article" class="container no-color">
-    <div class="row">
-    <article class="container marg-bt-14">
-		<ul class="nav nav-tabs pull-left">
-		  <li class="active"><a href="#">내 정보</a></li>
-		  <li><a href="bookedList.bk">예약된 목록</a></li>
-		  <li><a href="lastBookedList.bk">종료된 목록</a></li>
-		</ul>
-		<h2 class="no-margin pull-right">내 정보</h2>
-		<br><hr>
-	</article>
-	
-	<section class="container">
+<section class="wrap">    
+<div class="row">
+<article class="container marg-bott">
+	<section class="row no-pad">
+		<div class="col-xs-12">
+			<h2 class="pull-right">내 정보</h2>
+		</div>
+		<div class="col-xs-12">
+			<ul class="nav nav-tabs">
+			  <li class="active"><a href="#">내 정보</a></li>
+			  <li><a href="bookedList.bk">예약된 목록</a></li>
+			  <li><a href="lastBookedList.bk">종료된 목록</a></li>
+			</ul>
+			<br>
+		</div>
+	</section>
+</article>
+</div>
+	<article class="container">
 				<div class="row">
 				<div class="col-sm-2">아이디 : </div><div class="col-sm-9"><input class="form-control" type="text" value="<%=member.getId() %>" disabled /></div><div class="col-sm-1"></div></div>
 				<br/><div class="row"><div class="col-sm-2 subject">이름 : </div><div class="col-sm-9"><input class="form-control" type="text" value="<%=member.getName() %>" disabled /></div><div class="col-sm-1"></div></div>
@@ -58,9 +64,8 @@
 					<input type="button" class="leave" value="탈퇴하기" onclick="location.href='MemberCheckView.me';" title="탈퇴하기" alt="탈퇴하기 버튼">
 				</div>
 		</div>
-	</section>
-</div>
-</article>
+	</article>
+</section>
 <footer class="container-fluid text-center">
   <p>Footer Text</p>
 </footer>

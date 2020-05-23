@@ -3,13 +3,59 @@
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="client.book.db.BookDAO">
-	<select id="cntItem" resultType="java.lang.Integer">
+	<select id="cntItem" resultType="java.lang.Integer" parameterType="filter">
 		select count(*) from item
+		where st_date >= current_date and categ like #{categ}
+		<choose>
+			<when test="st_date != null and ed_date != null and !dateSel_option">
+				and st_date = #{st_date} and ed_date = #{ed_date}
+			</when>
+			<when test="st_date != null and ed_date != null and dateSel_option">
+				and (st_date = #{st_date} or ed_date = #{ed_date})
+			</when>
+			<when test="st_date != null and ed_date == null">
+				and st_date = #{st_date}
+			</when>
+			<when test="st_date == null and ed_date != null">
+				and ed_date = #{ed_date}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
 	</select>
-	<select id="itemList" resultType="item" parameterType="Filter">
+	<select id="itemList" resultType="item" parameterType="filter">
 		select no, i_name, content, cnt, tot, price, st_date, ed_date, img, categ, up_date from item
 		where st_date >= current_date and categ like #{categ}
-		order by no desc
+		<choose>
+			<when test="st_date != null and ed_date != null and !dateSel_option">
+				and st_date = #{st_date} and ed_date = #{ed_date}
+			</when>
+			<when test="st_date != null and ed_date != null and dateSel_option">
+				and (st_date = #{st_date} or ed_date = #{ed_date})
+			</when>
+			<when test="st_date != null and ed_date == null">
+				and st_date = #{st_date}
+			</when>
+			<when test="st_date == null and ed_date != null">
+				and ed_date = #{ed_date}
+			</when>
+			<otherwise></otherwise>
+		</choose>
+		order by 
+		<choose>
+			<when test="ascNo">
+				no asc
+			</when>
+			<when test="orderByPrice and ascPrice">
+				price asc, no desc
+			</when>
+			<when test="orderByPrice and !ascPrice">
+				price desc, no desc
+			</when>
+			<otherwise>
+				no desc	
+			</otherwise>
+		</choose>
 		limit #{limit} offset #{offset}
 	</select>
 	<select id="itemInfo" resultType="item">

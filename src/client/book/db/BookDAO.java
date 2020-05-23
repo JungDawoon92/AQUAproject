@@ -3,7 +3,7 @@ package client.book.db;
 import java.util.List;
 
 public interface BookDAO {
-	public int cntItem();
+	public int cntItem(Filter filter);
 	public List<Item> itemList(Filter filter);
 	public Item itemInfo(int no);
 	public List<Booked> bookedList(String ref_id);

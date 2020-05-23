@@ -4,6 +4,7 @@
 <%@ page import="client.book.db.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html>
@@ -20,7 +21,6 @@
 </head>
 <body>
 	<jsp:include page="/client/include/nav.jsp"/>
-	
 <section class="wrap">
    	<article class="container">
 <script type="text/javascript">
@@ -41,6 +41,33 @@ $(document).ready(function(){
     		$("#filter-list").css("display", "block");
     	}
     });
+    $("#submitFt").click(function(){
+    	$("input[name=page]").val("1");
+    });
+    $("#limitSelect option").each(function(){
+    	if($(this).val()=="${sessionScope.limiter}"){
+    		$(this).attr("selected", "selected");
+    	}
+    });
+    $("#orderBySelect option").each(function(){
+    	if($(this).val()=="${sessionScope.orderBy}"){
+    		$(this).attr("selected", "selected");
+    	}
+    });
+    $("input[name=st_date]").val("${sessionScope.st_date}");
+    $("input[name=ed_date]").val("${sessionScope.ed_date}");
+    $("input[name=period_option]").each(function(){
+		if($(this).val()=="${sessionScope.period_option}"){
+			$(this).attr("checked", "checked");
+		}    	
+    });
+    $("#resetFt").click(function(){
+
+    	$("#orderByDef").attr("selected", "selected");
+    	$("input[name=st_date]").val("");
+    	$("input[name=ed_date]").val("");
+    	
+    });
 });
 </script>
 <jsp:useBean id="now" class="java.util.Date"/>
@@ -52,32 +79,45 @@ $(document).ready(function(){
         </div>
         <div id="filter-list" class="list-group">
 	        <div class="filter">
-	          <c:set var="pg" value="${(param.page eq null)? 1 : param.page}"/>
+	          <c:set var="pg" value="${(param.page eq null || param.page eq 0)? 1 : param.page}"/>
 	          <c:set var="ftr" value="${(param.ft eq null)? 'all' : param.ft}"/>
-	          <a href="?page=1&ft=all" title="ALL" class="${(param.ft eq 'all')?'active':''} list-group-item">전체보기</a>
-	          <a href="?page=1&ft=spring" title="Spring" class="${(param.ft eq 'spring')?'active':''} list-group-item">봄테마</a>
-	          <a href="?page=1&ft=summer" title="Summer" class="${(param.ft eq 'summer')?'active':''} list-group-item">여름테마</a>
-	          <a href="?page=1&ft=autumn" title="Autumn" class="${(param.ft eq 'autumn')?'active':''} list-group-item">가을테마</a>
-	          <a href="?page=1&ft=winter" title="Winter" class="${(param.ft eq 'winter')?'active':''} list-group-item">겨울테마</a>
+	          <a href="?page=1&ft=all" title="ALL" class="${(param.ft eq 'all')?'active':''} list-group-item">all (전체보기)</a>
+	          <a href="?page=1&ft=spring" title="Spring" class="${(param.ft eq 'spring')?'active':''} list-group-item">spring (봄테마)</a>
+	          <a href="?page=1&ft=summer" title="Summer" class="${(param.ft eq 'summer')?'active':''} list-group-item">summer (여름테마)</a>
+	          <a href="?page=1&ft=autumn" title="Autumn" class="${(param.ft eq 'autumn')?'active':''} list-group-item">autumn (가을테마)</a>
+	          <a href="?page=1&ft=winter" title="Winter" class="${(param.ft eq 'winter')?'active':''} list-group-item">winter (겨울테마)</a>
 	        </div>
 			<div class="filter panel panel-default text-center">
-			<form>
+			<form method="post" name="form" onsubmit="return false">
+				  <input type="hidden" name="page" value="${pg}"/>
+				  <input type="hidden" name="ft" value="${ftr}"/>
 				  <small>모아보기</small>
-		    	  <select class="form-control">
+		    	  <select id="limitSelect" class="form-control" name="limiter">
 		    	  	<option value="3">3개씩 모아보기</option>
-		    	  	<option selected="selected" value="6">6개씩 모아보기</option>
+		    	  	<option value="6" selected>6개씩 모아보기</option>
 		    	  	<option value="12">12개씩 모아보기</option>
 		    	  	<option value="24">24개씩 모아보기</option>
 		    	  	<option value="36">36개씩 모아보기</option>
 		    	  	<option value="48">48개씩 모아보기</option>
 		    	  </select>
-		    	  
-		    	  
+		    	  <small>정렬</small>
+		    	  <select id="orderBySelect" class="form-control" name="orderBy">
+		    	  	<option id="orderByDef" value="descNo" selected>최신등록 순</option>
+		    	  	<option value="ascNo">오래된 순</option>
+		    	  	<option value="ascPrice">낮은가격 순</option>
+		    	  	<option value="descPrice">높은가격 순</option>
+		    	  </select>
 		    	  <small>출발일 필터</small>
-		    	  <input type="date" class="form-control" min="${today}"/>
+		    	  	<input type="date" class="form-control" name="st_date" min="${today}" />
 		    	  <small>복귀일 필터</small>
-		    	  <input type="date" class="form-control" />
-		          <button class="btn btn-primary">적용</button><button class="btn btn-default">해제</button>
+		    	  	<input type="date" class="form-control" name="ed_date" min="${today}" />
+		    	  <small>여행기간 필터 옵션</small>
+		    	  <fieldset class="form-control">
+			    	<label class="radio-inline"><input id="periodDef" type="radio" name="period_option" value="and" checked>and</label>
+			    	<label class="radio-inline"><input type="radio" name="period_option" value="or" >or</label>
+		    	  </fieldset>
+		          <button id="submitFt" class="btn btn-primary" title="필터적용버튼" onclick="javascript:form.action='bookList.bk';form.submit()">적용</button>
+		          <button id="resetFt" class="btn btn-default" title="필터해제버튼">리셋</button>
 		    </form>
 	        </div>       
         </div>
@@ -89,7 +129,7 @@ $(document).ready(function(){
 		<div class="col-sm-12"><h2 class="pull-right marg-bott">예약페이지</h2></div>
 		<c:set var="iList" value="${iListForPage}"/>
 		<c:forEach var="item" items="${iList}" varStatus="status">
-		
+		<!-- img는 16:9 와이드 스크린 비율 사용 -->
           <div class="col-lg-4 col-md-6 mb-4">
             <div id="itemList" class="card" onclick='location.href="bookDetail.bk?ino=${item.no}&ft=${param.ft}&page=${param.page}";'>
               <img class="card-img-top" src="./img/${item.img}" title="상품이미지" alt="상품이미지">
@@ -97,7 +137,7 @@ $(document).ready(function(){
                 <h4 class="card-title">
                 	<strong id="bookName">${item.i_name}</strong>
                 </h4>
-				
+				<h5 class="card-text">분류 : ${item.categ}</h5>
 				<c:choose>
 					<c:when test="${item.tot eq 0 }">
 						<h5 class="cart-text"><strong>준비중인 상품입니다.</strong></h5>
@@ -114,7 +154,6 @@ $(document).ready(function(){
               </div>
             </div>
           </div>
-  
 		</c:forEach>
         </div>
         <!-- /.row -->
