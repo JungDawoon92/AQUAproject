@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import aqua.module.Action;
 import aqua.module.ActionForward;
 import client.comment.board.db.BoardDAO;
+import client.comment.like.db.BoardLikeDAO;
 
 public class BoardListAction implements Action {
 	public ActionForward execute(HttpServletRequest request,
@@ -20,7 +21,36 @@ public class BoardListAction implements Action {
 		
 		BoardDAO boarddao = new BoardDAO();
 		List boardlist = new ArrayList();
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
+		BoardLikeDAO likedao = new BoardLikeDAO();
 
+		int num1 = 0; // 게시글 번호 담을 그릇
+		String id = null; // 좋아요 누른 사람의 아이디
+		
+		Object Onum = request.getParameter("num"); // 목록버튼을 눌렀을때 쓰는것. // 바로 후기게시판을 눌렀을때는 이걸 안탐.
+		Object like = request.getParameter("like");
+		
+		if (Onum != null) {
+			num1 = Integer.parseInt((String) Onum );
+		}
+		if (session.getAttribute("userid") != null) {
+			id = (String) session.getAttribute("userid");
+		}
+		
+		int paralike = 0;
+
+		if (like != null) { // null이면 빠져나간다.
+			
+			paralike = Integer.parseInt((String)like);
+			if(paralike == 0) { // 좋아요를 안눌렀을때 or 취소했을때.
+				likedao.isNoLike(num1, id); // 검색이 되면 삭제 / 검색이 안되면 통과
+			}
+			else if(paralike == 1) { // 좋아요를 눌렀을때 or 기존에 눌렀을때.
+				likedao.isYesLike(num1, id);		
+			}
+		}
+		
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		int page = 1;
 		int limit = 5;
 

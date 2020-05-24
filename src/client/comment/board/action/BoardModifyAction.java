@@ -38,20 +38,6 @@ public class BoardModifyAction implements Action {
 			if (request.getParameter("pager") != null) {
 				pager = Integer.parseInt(multi.getParameter("pager"));
 			}
-
-			boolean usercheck = boarddao.isBoardWriter(num,
-					multi.getParameter("BOARD_ID"));
-			
-			if (usercheck == false) {
-				response.setContentType("text/html;charset=UTF-8");
-				PrintWriter out = response.getWriter();
-				out.println("<script>");
-				out.println("alert('수정할 권한이 없습니다.');");
-				out.println("location.href='./BoardList.bo';");
-				out.println("</script>");
-				out.close();
-				return null;
-			}
 		
 			boarddata.setBOARD_NUM(num);
 			boarddata.setBOARD_SUBJECT(multi.getParameter("BOARD_SUBJECT"));

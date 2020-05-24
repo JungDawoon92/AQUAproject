@@ -4,6 +4,7 @@
 <%@ page import="client.comment.comment.db.*"%>
 <%@ page import="java.util.*"%>
 <%@ page import="client.comment.board.action.encodeContent" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	encodeContent encode = new encodeContent();
 	BoardBean board = (BoardBean) request.getAttribute("boarddata");
@@ -14,7 +15,11 @@
 		id = (String) session.getAttribute("userid");
 	}
 %>
-<%
+<%	int likecheck = 0;
+	if (request.getAttribute("likecheck") != null) {
+		likecheck =  ((Integer) request.getAttribute("likecheck")).intValue();		
+	}
+
 	List commentlist = (List) request.getAttribute("commentlist");
 	int commentlistcount = ((Integer) request.getAttribute("commentlistcount"))
 			.intValue();
@@ -41,6 +46,8 @@
   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  	<script src="https://kit.fontawesome.com/2d323a629b.js" crossorigin="anonymous"></script>
+  	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="./client/css/review_view.css" />
     <title>AQUA</title>
     <script language="javascript">
@@ -69,7 +76,45 @@
 	
   </head>
   <body>
-    <jsp:include page="../../include/nav.jsp"></jsp:include>
+    <nav class="navbar">
+      <!-- Logo with text -->
+      <div class="navbar__logo">
+       <a href="index.bk" title="홈페이지" alt="홈페이지로 이동"><i class="fab fa-accusoft"></i> AQUA</a>
+      </div>
+      <!-- Menu -->
+      <ul class="navbar__menu">
+        <li onclick='location.href="index.bk"' title="Home" alt="홈페이지로 이동">홈페이지</li>
+        <li onclick="location.href='bookList.bk?ft=${(param.ft eq null)?'all':param.ft}&page=${(param.page eq null)?1:param.page}'" title="Book" alt="예약페이지로 이동">예약신청</li>
+        <li onclick='location.href="ClientBoardList.no"' title="Notice" alt="공지게시판으로 이동">공지게시판</li>
+        <li onclick='location.href="QnABoardList.qa"' title="QnA" alt="질문게시판으로 이동">질문게시판</li>
+        <li id="link1" onclick='location.href="BoardList.bo"' title="ReplyBoard" alt="후기게시판으로 이동">후기게시판</li>
+      </ul>
+      <!-- Icons -->
+      <ul class="navbar__icons">
+        <c:if test="${!empty sessionScope.userid}">
+        	<li><a href="MemberViewAction.me"><i class="fas fa-user" title="my page" alt="내 정보 페이지"> 내 정보보기</i></a></li>
+        	<li><a href="MemberLogout.me" title="logout" alt="로그아웃"><i class="fas fa-sign-out-alt"> 로그아웃</i></a></li>
+        </c:if>
+        <c:if test="${empty sessionScope.userid}">
+        	<li><a href="MemberJoinView.me" title="sign up" alt="회원가입하기"><i class="fas fa-user-plus" > 회원가입</i></a></li>
+        	<li><a href="MemberLogin.me" title="sign in" alt="로그인하기"><i class="fas fa-sign-in-alt" > 로그인</i></a></li>
+        </c:if>       
+      </ul>
+      <!-- Toggle button -->
+      <a href="#" class="navbar__toggleBtn" title="모바일 메뉴" alt="모바일 메뉴">
+        <i class="fas fa-bars"></i>
+      </a>
+      <!-- Toggle button -->
+      	<script type="text/javascript">
+		    const toggleBtn = document.querySelector('.navbar__toggleBtn');
+	    	const menu = document.querySelector('.navbar__menu');
+		    const icons = document.querySelector('.navbar__icons');
+		    toggleBtn.addEventListener('click', () => {
+		      menu.classList.toggle('active');
+		      icons.classList.toggle('active');
+		    });
+	    </script>
+    </nav>
 
 	<div class="container">
       <h2 align="left">Reivew</h2>
@@ -101,7 +146,33 @@
 
 		<tr>
 			<td>
-				<div align="left">내 용&nbsp; &nbsp;:</div>
+				<div>내 용&nbsp; &nbsp;:</div>
+			
+			<% if(!(id.equals("null"))) { 
+				if(likecheck ==1) {%>
+					<button type="button" class="btn btn-sm btn-danger button-class1" data-toggle="popover" data-trigger="hover" data-content="'좋아요' 는 큰 힘이됩니다!"><span class="glyphicon glyphicon-heart-empty"></span></button>
+					<%} else {%>
+					<button type="button" class="btn btn-sm button-class1" data-toggle="popover" data-trigger="hover" data-content="'좋아요' 는 큰 힘이됩니다!"><span class="glyphicon glyphicon-heart-empty"></span></button>	
+					<% } %>
+    		<% } else { %>
+    		<button type="button" class="btn btn-sm" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-heart-empty"></span></button>
+		 			    <div class="modal fade" id="myModal" role="dialog">
+						    <div class="modal-dialog">
+						      <div class="modal-content">
+						        <div class="modal-header">
+						          <button type="button" class="close" data-dismiss="modal">&times;</button>
+						          <h4 class="modal-title">Alert</h4>
+						        </div>
+						        <div class="modal-body">
+						          <p>로그인이 필요한 서비스입니다.</p>
+						        </div>
+						        <div class="modal-footer">
+						          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						        </div>
+						      </div>
+						    </div>
+						  </div>
+					<% } %>
 			</td>
 			<td>
 				<table>
@@ -232,7 +303,7 @@
       			<textarea class="form-control comment_content" name="COMMENT_CONTENT" rows="5" required minlength="1" maxlength="1500" placeholder="로그인이 필요합니다."></textarea>
       			<% } %>
       			<div></div>
-      			<a href="<% try{if(((Integer)(session.getAttribute("sortrecent"))).intValue() == 1) { %>./BoardrecentList.bo?page=<% } else { %>./BoardList.bo?page=<%}} catch(Exception ex){%>./BoardList.bo?page=<%}%><%=pager%>" class="btn btn-default pull-left" role="button">목록</a>
+      			<a id="link2" href="<% try{if(((Integer)(session.getAttribute("sortrecent"))).intValue() == 1) { %>./BoardrecentList.bo?page=<% } else { %>./BoardList.bo?page=<%}} catch(Exception ex){%>./BoardList.bo?page=<%}%><%=pager%>&num=<%=board.getBOARD_NUM()%>" class="btn btn-default pull-left" role="button">목록</a>
     		<% if(!(id.equals("null"))) { %>
     		<button type="submit" class="btn btn-info pull-right">Reply</button>
     		<% } else { %>
@@ -264,5 +335,56 @@
     <footer class="container-fluid text-center">
       <p>Footer Text</p>
     </footer>
+    
+    <script>
+    var like = document.getElementById("link2").getAttribute("href");
+    
+    var likechange ="";
+    var like2change ="";
+    
+    var like1 = {
+    	    get x() {
+    	      return likechange;
+    	    },
+    	    set x(v) {
+    	    	likechange = like+v;
+    	    }
+    	  }
+    var like2 = {
+    	    get x() {
+    	      return like2change;
+    	    },
+    	    set x(v) {
+    	    	like2change ="location.href="+"\""+v+"\"";
+    	    }
+    	  }
+    
+    </script>
+    
+    <script>
+	$(document).ready(function(){
+	    $('[data-toggle="popover"]').popover();   
+	});
+	
+	$(".button-class1").click(function(){
+	     $(this).toggleClass("btn-danger");
+	     
+	     if( $(this).hasClass('btn-danger') ) 
+	    	{  
+	    	 	like1.x = "&like=1";
+	    		document.getElementById("link2").setAttribute("href",like1.x);
+	    		like2.x = like1.x;
+	    		document.getElementById("link1").setAttribute("onclick",like2.x);	    	 	
+	         }
+	     if( !$(this).hasClass('btn-danger') ) 
+	    	{
+	    	 	like1.x = "&like=0";
+		    	document.getElementById("link2").setAttribute("href",like1.x);
+		    	like2.x = like1.x;
+		    	document.getElementById("link1").setAttribute("onclick",like2.x);
+	         }
+	}); 
+	</script>
+
 </body>
 </html>

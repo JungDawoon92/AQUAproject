@@ -20,6 +20,9 @@ public class BoardRecentAction implements Action {
 
 		BoardDAO boarddao = new BoardDAO();
 		List boardlist = new ArrayList();
+		
+		System.out.println(request.getParameter("like"));
+		System.out.println(request.getParameter("num"));
 
 		int page = 1;
 		int limit = 5;

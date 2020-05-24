@@ -13,6 +13,7 @@ import client.comment.board.db.BoardBean;
 import client.comment.board.db.BoardDAO;
 import client.comment.comment.db.CommentBean;
 import client.comment.comment.db.CommentDAO;
+import client.comment.like.db.BoardLikeDAO;
 
 public class BoardDetailAction implements Action {
 	public ActionForward execute(HttpServletRequest request,
@@ -35,7 +36,15 @@ public class BoardDetailAction implements Action {
 			pager = Integer.parseInt(request.getParameter("pager"));
 		}
 		
-		
+////////////////////////////////////////////////////////////////////////////////////////////
+		String id = null; 
+		if (session.getAttribute("userid") != null) {
+			id = (String) session.getAttribute("userid");
+			BoardLikeDAO likedao = new BoardLikeDAO();
+			int likecheck = 0; // 그 사람이 눌렀냐 안눌렀냐 확인 
+			likecheck=likedao.isLikeCheck(num, id);
+			request.setAttribute("likecheck", likecheck);
+		}
 /////////////////////////////////////////////////////////////////////////////////////////////		
 		
 		Object spager = session.getAttribute("spager"); 

@@ -211,20 +211,20 @@ public List getSearchList_Content(int page, String search_content) {
 
 	}
 
-	public boolean isBoardWriter(int num, String id) {
-		
-		String ssresult="";
-		
-		SqlSession ss = FactoryService.getFactory().openSession();
-		ssresult = ss.selectOne("isBoardWriter",num);
-		ss.close();
-		if (id.equals(ssresult)) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
+//	public boolean isBoardWriter(int num, String id) {
+//		
+//		String ssresult="";
+//		
+//		SqlSession ss = FactoryService.getFactory().openSession();
+//		ssresult = ss.selectOne("isBoardWriter",num);
+//		ss.close();
+//		if (id.equals(ssresult)) {
+//			return true;
+//		} else {
+//			return false;
+//		}
+//	}
+//	
 	public void commentAllDelete(int num) {
 		
 	

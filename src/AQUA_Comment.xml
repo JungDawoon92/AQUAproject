@@ -15,6 +15,18 @@
 		SELECT * FROM MEMBERBOARD ORDER BY BOARD_NUM DESC LIMIT 0,5
 	</select>
 	
+
+
+	<select id="likecount" resultType="int" parameterType="java.util.HashMap">
+		SELECT COUNT(*) FROM MEMBERLIKE WHERE LIKE_ID= #{LIKE_ID} AND LIKE_BOARD_NUM = #{LIKE_BOARD_NUM}
+	</select>
+	<insert id="likeinsert" parameterType="java.util.HashMap">
+		INSERT INTO MEMBERLIKE VALUES (#{LIKE_ID},#{LIKE_BOARD_NUM},1)
+	</insert>
+	<delete id="likedelete" parameterType="java.util.HashMap">
+		DELETE FROM MEMBERLIKE WHERE LIKE_ID= #{LIKE_ID} AND LIKE_BOARD_NUM = #{LIKE_BOARD_NUM}
+	</delete>
+	
 	
 	
 	<select id="getSearchList_id" parameterType="java.util.HashMap" resultType="client.comment.board.db.BoardBean">
