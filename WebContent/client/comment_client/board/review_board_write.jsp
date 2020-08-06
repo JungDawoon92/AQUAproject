@@ -16,8 +16,7 @@
     <title>AQUA</title>
     
   </head>
-  <body>
-    <jsp:include page="/client/include/nav.jsp"></jsp:include>
+  <body><jsp:include page="/client/include/nav.jsp"/><section class="wrap">
     
     <div class="container content_div">
 	<form action="./BoardAddAction.bo" method="post" enctype="multipart/form-data"
@@ -68,8 +67,6 @@
 	
 	<br />
 
-    <footer class="container-fluid text-center">
-      <p>Footer Text</p>
-    </footer>
+</section><jsp:include page="/copyright.html"/>
 </body>
 </html>

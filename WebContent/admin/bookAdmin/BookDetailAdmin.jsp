@@ -20,9 +20,7 @@
 	.modalbtn { display:none; }
 </style>
 </head>
-<body>
-
-<jsp:include page="/admin/module/Navbar.jsp" />
+<body><jsp:include page="/admin/module/Navbar.jsp" /><section class="wrap">
 
 <jsp:include page="/admin/module/BookForm.jsp" />
 
@@ -39,7 +37,7 @@ $("div#price-div div").html("${bookMap.price}");
 $("div#st-date-div div").html("${bookMap.st_date}");
 $("div#ed-date-div div").html("${bookMap.ed_date}");
 $("div#up-date-div div").html("${bookMap.up_date}");
-$("div#member-name-div div").html("${bookMap.name}");
+$("div#memberName-div div").html("${bookMap.name}");
 $("div#birthday-div div").html("${bookMap.birthday}");
 $("div#gender-div div").html("${bookMap.gen}");
 $("div#email-div div").html("${bookMap.email}");
@@ -73,5 +71,6 @@ document.getElementById("deleteTRUE-btn").onclick = function () {
 	location.replace("./BookDeleteAction.ady?pno=${bookMap.pno}&pages=${pages}");
 }
 </script>
+</section><jsp:include page="/copyright.html"/>
 </body>
 </html>

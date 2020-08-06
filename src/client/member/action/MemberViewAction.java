@@ -16,7 +16,7 @@ public class MemberViewAction implements Action {
 		ActionForward forward = new ActionForward();
 
 		HttpSession session = request.getSession();
-//		MemberDAO memberdao = new MemberDAO();
+		MemberDAO memberdao = new MemberDAO();
 		MemberBean member = new MemberBean();
 
 		String id = (String) session.getAttribute("userid");

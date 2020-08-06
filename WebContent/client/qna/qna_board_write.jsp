@@ -21,9 +21,7 @@
     <script src="main.js" defer></script>
     <title>AQUA</title>
   </head>
-  <body>
-
-	<jsp:include page="/client/include/nav.jsp" />
+  <body><jsp:include page="/client/include/nav.jsp"/><section class="wrap">
 	<div class="container">
 		<h1>Q&A게시판</h1>
 	</div>
@@ -41,9 +39,9 @@
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="subject">제목</label>
 					<div class="col-sm-10">
-						<input class="form-control" name="SUBJECT" type="text"
-						 maxlength="40" id="subject" placeholder="40자 이내"
-						value="" autofocus="autofocus"/>
+						<input class="form-control check_null" name="SUBJECT" type="text"
+						 maxlength="70" id="subject" placeholder="60자 이내"
+						value="" autofocus="autofocus" required/>
 					</div>
 				</div>
 				
@@ -62,8 +60,8 @@
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="content">내용</label>
 					<div class="col-sm-10">
-						<textarea class="form-control" name="CONTENT" cols="67" class="content"
-							rows="10" maxlength="1050" placeholder="1000자 이내"></textarea>
+						<textarea class="form-control check_null content" name="CONTENT" cols="67"
+							rows="10" maxlength="1050" placeholder="1000자 이내" required></textarea>
 					</div>
 				</div>
 				
@@ -98,10 +96,11 @@
 	function checkFields() {
 
 		var result = true;
-		var frm = $("#frm :input").not(":input[type=hidden]");
+		var frm = $(".check_null");
+		console.log(frm);
 		
 		frm.each(function(idx, ele) {
-			if ("" == $(ele).val() || null == $(ele).val()) {
+			if (ele.value.replace(/\s|　/gi, '') == '') {
 				alert("값을 입력하세요");
 				$(ele).focus();
 				result = false;
@@ -119,5 +118,6 @@
 
 	}
 	</script>
+</section><jsp:include page="/copyright.html"/>
 </body>
 </html>

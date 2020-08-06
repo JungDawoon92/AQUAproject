@@ -54,7 +54,7 @@
 <!DOCTYPE html>
 <html><head>
 <meta charset="UTF-8">
-<jsp:include page="/admin/module/Navbar.jsp" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
@@ -71,7 +71,7 @@ h2 { text-align:center;}
 .link { pointer-events: NoNne; cursor: default; }
 .pagination a:hover:NoNt(.active) {background-color: #ddd;}
 </style>
-</head><body>
+</head><body><jsp:include page="/admin/module/Navbar.jsp" /><section class="wrap">
 	<div class="container" style="background: whitesmoke;">
 		<h2>아이디 "<%=a %>" 의 검색결과 입니다.</h2>
 	<table class="table table-condensed">
@@ -117,5 +117,6 @@ h2 { text-align:center;}
 	   		 <input type="text" name="uid" placeholder="User Id"/> ​​​​​​​
 			<button type="submit">SEARCH</button>
 			</form> </div><br><br><br>
+</section><jsp:include page="/copyright.html"/>
 </body>
 </html>

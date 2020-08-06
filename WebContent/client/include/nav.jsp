@@ -16,11 +16,11 @@
     <nav class="navbar">
       <!-- Logo with text -->
       <div class="navbar__logo">
-       <a href="index.bk" title="홈페이지" alt="홈페이지로 이동"><i class="fab fa-accusoft"></i> AQUA</a>
+       <a href="Index.me" title="홈페이지" alt="홈페이지로 이동"><i class="fab fa-accusoft"></i> AQUA</a>
       </div>
       <!-- Menu -->
       <ul class="navbar__menu">
-        <li onclick='location.href="index.bk"' title="Home" alt="홈페이지로 이동">홈페이지</li>
+        <li onclick='location.href="Index.me"' title="Home" alt="홈페이지로 이동">홈페이지</li>
         <li onclick="location.href='bookList.bk?ft=${(param.ft eq null)?'all':param.ft}&page=${(param.page eq null)?1:param.page}'" title="Book" alt="예약페이지로 이동">예약신청</li>
         <li onclick='location.href="ClientBoardList.no"' title="Notice" alt="공지게시판으로 이동">공지게시판</li>
         <li onclick='location.href="QnABoardList.qa"' title="QnA" alt="질문게시판으로 이동">질문게시판</li>

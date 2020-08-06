@@ -7,7 +7,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<jsp:include page="/admin/module/Navbar.jsp" />
   <jsp:include page="membermodal.jsp" />
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -16,6 +15,7 @@
 <style>
 tr {text-align:center;}
 h2 {text-align:center;}
+.inb { width:40%; text-align:center;}
 </style>
 </head>
 <script>
@@ -43,38 +43,23 @@ var yyyy = today.getFullYear();
 today = yyyy+'-'+mm+'-'+dd;
 document.getElementById("datefield").setAttribute("max", today);
 
+function emailcheck() {		
 
+	var email = document.getElementById("uemail").value;
 
-function inputPhoneNumber(obj) {
+	var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+			if(exptext.test(email)==false){
+				 document.getElementById('emails').innerHTML="<font color=#f00>이메일 형식과 맞지 않습니다..</font>" 
+		return false;
+	}else{
+		 document.getElementById('emails').innerHTML=" " 
+		 emailt = true;
+	}
 
-    var number = obj.value.replace(/[^0-9]/g, "");
-    var phone = "";
-
-    if(number.length < 4) {
-        return number;
-    } else if(number.length < 7) {
-        phone += number.substr(0, 3);
-        phone += "-";
-        phone += number.substr(3);
-    } else if(number.length < 11) {
-        phone += number.substr(0, 3);
-        phone += "-";
-        phone += number.substr(3, 3);
-        phone += "-";
-        phone += number.substr(6);
-    } else {
-        phone += number.substr(0, 3);
-        phone += "-";
-        phone += number.substr(3, 4);
-        phone += "-";
-        phone += number.substr(7);
-    }
-    obj.value = phone;
 }
-
 </script>
 
-<body>
+<body><jsp:include page="/admin/module/Navbar.jsp" /><section class="wrap">
 <div class="container" style="background: whitesmoke; margin-top: 40px;" >       
   <form action="memberModify.ad" method="post" name="userInfo">
   <table class="table">
@@ -85,27 +70,28 @@ function inputPhoneNumber(obj) {
          </tr><tr>
         <td>아이디</td><td><%=member.getId() %><input type="hidden" name="id" value="<%=member.getId()%>"></td>
          </tr><tr>
-        <td>주소</td><td><input type="text" id="addr"name="addr" required ></td>
+        <td>주소</td><td><input type="text" id="addr" name="addr" class="inb"required ></td>
         </tr><tr>
         <td>생일</td><td><input type="date" id="datefield" name="birthday" required></td>
         </tr><tr>
  		 <td>성별</td><td>
  		 <% if(member.getGen().equals("남")){ %>
- 		 <input type="radio" name="gen" value="남" checked="checked">남
-		<input type="radio" name="gen" value="여">여 
+ 		<label><input type="radio" name="gen" value="남" checked="checked">남</label> 
+		<label><input type="radio" name="gen" value="여">여 </label> 
 		<%} else {%>	
-		<input type="radio" name="gen" value="남" >남
-		<input type="radio" name="gen" value="여" checked="checked">여 			  
+		<label>	<input type="radio" name="gen" value="남" style="width:0" >남</label> 
+		<label><input type="radio" name="gen" value="여" style="width:0;" checked="checked">여 	</label> 		  
 		<%} %></td>  
         </tr><tr>
-        <td>이메일 주소</td><td><input type="email" id="uemail" name="email" required></td>
+        <td>이메일 주소</td><td><input type="email" id="uemail" name="email" class="inb" onkeyup="emailcheck()" required></td>
         </tr><tr>
-        <td>휴대폰 번호</td><td><input type="text" id="uphone" name="phone" onKeyup="inputPhoneNumber(this);" required min="13" maxlength="13"></td>
-        <input type="hidden" id="pageNo" name="pageNo">
+        <td>휴대폰 번호</td><td><input type="text" id="uphone" name="phone" class="inb"  required min="13" maxlength="13"></td>
         </tr><tr><td>  
  		 <button type="button" id="moreturn" >리스트로 돌아가기</button></td>
 		<td><button type="button" id="sendmodi">회원 수정</button></td>
- 		 </tbody></table></form></div></body>
+ 		 </tbody></table></form></div>
+</section><jsp:include page="/copyright.html"/>		 
+</body>
  		 
  		 <script>
  		$(document).ready(function() {
@@ -142,6 +128,25 @@ function inputPhoneNumber(obj) {
  			});
 
  		});
+ 		
+ 		$("#uphone").keyup(function(event){
+			var inputVal=$(this).val();
+			$(this).val(inputVal.replace(/[^0-9]/g, "")
+					.replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})/,"$1-$2-$3")
+					.replace("--", "-")); });
+		
+		
+		$("#addr").bind("keyup",function(){
+			 re = /[~!@\#$%^&*\()\-=+_']/gi; 
+			 var temp=$("#addr").val();
+			 if(re.test(temp)){ 
+			 $("#addr").val(temp.replace(re,"")); } });
+		
+		$("#uemail").bind("keyup",function(){
+			 var a = $('#uemail').val().replace(/ /gi, '');
+		        $('#uemail').val(a);
+		});
+		
  		 </script>
  		  
  	

@@ -22,58 +22,56 @@
   <style type="text/css">
   	img.itemimg { width:150px; height:150px; max-width:100%; }
   	.modalbtn { display: none; }
-  	.txt_line { width:70px; padding:0 5px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-
+  	.txt_line { width:150px; padding:0 5px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  	th { text-align:center; }
   </style>
 </head>
-<body>
-
-<jsp:include page="/admin/module/Navbar.jsp" />
+<body><jsp:include page="/admin/module/Navbar.jsp" /><section class="wrap">
 
 <div class="container">
   <h2>상품 리스트</h2>
     <div class="col-xs-12">
 		<button type="button" id="add-btn" class="btn btn-default pull-right">상품 등록</button>
 	</div>
-	<div id="list-view" class="borderCK col-xs-9">
-		<div class="row">
-			<div class="borderCK col-xs-1">${"번호"}</div>
-			<div class="borderCK col-xs-2">${"카테고리"}</div>
-			<div class="borderCK col-xs-1">${"제목"}</div>
-			<div class="borderCK col-xs-1">${"수량"}</div>
-			<div class="borderCK col-xs-1">${"가격"}</div>
-			<div class="borderCK col-xs-2">${"출발 날짜"}</div>
-			<div class="borderCK col-xs-2">${"도착 날짜"}</div>
-			<div class="borderCK col-xs-2">${"등록 날짜"}</div>
-		</div>
-	</div>
-		
-	<div class="container">
-		<div class="row">
-		<c:forEach var="i" items="${itemlist}" begin="0" end="${itemlist.size()}" step="1" >
-			<fmt:parseDate var="strPlanDate" value="${i.getSt_date() }" pattern="yyyy-MM-dd" />
-			<fmt:parseNumber var="strDate" value="${strPlanDate.time / (1000*60*60*24) }" integerOnly="true" />
-			<fmt:parseDate var="endPlanDate" value="${i.getEd_date() }" pattern="yyyy-MM-dd" />
-			<fmt:parseNumber var="endDate" value="${endPlanDate.time / (1000*60*60*24) }" integerOnly="true" />
-			<div id="item-div" class="borderCK col-xs-9" onclick='location.href="./ItemDetailAdmin.adx?no=${i.getNo() }&pages=${paging.currentPageNo}"' >
-				<div class="row">
-					<div class="col-xs-1">${i.getNo()}</div>
-					<div class="col-xs-1">${i.getCateg()}</div>
-					<div class="col-xs-1 txt_line">${i.getI_name()}</div>			
-					<div class="col-xs-1">${i.getTot() }</div>
-					<div class="col-xs-1">${i.getPrice() }</div>
-					<div class="col-xs-2">${ i.getSt_date() }</div>
-					<div class="col-xs-2">${ i.getEd_date() }</div>
-					<div class="col-xs-2">${ i.getUp_date() }</div>
-				</div>
+	
+	    <div class="container content_div">
+	    	<div class="row">
+	   	 	<div class="col-sm-12">
+		        <table class="table table-striped table-bordered table-hover">
+		        <caption><span class="blind">상품 목록</span></caption>
+				<thead>
+		            <tr>
+		              <th>번호</th>
+		              <th>카테고리</th>
+		              <th>제목</th>
+		              <th>수량</th>
+		              <th>가격</th>
+		              <th>출발 날짜</th>
+		              <th>도착 날짜</th>
+		              <th>등록 날짜</th> 
+		            </tr>
+		         </thead>
+				<tbody>
+	         	 <c:forEach var="i" items="${itemlist}" begin="0" end="${itemlist.size()}" step="1" >
+					<tr>
+		         		<td>${i.getNo()}</td>
+		         		<td>${i.getCateg()}</td>
+		         		<td><a href="./ItemDetailAdmin.adx?no=${i.getNo() }&pages=${paging.currentPageNo}">${i.getI_name() }</a></td>
+		         		<td>${i.getTot() }</td>
+		         		<td>${i.getPrice() }</td>
+		         		<td>${i.getSt_date() }</td>
+		         		<td>${i.getEd_date() }</td>
+		         		<td>${ i.getUp_date() }</td>
+			        	<td><a class="" role="button" onclick='location.href="./ItemModifyAdmin.adx?no=${i.getNo()}&&pages=${paging.currentPageNo}"'>수정</a></td>
+		         		<td><a class="deleteBtn" role="button" data-pnum="${i.getNo() }">삭제</a></td>
+		         	</tr>
+		         </c:forEach>
+				</tbody>
+				</table>
 			</div>
-			<div class="borderCK col-xs-3">
-			<button class="btn btn-default" onclick='location.href="./ItemModifyAdmin.adx?no=${i.getNo()}&&pages=${paging.currentPageNo}"'>수정</button>
-			<button class="btn btn-default deleteBtn" data-pnum="${i.getNo() }">삭제</button>
-			</div>
-		</c:forEach>
-		</div>
-	</div>
+			</div>	
+       </div>
+
 
 	<button type="button" class="modalbtn" id="modal-btn" onclick="document.getElementById('modal-div').style.display='block'"></button>
 	<div id="modal-div" class="modal">
@@ -152,5 +150,6 @@ function goPage(url, pages) {
     location.href = url;    
 }
 </script>
+</section><jsp:include page="/copyright.html"/>
 </body>
 </html>

@@ -31,8 +31,10 @@
       crossorigin="anonymous"
     ></script>
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+
 <script>
 $(function(){
+	
 	$('.onlyAlphabetAndNumber').keyup(function(event){
         if (!(event.keyCode >=37 && event.keyCode<=40)) {
             var inputVal = $(this).val();
@@ -295,10 +297,9 @@ function check_onclick() {
 
 </script>
 </head>
-<body>
+<body><jsp:include page="/client/include/nav.jsp"/><section class="wrap">
 <jsp:useBean id="now" class="java.util.Date"/>
 <fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today"/>
-<jsp:include page="/client/include/nav.jsp"></jsp:include>
     <div class="container">
     <h2 class="maintitle" title="회원가입" alt="회원가입 페이지" >회원가입</h2>
     <br/><br/>
@@ -384,8 +385,6 @@ function check_onclick() {
 		</div></div>
 	</form>
 </div>
-<footer class="container-fluid text-center">
-  <p>Footer Text</p>
-</footer>
+</section><jsp:include page="/copyright.html"/>
 </body>
 </html>

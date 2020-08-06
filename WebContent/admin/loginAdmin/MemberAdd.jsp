@@ -3,14 +3,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.List"%>
 <%@ page import="java.util.ArrayList"%>
-<%@ page import="admin.member.db.*" %>
+<%@ page import="admin.member.db.*"%>
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="/admin/module/Navbar.jsp" />
- <jsp:include page="membermodal.jsp" />
+<jsp:include page="membermodal.jsp" />
 <meta charset="UTF-8">
-<link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <style>
@@ -20,8 +19,7 @@ h2 { text-align: center; }
 
 #center { display: block; margin: 0 auto; }
 
-table{ height: 100px; margin: auto; text-align: center; cellspacing:10px; }
-
+table { height: 100px; 	margin: auto; text-align: center;	cellspacing: 10px; }
 </style>
 
 <script>
@@ -38,10 +36,13 @@ document.addEventListener('keydown', function(event) {
 
 var rname = false;
 var rpass = false;
+var emailt = false;
 var rename = null;
 var repass = null
 var repass2 = null;
 var today = new Date();
+
+$(document).ready(function() {
 var dd = today.getDate();
 var mm = today.getMonth()+1; //January is 0!
 var yyyy = today.getFullYear();
@@ -53,12 +54,12 @@ var yyyy = today.getFullYear();
     } 
 
 today = yyyy+'-'+mm+'-'+dd;
-document.getElementById("datefield").setAttribute("max", today);
+document.getElementById("birthday").setAttribute("max", today);
+});
 
 function idCheck(){
 	
     var id = userInfo.id.value
-    
     
     if(id.length<=3){
     	document.getElementById('alram').innerHTML="<font color=#f00> 아이디는 4글자 이상입니다.</font>"
@@ -93,112 +94,129 @@ function idCheck(){
     }
 }
 
+function passCheckn(){
+	var passn = userInfo.pass.value
+	
+	 if(passn.length<=7){
+		 document.getElementById('passaa').innerHTML="<font color=#f00>비밀번호는 8글자 이상 입니다..</font>" 
+	 }else{
+		 document.getElementById('passaa').innerHTML=""
+	 }
+}
+
 function passCheck(){
 	 var pass = userInfo.pass.value
 	 var passcheck = userInfo.passcheck.value
-	 if(pass == passcheck){
+	
+	if(pass == passcheck){
 		 document.getElementById('passa').innerHTML="<font color=#0c0>비밀번호가 동일합니다.</font>" 
 		 repass == passcheck;
 		 repass2 == pass;
 		 rpass = true;
-	 }else {
+	 }else if((pass == "")|| (passcheck=="")){
+		 document.getElementById('passa').innerHTML="<font color=#0c0> </font>" 
+		 rpass = false;
+	 }
+	 else {
 		 document.getElementById('passa').innerHTML="<font color=#f00>비밀번호가 동일하지 않습니다.</font>" 
+		 rpass = false;
 	 }
 }
 
-function inputPhoneNumber(obj) {
+function emailcheck() {		
+	var email = document.getElementById("uemail").value;
+	var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+			if(exptext.test(email)==false){
+				 document.getElementById('emails').innerHTML="<font color=#f00>이메일 형식과 맞지 않습니다..</font>" 
+		return false;
+	}else{
+		 document.getElementById('emails').innerHTML=" " 
+		 emailt = true;
+	}
 
-    var number = obj.value.replace(/[^0-9]/g, "");
-    var phone = "";
-
-    if(number.length < 4) {
-        return number;
-    } else if(number.length < 7) {
-        phone += number.substr(0, 3);
-        phone += "-";
-        phone += number.substr(3);
-    } else if(number.length < 11) {
-        phone += number.substr(0, 3);
-        phone += "-";
-        phone += number.substr(3, 3);
-        phone += "-";
-        phone += number.substr(6);
-    } else {
-        phone += number.substr(0, 3);
-        phone += "-";
-        phone += number.substr(3, 4);
-        phone += "-";
-        phone += number.substr(7);
-    }
-    obj.value = phone;
 }
-
-
 </script>
 
 <title>Insert title here</title>
 </head>
-<body>
+<body><jsp:include page="/admin/module/Navbar.jsp" /><section class="wrap">
 	<div class="container" style="background: whitesmoke;">
 		<h2>회원 등록</h2>
-		<div>
-			<form action="MemberAdd.ad" method="post" name="userInfo"
-				id="userInfo">
-				<table class="table"><tr>
-				<th></th><th>아이디</th><th style="width:50%;"><input type="text" name="id" id="uid" min="4" maxlength="10" placeholder="4글자 이상 입력하세요" required autofocus><button type="button" onclick="idCheck()">중복확인</button><span id="alram"></span></th>			
-				</tr><tr>
-				<th></th><th>비밀번호 </th><th><input type="password" id="pass" name="pass" min="4" maxlength="20" placeholder="4글자 이상 입력하세요" required></th>
-				</tr><tr>
-				<th></th><th>비밀번호 확인</th><th><input type="password" id="passcheck" min="4" maxlength="20"  onkeyup="passCheck()" placeholder="4글자 이상 입력하세요" required><span id="passa"></span></th>
-				</tr><tr>
-				<th></th><th>이름</th><th><input type="text" id="uname" name="name" required></th>
-				</tr><tr>
-				<th></th><th>주소</th><th><input type="text" id="uaddr" name="addr" required></th>
-				</tr><tr>
-				<th></th><th>휴대폰번호</th><th> <input type="text" id="uphone" name="phone" onKeyup="inputPhoneNumber(this);" min="13" maxlength="13" required></th>
-				</tr><tr>
-				<th></th><th>생일 </th><th><input type="date" id="datefield" name="birthday" min="1900-01-01" max="9999-12-31" required></th>
-				</tr><tr>
-				<th></th><th>이메일</th><th><input type="email" id="uemail" name="email1" required></th>
-				</tr><tr>
-				<th></th><th>성별</th><th><input type="radio" name="gen" value="남" checked="checked">남
-								<input type="radio" name="gen" value="여">여 </th>
-				</tr></table>
-				<p style="text-align:center;">
-				<button type="button" value="회원 등록" id="addmember" >회원 등록</button>
+	<div>
+		<form action="MemberAdd.ad" method="post" name="userInfo" id="userInfo">
+		<table class="table">
+		<tr><th></th>
+			<th>아이디</th>
+			<th style="width: 50%;"><input type="text" name="id" id="uid"
+				min="4" maxlength="10" placeholder="4글자 이상 입력하세요" required autofocus>
+				<button type="button" onclick="idCheck()">중복확인</button><span id="alram"></span></th>
+			</tr><tr><th></th>
+				<th>비밀번호</th>
+				<th><input type="password" id="pass" name="pass" min="8"
+					maxlength="20" onkeyup="passCheckn()" placeholder="8글자 이상 입력하세요"
+					required><span id="passaa"></span></th>
+			</tr><tr><th></th>
+				<th>비밀번호 확인</th>
+				<th><input type="password" id="passcheck" min="8" maxlength="20" onkeyup="passCheck()" placeholder="8글자 이상 입력하세요"
+							required><span id="passa"></span></th>
+			</tr><tr><th></th>
+				<th>이름</th>
+				<th><input type="text" id="uname" name="name" required></th>
+			</tr><tr><th></th>
+				<th>주소</th>
+				<th><input type="text" id="uaddr" name="addr" required></th>
+			</tr><tr><th></th>
+				<th>휴대폰번호</th>
+				<th><input type="tel" id="uphone" name="phone"
+					onkeyup="inputPhoneNumber(this)" min="13" maxlength="13" required></th>
+			</tr><tr><th></th>
+				<th>생일</th>
+				<th><input type="date" id="birthday" name="birthday" min="1900-01-01" max="9999-12-31" required></th>
+			</tr><tr><th></th>
+				<th>이메일</th>
+				<th><input type="email" id="uemail" name="email1" onkeyup="emailcheck()" required><span id="emails"></span></th>
+			</tr><tr><th></th>
+				<th>성별</th>
+				<th><label><input type="radio" name="gen" value="남" checked="checked">남 </label>
+				    <label><input type="radio" name="gen" value="여">여</label></th>
+			</tr></table>
+			<p style="text-align: center;">
+				<button type="button" value="회원 등록" id="addmember">회원 등록</button>
 				<button type="button" id="myBtn">다시쓰기</button>
 				<button type="button" id="return">취소</button>
-				</p></form>	</div></div></body>
-				<script>
-				$(document).ready(function() {
-		 			$("#addmember").click(function() {
-		 				if(!userInfo.id.value){
-		 			 		$("#memberid").modal();
-		 				}else if(rename != userInfo.id.value){
-		 					$("#memberid2").modal();
-		 				}else if(rname == false){
-		 					$("#memberid2").modal();
-		 				}else if(rpass != true){
-		 					$("#memberpass").modal();
-		 				}else if(repass != repass2){
-		 					$("#memberpass").modal();
-		 				}
-		 				else if(userInfo.name.value == ""){
-		 					$("#membername").modal();
-		 				}else if(userInfo.addr.value == ""){
-		 					$("#memberaddr").modal();
-		 				}else if(userInfo.birthday.value > today){
-		 					$("#memberbirth").modal();
-		 				}else if(userInfo.birthday.value == null){
-		 					$("#memberbirth").modal();
-		 				}else if(userInfo.email1.value == ""){
-		 					$("#memberemail").modal();
-		 				}else{
-		 					$("#sendmember").modal();
-		 				}
-		 			});
-		 			$("#memberid").click(function(){
-		 				$( "#uid" ).focus();
+			</p></form></div></div>
+</section><jsp:include page="/copyright.html"/>
+</body>
+		<script>
+		$(document).ready(function() {
+		 	$("#addmember").click(function() {
+		 		if(!userInfo.id.value){
+		 	 		$("#memberid").modal();
+		 		}else if(rename != userInfo.id.value){
+					$("#memberid2").modal();
+				}else if(rname == false){
+		 			$("#memberid2").modal();
+		 		}else if(rpass != true){
+		 			$("#memberpass").modal();
+		 		}else if(repass != repass2){
+		 			$("#memberpass").modal();
+		 		}else if(userInfo.name.value == ""){
+		 			$("#membername").modal();
+		 		}else if(userInfo.addr.value == ""){
+		 			$("#memberaddr").modal();
+		 		}else if(userInfo.phone.value == ""){
+		 			$("#sendphone").modal();
+		 		}else if(userInfo.birthday.value > today){
+		 			$("#memberbirth").modal();
+		 		}else if(userInfo.birthday.value == ""){
+		 			$("#memberbirth").modal();
+		 		}else if(emailt != true){
+		 			$("#memberemail").modal();
+		 		}else{
+		 			$("#sendmember").modal();
+		 		}});
+		 		$("#memberid").click(function(){
+		 			$( "#uid" ).focus();
 				});
 		 			$("#memberid2").click(function(){
 		 				$( "#uid" ).focus();
@@ -215,13 +233,65 @@ function inputPhoneNumber(obj) {
 		 			$("#memberbirth").click(function(){
 		 				$( "#datefield" ).focus();
 				});
+		 			$("#sendphone").click(function(){
+		 				$( "#phone" ).focus();
+				});
 		 			$("#memberemail").click(function(){
 		 				$( "#uemail" ).focus();
 				});
-		 			$("#sendmember").click(function(){
+		 			$("#sendmembersub").click(function(){
 		 				document.userInfo.submit();
+				});		
+		 			$("#sendercan").click(function(){
+		 				
+		 			});		
 				});
-					});
-				</script>
+
+				$("#uphone").keyup(function(event){
+					var inputVal=$(this).val();
+					$(this).val(inputVal.replace(/[^0-9]/g, "")
+							.replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})/,"$1-$2-$3")
+							.replace("--", "-")); });
 				
-				</html>
+				$("#uname").bind("keyup",function(){
+					 re = /[0-9]|[~!@\#$%^&*\()\-=+_']/gi; 
+					 var temp=$("#uname").val();
+					 if(re.test(temp)){ 
+					 $("#uname").val(temp.replace(re,"")); } });
+				
+				$("#uname").bind("keyup",function(){
+					 var a = $('#uname').val().replace(/ /gi, '');
+				        $('#uname').val(a);
+				});
+				
+				$("#uaddr").bind("keyup",function(){
+					 re = /[~!@\#$%^&*\()\-=+_']/gi; 
+					 var temp=$("#uaddr").val();
+					 if(re.test(temp)){ 
+					 $("#uaddr").val(temp.replace(re,"")); } });
+			
+				$("#uid").bind("keyup",function(){
+					 var a = $('#uid').val().replace(/ /gi, '');
+				        $('#uid').val(a);
+				});
+				
+				$("#pass").bind("keyup",function(){
+					 var a = $('#pass').val().replace(/ /gi, '');
+				        $('#pass').val(a);
+				});
+				$("#passcheck").bind("keyup",function(){
+					 var a = $('#passcheck').val().replace(/ /gi, '');
+				        $('#passcheck').val(a);
+				});
+				$("#uemail").bind("keyup",function(){
+					 var a = $('#uemail').val().replace(/ /gi, '');
+				        $('#uemail').val(a);
+				});
+				
+				if(self.name != 'reload'){
+					self.name = 'reload';
+					self.location.reload(true);
+				}
+				else self.name = "";
+				
+				</script></html>

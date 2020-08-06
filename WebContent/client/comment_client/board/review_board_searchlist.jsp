@@ -28,6 +28,7 @@
 			.intValue();
 	
 	HashMap<Integer, Integer> boardcommentcount = (HashMap) request.getAttribute("boardcommentcount");
+	HashMap<Integer, Integer> boardlikecount = (HashMap) request.getAttribute("boardlikecount");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,8 +42,7 @@
     <title>AQUA</title>
   
   </head>
-  <body>
-    <jsp:include page="../../include/nav.jsp"></jsp:include>
+  <body><jsp:include page="/client/include/nav.jsp"/><section class="wrap">
 
     <div class="container">
       <h1>Review</h1>
@@ -69,6 +69,7 @@
               <th>작성자</th>
               <th>날짜</th>
               <th>조회수</th>
+              <th>좋아요</th>
             </tr>
           </thead>
           
@@ -111,13 +112,21 @@
 			<td>
 				<div><%=bl.getBOARD_READCOUNT()%></div>
 			</td>
+			<td>
+				<%		try{ 
+ 							if (boardlikecount.get(bl.getBOARD_NUM()) != 0) {%>
+ 						<%=boardlikecount.get(bl.getBOARD_NUM()) %> <%}
+ 						} catch (Exception ex) {%>
+ 							0
+ 						<%}%>
+			</td>
 		</tr>
 		<%
 			}
 		%>
 		
 		<tr>
-			<td colspan="5">
+			<td colspan="6">
 				 
 				 <% if(id != null) { %>
 				 <form action="./BoardSearch.bo" method="post">
@@ -223,8 +232,6 @@
     
 
 
-    <footer class="container-fluid text-center">
-      <p>Footer Text</p>
-    </footer>
+</section><jsp:include page="/copyright.html"/>
   </body>
 </html>

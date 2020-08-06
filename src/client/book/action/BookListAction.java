@@ -45,7 +45,6 @@ public class BookListAction implements Action{
 		if(limit<1) {
 			limit = 6;
 		}
-		System.out.println("exist>>"+ft_exist);
 		int page = Integer.parseInt(pg);
 		if(categ_ft==null||pg==null||categ_ft.equals("")||pg.equals("")||!ft_exist) {
 			forward.setRedirect(true);
@@ -79,8 +78,6 @@ public class BookListAction implements Action{
 			filter.setAscNo(false);
 			break;
 		}
-		System.out.println("test>>"+session.getAttribute("st_date"));
-		System.out.println(request.getQueryString());
 		if(session.getAttribute("st_date")!=null && !session.getAttribute("st_date").equals("")) {
 			filter.setSt_date(Date.valueOf((String)session.getAttribute("st_date")));
 		}
@@ -94,7 +91,7 @@ public class BookListAction implements Action{
 		
 		List<Item> itemList = (List<Item>) MybatisDAO.itemList(filter);
 		int endPage = MybatisDAO.cntItem(filter)/limit;
-		if(itemList.isEmpty()||itemList.size()%limit!=0) {
+		if(itemList.isEmpty()||MybatisDAO.cntItem(filter)%limit!=0) {
 			endPage+=1;
 		}
 		if(page > endPage) {

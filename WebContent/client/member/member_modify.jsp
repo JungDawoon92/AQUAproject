@@ -194,13 +194,13 @@ $(function(){
     }
     </script>
 </head>
-<body>
+<body><jsp:include page="/client/include/nav.jsp"/><section class="wrap">
 <jsp:useBean id="now" class="java.util.Date"/>
 <fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today"/>
-<jsp:include page="/client/include/nav.jsp"></jsp:include>
     <div class="container">
-    <h2 title="마이페이지" alt="마이페이지 보기" class="maintitle">마이 페이지</h2>
-    <h3 title="내 정보 수정" alt="내 정보 수정 페이지">내 정보 수정</h3>
+    <h2 title="마이페이지" alt="마이페이지 보기" class="maintitle titles">마이 페이지</h2>
+    <h3 title="내 정보 수정" alt="내 정보 수정 페이지" class="titles">내 정보 수정</h3>
+    <br/><br/>
     <div class="container">
  	<form role="form" class="form-horizontal" id="modifyform" name="modifyform" 
  	 action="./MemberModifyAction.me" method="post" onsubmit="return check_onclick()" onkeydown="return captureReturnKey(event)">
@@ -269,6 +269,7 @@ $(function(){
 			<span id="addressErr" class="help-block" style="display:none;" title="미입력" alt="주소를 입력해주세요" >주소를 입력해주세요.</span>
 			<span class="glyphicon glyphicon-ok form-control-feedback" style="display:none;"></span>
 		</div></div>
+		<br/><br/>
 		<div class="form-group">
 			<div class="col-sm-12">
 				<input type="submit" id="submit" class="submit" value="수정완료" title="수정완료" alt="수정완료 버튼" />
@@ -280,8 +281,6 @@ $(function(){
 	</form>
 	</div>
 </div>
-<footer class="container-fluid text-center">
-  <p>Footer Text</p>
-</footer>
+</section><jsp:include page="/copyright.html"/>
 </body>
 </html>

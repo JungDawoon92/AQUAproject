@@ -6,6 +6,17 @@
 
 <mapper namespace="qna.db.QnaBoardDAO">
 	
+	
+	<select id="getQnaIndexBoardList" resultType="qna">
+
+		select * from board
+
+		where RE_LEV = 0 and DEL = "N"
+
+		order by RE_REF desc,RE_LEV asc
+
+	</select>
+	
 	<select id="getQnaAllBoardList" resultType="qna">
 		select * from board
 		order by RE_REF desc,RE_LEV asc
@@ -78,6 +89,10 @@
 		update board set
 		SUBJECT=#{SUBJECT}, CONTENT=#{CONTENT},CATEGORY=#{CATEGORY} where NUM=#{NUM}
 	</select>
+	
+	<select id="QnaAllDelete" parameterType="int">
+		delete from board where RE_REF=#{num}
+	</select>
 
 	<select id="Qnadelete" parameterType="int">
 		update board set DEL = "Y"
@@ -96,4 +111,10 @@
 	<select id="QnaAllListCount" resultType="int">
 		select count(*) from board where RE_LEV = 0
 	</select>
+	
+	<select id="getReplyDetail" resultType="qna" parameterType="int">
+		select * from board where NUM = (select NUM from board where RE_REF = #{num} and RE_LEV = 1) 
+	</select>
+	
+	
 </mapper>

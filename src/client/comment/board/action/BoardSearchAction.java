@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import aqua.module.Action;
 import aqua.module.ActionForward;
 import client.comment.board.db.BoardDAO;
+import client.comment.like.db.BoardLikeDAO;
 
 public class BoardSearchAction implements Action {
 	public ActionForward execute(HttpServletRequest request,
@@ -96,7 +97,11 @@ public class BoardSearchAction implements Action {
 		}
 		
 		//////////////////////////////////////////////////////////////////////////
-		
+		BoardLikeDAO likedao = new BoardLikeDAO();
+		HashMap<Integer, Integer> likemap = new HashMap<Integer, Integer>();
+		likemap = likedao.isLikecount();
+		request.setAttribute("boardlikecount", likemap);
+		/////////////////////////////////////////////////////////////////////////
 		int maxpage = (int) Math.ceil((double) listcount/ 10);
 		
 		int currentRange = (int) Math.ceil((double) page / limit);

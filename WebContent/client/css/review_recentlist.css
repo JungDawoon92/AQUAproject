@@ -1,8 +1,10 @@
-
-  .affix {
-    top: 20px;
-    z-index: 9999 !important;
-  	}
+.updownCont{
+	position: fixed;
+	display: table;
+	right: 120px;
+	bottom: 90px;
+	width: inherit;
+}
   
   .write {
   	margin-top: 20px;
@@ -12,3 +14,11 @@
   	text-decoration: none;
   	color: black;
 	}
+
+	
+	@media screen and (max-width: 815px) {
+	
+	.updownCont{
+	display: none;
+	}
+}

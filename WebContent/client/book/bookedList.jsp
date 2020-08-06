@@ -20,7 +20,7 @@
 </head>
 <body>
 	<c:if test="${userid eq null}">
-		<jsp:forward page="index.bk"/>	
+		<jsp:forward page="Index.me"/>	
 	</c:if>
 	<jsp:include page="/client/include/nav.jsp"/>
 <section class="wrap">
@@ -132,7 +132,7 @@
 				<c:set var="pr" value="${prev}"/>
 				<button type="button" class="btn btn-primary btn-lg pull-left" onclick='location.href="bookList.bk?page=1&ft=all"'>예약페이지</button>
 				<c:if test="${userid ne null}">
-					<button id="cbtn" disabled="disabled" type="button" class="btn btn-danger btn-lg pull-right" data-toggle="modal" data-target="#bookCanc">예약취소</button>
+					<button id="cbtn" disabled="disabled" type="button" class="btn btn-danger btn-lg pull-right" title="한 개 이상 선택 시 취소버튼이 활성화됩니다." data-toggle="modal" data-target="#bookCanc">예약취소</button>
 					  <!-- Modal -->
 					  <div class="modal fade" id="bookCanc" role="dialog">
 					    <div class="modal-dialog">
@@ -164,8 +164,6 @@
 </article>
   <jsp:include page="pager.jsp"/>
 </section>
-  <footer class="container-fluid text-center">
-  	<p>footer test</p>
-  </footer>
+<jsp:include page="/copyright.html"/>
 </body>
 </html>

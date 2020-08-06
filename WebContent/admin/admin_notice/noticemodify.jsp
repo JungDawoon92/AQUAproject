@@ -26,8 +26,7 @@ NoticeBean board = (NoticeBean) request.getAttribute("board");
 	}
 </script>
 </head>
-<body>
-	<jsp:include page="/client/include/nav.jsp"></jsp:include>
+<body><jsp:include page="/admin/module/Navbar.jsp" /><section class="wrap">
 	<div class="container content_div">
 		<form action="./AdminNoModifyAction.adn" method="post"
 			name="modifyform" enctype="multipart/form-data">
@@ -79,5 +78,7 @@ NoticeBean board = (NoticeBean) request.getAttribute("board");
 				</tr>
 			</table>
 		</form>
+	</div>
+</section><jsp:include page="/copyright.html"/>
 </body>
 </html>

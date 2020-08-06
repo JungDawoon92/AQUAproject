@@ -1,3 +1,27 @@
+html,body{
+	height: 100%;
+}
+
 .btn{
 	margin: 0, 14px;
+}
+
+.wrap {
+   min-height:100%;
+   position:relative;
+   padding-bottom:5vh;
+}
+
+article.item-box{
+	align-items: center;
+}
+
+article.item-box>div{
+	margin-top: 60px;
+	padding: 14px;
+	overflow: hidden;
+}
+article.item-box div img{
+	min-width: 100%;
+	margin-top: 25px;
 }

@@ -26,8 +26,7 @@
     <link href="./client/css/qna_list.css" rel="stylesheet"/>
     <title>AQUA</title>
   </head>
-  <body>
-	<jsp:include page="/admin/module/Navbar.jsp" />
+  <body><jsp:include page="/admin/module/Navbar.jsp" /><section class="wrap">
 	<form name="deleteform">
 		<input type="hidden" name="NUM" value="<%=board.getNUM()%>">
 		<input type="hidden" name="page" value="<%=Page%>">
@@ -80,7 +79,11 @@
 					<button type="button" onclick="location.href='./QnABoardList.adq?page=<%=Page%>'">목록</button>&nbsp;&nbsp;
 				
 					<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">삭제</button> 
-
+					
+					<% if(board.getRE_LEV() == 0) { %>
+					<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal2">데이터 자체 삭제</button> 
+					<% } else{} %>
+					
 					<div class="modal fade" id="myModal" role="dialog">
 						<div class="modal-dialog modal-sm">
 							<div class="modal-content">
@@ -101,15 +104,57 @@
 							</div>
 						</div>
 					</div>
+					
+					<div class="modal fade" id="myModal2" role="dialog">
+						<div class="modal-dialog modal-sm">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title">게시글 삭제</h4>
+								</div>
+								<div class="modal-body">
+									<p>정말로 삭제 하시겠습니까?</p>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-primary"
+										onclick="clickDel2(deleteform)">네</button>
+
+									<button type="button" class="btn btn-secondary"
+										data-dismiss="modal">아니요</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					
 			</font></td>
 		</tr>
 	</table>
+	
+	<br/>
+	<br/>
+	
+	
+	<%if (board.getRE_CHE() == 1) { %>
+	<jsp:include page="qna_board_reply_view_admin.jsp">
+		<jsp:param name="num" value="<%=board.getNUM()%>"/>
+		<jsp:param name="page" value="<%=Page%>"/>
+	</jsp:include>
+	<%} %>
+	
+	
 	<script>
 	function clickDel(formName) {
 		formName.action = "./QnABoardDeleteAction.adq";
 		formName.method = "post";
 		formName.submit();
 	}
+	
+	function clickDel2(formName) {
+		formName.action = "./QnABoardDeleteAction.adq?delete=all";
+		formName.method = "post";
+		formName.submit();
+	}
 </script>
+</section><jsp:include page="/copyright.html"/>
 </body>
 </html>

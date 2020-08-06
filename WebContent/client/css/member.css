@@ -118,7 +118,7 @@ html,body{
 }
 
 .maintext {
-	text-align: left;
+	text-align: right;
 	background-color: white;
 	color: black;
 }
@@ -138,7 +138,7 @@ section.row{
 .wrap {
    min-height:100%;
    position:relative;
-   padding-bottom:10px;
+   padding-bottom:5vh;
 }
 
 .login{
@@ -148,6 +148,20 @@ section.row{
 img.logo{
 	margin-top: 10%;
 }
+
+.titles{
+	text-align: right;
+}
+
+.bolder{
+	font-weight: bold;
+}
+
+.checking{
+	text-align: center;
+	font-weight: bold;
+}
+
 section.no-pad{
 	padding: 0;
 }

@@ -34,8 +34,7 @@ NoticeBean board = (NoticeBean) request.getAttribute("board");
 </script>
 
 </head>
-<body>
-	<jsp:include page="/admin/module/Navbar.jsp" />
+<body><jsp:include page="/admin/module/Navbar.jsp" /><section class="wrap">
 	<div class="container">
 		<h2 align="left">관리자모드</h2>
 	</div>
@@ -117,8 +116,6 @@ NoticeBean board = (NoticeBean) request.getAttribute("board");
 
 	<br />
 
-	<footer class="container-fluid text-center">
-		<p>Footer Text</p>
-	</footer>
+</section><jsp:include page="/copyright.html"/>
 </body>
 </html>

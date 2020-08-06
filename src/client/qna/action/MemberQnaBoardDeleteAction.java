@@ -14,15 +14,21 @@ public class MemberQnaBoardDeleteAction implements Action {
 		ActionForward forward = new ActionForward();
 		request.setCharacterEncoding("UTF-8");
 
+		try {
+			
+			int num = Integer.parseInt(request.getParameter("NUM"));
+			int page = Integer.parseInt(request.getParameter("page"));
+			QnaBoardDAO boarddao = new QnaBoardSql();
+			boarddao.boardDelete(num);		
+			forward.setRedirect(true);
+			forward.setPath("./QnABoardList.qa?page="+page);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			forward.setRedirect(true);
+			forward.setPath("./QnABoardList.qa");
+		}
 		
-		int num = Integer.parseInt(request.getParameter("NUM"));
-		int page = Integer.parseInt(request.getParameter("page"));
-		
-
-		QnaBoardDAO boarddao = new QnaBoardSql();
-		boarddao.boardDelete(num);		
-		forward.setRedirect(true);
-		forward.setPath("./QnABoardList.qa?page="+page);
 		return forward;
 
 	}

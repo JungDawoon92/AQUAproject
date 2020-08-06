@@ -18,9 +18,7 @@
   	#cnt-div {  display:none; }
   </style>
 </head>
-<body>
-
-<jsp:include page="/admin/module/Navbar.jsp" />
+<body><jsp:include page="/admin/module/Navbar.jsp" /><section class="wrap">
 
 <%@ include file="/admin/module/ItemForm.jsp" %>
 
@@ -33,5 +31,6 @@ document.getElementById("list-btn").onclick = function () {
 	location.href="./ItemListAdmin.adx?pages=${param.pages}";
 }
 </script>
+</section><jsp:include page="/copyright.html"/>
 </body>
 </html>

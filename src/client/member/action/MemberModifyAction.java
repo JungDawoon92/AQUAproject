@@ -16,7 +16,7 @@ public class MemberModifyAction implements Action {
 		ActionForward forward = new ActionForward();
 
 		HttpSession session = request.getSession();
-//		MemberDAO memberdao = new MemberDAO();
+		MemberDAO memberdao = new MemberDAO();
 		MemberBean member = new MemberBean();
 		
 		boolean result = false;
@@ -38,6 +38,7 @@ public class MemberModifyAction implements Action {
 		
 		member.setPass(request.getParameter("pass"));
 		member.setName(request.getParameter("name"));
+		member.setGen(request.getParameter("gen"));
 		member.setAddr(request.getParameter("addr"));
 		member.setBirthday(request.getParameter("birthday"));
 		member.setEmail(request.getParameter("email"));

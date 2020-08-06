@@ -31,3 +31,8 @@ button.panel-heading{
     text-align:left; 
     border: none;
 }
+
+.non-effect{
+	pointer-events:none;
+}
+

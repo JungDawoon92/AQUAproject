@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import aqua.module.Action;
 import aqua.module.ActionForward;
-import aqua.module.Decoding;
+import aqua.module.QDecoding;
 import client.qna.db.QnaBoardBean;
 import client.qna.db.QnaBoardDAO;
 import client.qna.db.QnaBoardSql;
@@ -28,7 +28,7 @@ public class AdminQnaBoardModifyView implements Action {
 			return null;
 		}
 		
-		Decoding decoding = new Decoding();
+		QDecoding decoding = new QDecoding();
 		String subject = boarddata.getSUBJECT();
 		String content = boarddata.getCONTENT();
 		subject = decoding.decoding(subject);

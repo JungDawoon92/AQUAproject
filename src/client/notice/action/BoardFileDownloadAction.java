@@ -18,7 +18,7 @@ public class BoardFileDownloadAction implements Action {
 		
 		String fileName = request.getParameter("file");
 	
-		String folder = request.getSession().getServletContext().getRealPath("/UploadFolder");
+		String folder = request.getSession().getServletContext().getRealPath("/boardupload");
 	
 		String filePath = folder + "/" + fileName;
 		

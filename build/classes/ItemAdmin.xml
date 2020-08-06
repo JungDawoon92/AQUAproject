@@ -8,7 +8,7 @@
 	<select id="itemPageList" resultType="itemAdmin" parameterType="hashmap">
 		select no, i_name, content, cnt, tot, price, categ, img, up_date, ed_date, st_date 
 		from item
-		order by no 
+		order by no desc
 		limit #{startNo}, #{recordsPerPage}
 	</select>
 	<select id="itemListCount" resultType="int">

@@ -18,10 +18,10 @@
 <body>
 
 	<div>
-		<h2>
-			Notice<a href="./ClientBoardList.no" class="btn pull-right"
+		<h3 class="brd-name">
+			&nbsp;공지게시판<a href="./ClientBoardList.no" class="btn pull-right"
 				role="button">전체보기</a>
-		</h2>
+		</h3>
 		<div class="list-group">
 			<%
 			for (int i = 0; i < boardlist.size(); i++) {

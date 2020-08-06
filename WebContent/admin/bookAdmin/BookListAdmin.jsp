@@ -20,67 +20,58 @@
   <style type="text/css">
   	#book-div { cursor:pointer; }
   	.modalbtn { display: none; }
-  	.txt_line { width:70px; padding:0 5px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  	.txt_line { width:275px; padding:0 5px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  	th { text-align:center; }
   </style>
 </head>
-<body>
-
-<jsp:include page="/admin/module/Navbar.jsp" />
-
-
+<body><jsp:include page="/admin/module/Navbar.jsp" /><section class="wrap">
+  
+  
 <div class="container">
-  <h2>예약 리스트</h2>
-  <div class="container">
-
-	<div class="row">
-		<div class="col-xs-10 layoutDiv">
-			<div class="col-xs-1 panel panel-default layoutDiv ">번호</div>
-			<div class="col-xs-1 panel panel-default layoutDiv  ">ID</div>
-			<div class="col-xs-1 panel panel-default layoutDiv  ">상품번호</div>
-			<div class="col-xs-1 panel panel-default layoutDiv  ">상품이름</div>
-			<div class="col-xs-1 panel panel-default layoutDiv  ">가격</div>
-			<div class="col-xs-1 panel panel-default layoutDiv  ">수량</div>
-			<div class="col-xs-2 panel panel-default layoutDiv  ">출발 날짜</div>
-			<div class="col-xs-2 panel panel-default layoutDiv  ">도착 날짜</div>
-			<div class="col-xs-2 panel panel-default layoutDiv  ">등록 날짜</div>
-		</div>
-		<div class="col-xs-2">
-			<button type="button" id="add-btn" class="btn btn-default pull-right">예약 등록</button>
-		</div>
+	<h2>예약 리스트</h2>
+    <div class="col-xs-12">
+		<button type="button" id="add-btn" class="btn btn-default pull-right">예약 등록</button>
 	</div>
-</div>
-  
-  
-	<div class="container">
-		<div class="row ">
-		<c:forEach var="list" items="${bookList}" begin="0" end="${bookList.size()}" step="1" >
-		  <div class="col-xs-12 panel panel-default layoutDiv" >	
-			<div class="row align-items-center">
-				<div class="col-xs-6 bookDiv" data-divPno="${list.pno }">
-					<div class="col-xs-2 layoutDiv text-center">${list.pno}</div>
-					<div class="col-xs-2 layoutDiv text-center">${list.ref_id}</div>			
-					<div class="col-xs-2 layoutDiv text-center">${list.ref_ino }</div>
-					<div class="col-xs-2 layoutDiv text-center txt_line" >${list.i_name }</div>
-					<div class="col-xs-2 layoutDiv text-center">${list.price }</div>
-					<div class="col-xs-2 layoutDiv text-center">${list.cnt }</div>
-				</div>
-				<div class="col-xs-4 " >
-					<div class="col-xs-4 layoutDiv text-center">${list.st_date }</div>
-					<div class="col-xs-4 layoutDiv text-center">${list.ed_date }</div>
-					<div class="col-xs-4 layoutDiv text-center">${list.up_date }</div>
-				</div>	
-				<div class="col-xs-2">
-					<button class="btn btn-default listbtn" onclick='location.href="./BookModifyAdmin.ady?pno=${list.pno}&pages=${paging.currentPageNo}"'>수정</button>
-					<button class="btn btn-default listbtn deleteBtn" data-pnum="${list.pno }">삭제</button>
-				</div>
+	
+	    <div class="container content_div">
+	    	<div class="row">
+	   	 	<div class="col-sm-12">
+		        <table class="table table-striped table-bordered table-hover">
+		        <caption><span class="blind">예약 목록</span></caption>
+				<thead>
+		            <tr>
+		              <th>번호</th>
+		              <th>ID</th>
+		              <th>상품 번호</th>
+		              <th>상품 이름</th>
+		              <th>가격</th>
+		              <th>수량</th>
+		              <th>출발 날짜</th>
+		              <th>도착 날짜</th>
+		              <th>등록 날짜</th> 
+		            </tr>
+		         </thead>
+				<tbody>
+	         	 <c:forEach var="list" items="${bookList}" begin="0" end="${bookList.size()}" step="1" >
+					<tr>
+		         		<td>${list.pno }</td>
+						<td>${list.ref_id}</td>			
+						<td>${list.ref_ino }</td>
+						<td><a href="./BookDetailAdmin.ady?pno=${list.pno }&pages=${paging.currentPageNo}">${list.i_name }</a></td>
+						<td>${list.price }</td>
+						<td>${list.cnt }</td>
+						<td>${list.st_date }</td>
+						<td>${list.ed_date }</td>
+						<td>${list.up_date }</td>
+			        	<td><a class="" role="button" onclick='location.href="./BookModifyAdmin.ady?pno=${list.pno}&pages=${paging.currentPageNo}"'>수정</a></td>
+		         		<td><a class="deleteBtn" role="button" data-pnum="${list.pno }">삭제</a></td>
+		         	</tr>
+		         </c:forEach>
+				</tbody>
+				</table>
 			</div>
-		  </div>
-		</c:forEach>
-		</div>
-	</div>
-
-
-
+			</div>	
+       </div>
 
 	
 	<button type="button" class="modalbtn" id="modal-btn" onclick="document.getElementById('modal-div').style.display='block'"></button>
@@ -113,16 +104,6 @@ document.getElementById("cancel-btn").onclick = function () {
 	var modal = document.getElementById('modal-div');
 	modal.style.display='none';
 }
-//onclick='location.href="./BookDetailAdmin.ady?pno=${list.pno}&pages=${paging.currentPageNo}"'
-		
-/* document.getElementById("deleteTRUE-btn").onclick = function () {
-	var dNum = document.querySelector('#delete-btn');
-	location.replace("./BookDeleteAction.ady?pno="+dNum.dataset.pnum+"&pages=${paging.currentPageNo}");
-} */
-
-
-
-
 
 $(".deleteBtn").click(function() {
 	document.getElementById('modal-div').style.display='block';
@@ -154,6 +135,7 @@ $(window).ready(function () {
 		$("#modal-btn").trigger("click");
 	</c:if>
 	<c:if test="${deleteError eq 'trueError'}">
+		$("#deleteTRUE-btn").prop("disabled");
 		$("#msg").text("삭제 에러.");
 		$("#modal-btn").trigger("click");
 	</c:if>
@@ -161,8 +143,6 @@ $(window).ready(function () {
 		$("#msg").text("찾으려는 데이터가 없습니다.");
 		$("#modal-btn").trigger("click");
 	</c:if>
-	
-	$(".bookDiv").attr("onclick", "location.href='./BookDetailAdmin.ady?pno=" + $(this).data("divPno") + "&pages=${paging.currentPageNo}'");
 })
 
 function goPage(url, pages) {
@@ -170,5 +150,6 @@ function goPage(url, pages) {
     location.href = url;    
 }
 </script>
+</section><jsp:include page="/copyright.html"/>
 </body>
 </html>

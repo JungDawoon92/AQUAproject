@@ -23,7 +23,7 @@ public class AdminNoAddAction implements Action {
 		NoticeBiz boarddao = new NoticeBiz();
 		NoticeBean board = new NoticeBean();
 		ActionForward forward = new ActionForward();
-		String uploadPath = request.getServletContext().getRealPath("/UploadFolder");
+		String uploadPath = request.getServletContext().getRealPath("/boardupload");
 
 		int fileSize = 5 * 1024 * 1024;
 

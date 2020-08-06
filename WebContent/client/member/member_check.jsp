@@ -25,19 +25,16 @@
     ></script>
     <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 
+<script type="text/javascript">
+$(document).ready(function(){
+	  $("#pass").focus();
+	});
+</script>
 <script>
-function captureReturnKey(e) { 
-	if(e.keyCode==13 && e.srcElement.type != 'textarea') 
-		return false; 
-}
 
 function check_onclick() {
 	theForm = document.checkform
-	if(theForm.id.value==""){
-		alert("아이디가 비어있습니다. 확인해주세요.");
-		theForm.id.focus();
-		return false;
-	}else if(theForm.pass.value==""){
+	if(theForm.pass.value==""){
 		alert("비밀번호가 비어있습니다. 확인해주세요.");
 		theForm.pass.focus();
 		return false;
@@ -46,24 +43,27 @@ function check_onclick() {
 }
 </script>
 </head>
-<body>
-	<jsp:include page="/client/include/nav.jsp"></jsp:include>
+<body><jsp:include page="/client/include/nav.jsp"/><section class="wrap">
+    <div class="wrap vcenter">
     <div class="container">
     <div class="row">
-    	<div class="col-sm-12"><img class="img-responsive center-block" title="로그인로고" src="./img/aqua.png"></div>
-    	<div class="col-sm-12"><h2 title="로그인" alt="로그인 페이지" >로그인</h2></div>
-<form role="form" class="form-horizontal" name="checkform" action="./MemberLeaveView.me" method="post" onsubmit="return check_onclick()" onkeydown="return captureReturnKey(event)">
+    <section class="col-md-3"></section>
+    <section class="col-md-6">
+    	<h3 class="checking marg-bott top-pad">비밀번호 재확인</h3>
+    	<h4 class="checking">회원 탈퇴를 원하신다면 비밀번호 재확인을 해주세요.</h4>
+    	<br/>
+<form role="form" class="form-horizontal" name="checkform" action="./MemberLeaveView.me" method="post" onsubmit="return check_onclick()">
 	<div class="form-group">
-		<label class="control-label col-sm-2" for="id" title="아이디" alt="아이디 표시" >아이디:</label>
-	<div class="col-sm-10">
-		<input class="form-control keyStop" type="text" name="id" value="<%= id %>" placeholder="아이디" title="아이디" alt="<%= id %> 아이디 입력란" />
+	<div class="col-sm-12">
+		<input class="form-control login" type="text" name="id" placeholder="아이디" title="아이디" alt="아이디 입력란" value="<%= id %>"
+		disabled />
 	</div></div>
 	<div class="form-group">
-			<label class="control-label col-sm-2" for="pass" title="비밀번호" alt="비밀번호 표시" >비밀번호:</label>
-	<div class="col-sm-10">
-			<input class="form-control keySet" type="password" name="pass" placeholder="비밀번호" title="비밀번호" alt="비밀번호 입력란" />
+			<div class="col-sm-12">
+			<input class="form-control login" type="password" id="pass" name="pass" placeholder="비밀번호" title="비밀번호" alt="비밀번호 입력란"
+			/>
 	</div></div>
-	<br/><br/>
+	
 	<div class="form-group">
 		<div class="col-sm-12">
 			<input type="submit" id="submit" name="submit" class="submit" value="확인" title="확인" alt="확인 버튼"/>
@@ -73,10 +73,11 @@ function check_onclick() {
 			<input type="button" class="join" onclick="location.href='MemberViewAction.me'" value="취소" title="취소" alt="취소 버튼"/>
 	</div></div>
 </form>
+</section>
+<section class="col-md-3"></section>
 </div>
 </div>
-<footer class="container-fluid text-center">
-  <p>Footer Text</p>
-</footer>
+</div>
+</section><jsp:include page="/copyright.html"/>
 </body>
 </html>

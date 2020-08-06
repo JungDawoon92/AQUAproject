@@ -14,9 +14,7 @@
     .modalbtn { display:none; }
   </style>
 </head>
-<body>
-
-<jsp:include page="/admin/module/Navbar.jsp" />
+<body><jsp:include page="/admin/module/Navbar.jsp" /><section class="wrap">
 
 <jsp:include page="/admin/module/BookForm.jsp" />
 
@@ -29,5 +27,6 @@ document.getElementById("list-btn").onclick = function () {
 	location.href="./BookListAdmin.ady?pages=${param.pages}";
 }
 </script>
+</section><jsp:include page="/copyright.html"/>
 </body>
 </html>

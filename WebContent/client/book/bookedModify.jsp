@@ -18,11 +18,22 @@
     <script src="https://kit.fontawesome.com/2d323a629b.js" crossorigin="anonymous"></script>
 </head>
 <body>
-	<jsp:include page="/client/include/nav.jsp"></jsp:include>
+<c:set var="iinf" value="${iInfo}" />
+<c:set var="pinf" value="${pInfo}" />
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#counter").keyup(function(){
+    	if($("#counter").val() < 1 || $("#counter").val() > ${pinf.cnt + iinf.cnt}){
+    		$("#counter").val("${pinf.cnt}");
+    	}
+    });
+});
+</script>
+	<jsp:include page="/client/include/nav.jsp"/>
+<section class="wrap">
     <article class="container item-box">
 	    <div class="row">
-		    <c:set var="iinf" value="${iInfo}" />
-		    <c:set var="pinf" value="${pInfo}" />
+		    
 		    <div class="col-sm-7" >
 		    	<img class="img-responsive" title="상품이미지" alt="상품이미지" src="./img/${iinf.img}">
 		    </div>
@@ -35,7 +46,7 @@
 			    		<li>분류 : ${iinf.categ}</li><br>
 			    		<li>상세 내용 : ${iinf.content}</li><br>
 			    		<li>여행 기간 : ${iinf.st_date} ~ ${iinf.ed_date}</li><br>
-			    		<li>남은 수량 : ${iinf.cnt}/${iinf.tot}</li><br>
+			    		<li>남은 자리 : ${iinf.cnt}/${iinf.tot}</li><br>
 		    		</ul>
 		    		<form method="post" name="form" onsubmit="return false">
 						<c:set var="pg" value="${page}"/>
@@ -43,7 +54,8 @@
 		    			<input type="hidden" name="page" value="${pg}"/>
 		    			<c:choose>
 		    				<c:when test="${(userid ne null)&&(iinf.tot ne 0)}">
-							<ul><li>인원 수정 : <input type="number" name="getCnt" value="${pinf.cnt}" min="1" max="${pinf.cnt + iinf.cnt}"></li></ul><br>
+							<ul><li>인원 수정 : <input id="counter" type="number" name="getCnt" value="${pinf.cnt}" min="1" max="${pinf.cnt + iinf.cnt}"><br><small>(기존 예약하신 좌석 + 남은 좌석 수 까지 추가 수정 가능합니다.)</small></li>
+							</ul><br>
 			    			<br><br><button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal">수정</button>
 								  <!-- Modal -->
 								  <div class="modal fade" id="myModal" role="dialog">
@@ -78,7 +90,7 @@
 			</div>
 		</div>
     </article>
-    <footer class="container-fluid text-center">
-    </footer>
+</section>    
+<jsp:include page="/copyright.html"/>
 </body>
 </html>

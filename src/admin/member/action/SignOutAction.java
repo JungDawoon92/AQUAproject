@@ -16,8 +16,8 @@ public class SignOutAction implements Action {
 			
 			session.invalidate();
 			System.out.println("세션초기화");
-			forward.setPath("loginformM.ad");
-			forward.setRedirect(true);
+			forward.setPath("./admin/loginAdmin/loginformM.jsp");
+			forward.setRedirect(false);
 			return forward;
 		}
 }

@@ -20,27 +20,39 @@
     <script src="https://kit.fontawesome.com/2d323a629b.js" crossorigin="anonymous"></script>
 </head>
 <body>
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#counter").keyup(function(){
+    	if($("#counter").val() < 1 || $("#counter").val() > <%=it.getCnt()%>){
+    		$("#counter").val("");
+    	}
+    });
+});
+</script>
+
+
 	<jsp:include page="/client/include/nav.jsp"></jsp:include>
+<section class="wrap">
     <article class="container item-box">
 	    <div class="row">
-		    <div class="col-sm-7" >
+		    <div class="col-lg-7" >
 		    	<img class="img-responsive" title="상품이미지" alt="상품이미지" src="./img/<%=it.getImg()%>">
 		    </div>
-			<div class="col-sm-5">
-				<div class="col-sm-1"></div>
-				<div class="col-sm-11">
+			<div class="col-lg-5">
+				<div class="col-lg-1"></div>
+				<div class="col-lg-11">
 					<h2><%=it.getI_name() %></h2><br>
 		    		<ul>
 			    		<li>비용 : <%=it.getPrice() %> 원</li><br>
 			    		<li>분류 : <%=it.getCateg() %></li><br>
 			    		<li>상세 내용 : <%=it.getContent() %></li><br>
 			    		<li>여행 기간 : <%=it.getSt_date() %> ~ <%=it.getEd_date() %></li><br>
-			    		<li>남은 수량 : <%=it.getCnt() %>/<%=it.getTot() %></li><br>
+			    		<li>남은 자리 : <%=it.getCnt() %>/<%=it.getTot() %></li><br>
 		    		</ul>
 		    		<form method="post" name="form" onsubmit="return false">
 		    			<input type="hidden" name="item_no" value="<%=it.getNo()%>"/>
 		    			<% if(session.getAttribute("userid")!=null && it.getCnt()!=0 && it.getTot()!=0) {%>
-							<ul><li>인원 선택 : <input type="number" name="getCnt" value="2" min="1" max="<%=it.getCnt()%>"></li></ul><br>
+							<ul><li>인원 선택 : <input id="counter" type="number" name="getCnt" value="1" min="1" max="<%=it.getCnt()%>"></li></ul><br>
 			    			<br><br><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">예약</button>
 								  <!-- Modal -->
 								  <div class="modal fade" id="myModal" role="dialog">
@@ -75,7 +87,7 @@
 			</div>
 		</div>
     </article>
-    <footer class="container-fluid text-center">
-    </footer>
+</section>
+<jsp:include page="/copyright.html"/>
 </body>
 </html>

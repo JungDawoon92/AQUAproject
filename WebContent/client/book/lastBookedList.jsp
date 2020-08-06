@@ -18,7 +18,7 @@
 </head>
 <body>
 	<c:if test="${userid eq null}">
-		<jsp:forward page="index.bk"/>	
+		<jsp:forward page="Index.me"/>	
 	</c:if>
 	<jsp:include page="/client/include/nav.jsp"></jsp:include>
 <section class="wrap">
@@ -43,7 +43,7 @@
 	<form name="form1" method="post">
 	<div class="row">
 		<div class="row non-pad-item">
-			<div class="col-xs-12 col-sm-1 panel panel-default"><label class="center-block"> No.</label></div>
+			<div class="col-xs-12 col-sm-1 panel panel-default"><label class="pull-left"> No.</label></div>
 			<div class="hidden-xs col-sm-2 panel panel-default"><span class="center-block">이름</span></div>
 			<div class="hidden-xs col-sm-1 panel panel-default"><span class="center-block">그림</span></div>
 			<div class="hidden-xs col-sm-3 panel panel-default"><span class="center-block">설명</span></div>
@@ -92,8 +92,6 @@
 		<jsp:include page="pager.jsp"/>
 </article>
 </section>
-<footer class="container-fluid text-center">
-	<p>footer test</p>
-</footer>
+<jsp:include page="/copyright.html"/>
 </body>
 </html>

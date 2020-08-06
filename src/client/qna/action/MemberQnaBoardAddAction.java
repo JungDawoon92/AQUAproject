@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import aqua.module.Action;
 import aqua.module.ActionForward;
-import aqua.module.Encoding;
+import aqua.module.QEncoding;
 import client.qna.db.QnaBoardBean;
 import client.qna.db.QnaBoardDAO;
 import client.qna.db.QnaBoardSql;
@@ -17,7 +17,7 @@ public class MemberQnaBoardAddAction implements Action {
 		QnaBoardDAO boarddao = new QnaBoardSql();
 		QnaBoardBean boarddata = new QnaBoardBean();
 		ActionForward forward = new ActionForward();
-		Encoding encoding = new Encoding();
+		QEncoding encoding = new QEncoding();
 		
 		try {
 			
@@ -36,19 +36,24 @@ public class MemberQnaBoardAddAction implements Action {
 			
 			int result = boarddao.boardInsert(boarddata);
 
-			if (result > 0) {
+		if (result > 0) {
 				forward.setRedirect(true);
 				forward.setPath("./QnABoardDetailAction.qa?num=" + result + "&page=1");
 			} else {
-				return null;
+				forward.setRedirect(true);
+				forward.setPath("./login.me");
+				return forward;
 			}
 
 			return forward;
 
 		} catch (Exception ex) {
 			ex.printStackTrace();
+			forward.setRedirect(true);
+			forward.setPath("./QnABoardList.qa");
+			
 		}
-		return null;
+		return forward;
 	}
 	
 	public static String encodeContent(String content) {

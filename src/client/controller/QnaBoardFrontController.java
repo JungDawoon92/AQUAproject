@@ -1,11 +1,14 @@
 package client.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import aqua.module.Action;
 import aqua.module.ActionForward;
@@ -27,8 +30,14 @@ public class QnaBoardFrontController extends javax.servlet.http.HttpServlet impl
 		String command = RequestURI.substring(contextPath.length());
 		ActionForward forward = null;
 		Action action = null;
-
 		System.out.println("debug >>" + command);
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("userid");
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date time = new Date();
+		String time1 = format1.format(time);
+		System.out.println(time1 + "// 사용자: " + id + "님이 " + command + "로 접속");
+		
 		if (command.equals("/QnABoardList.qa")) {
 			action = new MemberQnaBoardListAction();
 			try {
@@ -42,7 +51,13 @@ public class QnaBoardFrontController extends javax.servlet.http.HttpServlet impl
 		else if (command.equals("/QnABoardWrite.qa")) {
 			forward = new ActionForward();
 			forward.setRedirect(false);
-			forward.setPath("/client/qna/qna_board_write.jsp");
+
+			if (id != null) {
+				forward.setPath("/client/qna/qna_board_write.jsp");
+			} else {
+				forward.setRedirect(true);
+				forward.setPath("./login.me");
+			}
 		}
 
 		else if (command.equals("/QnABoardAddAction.qa")) {

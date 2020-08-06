@@ -8,8 +8,8 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	QnaBoardDAO boarddao = new QnaBoardSql();
-	List<QnaBoardBean> list = boarddao.getQnaAllBoardList();
-	String id = "null";
+	List<QnaBoardBean> list = boarddao.getQnaIndexBoardList();
+	String id = "비회원";
 	if (session.getAttribute("userid") != null) {
 		id = (String) session.getAttribute("userid");
 	}
@@ -19,9 +19,8 @@
 <c:set var="check" value="0" />
 <c:set var="doneLoop" value="false" />
 
-  	 <link href="./css/qna_list.css" rel="stylesheet"/>
 	<div>
-		<h2>Q&A<a href="./QnABoardList.qa" class="btn pull-right black" role="button">전체보기</a></h2>
+		<h3 class="brd-name">&nbsp;질문게시판<a href="./QnABoardList.qa" class="btn pull-right black" role="button">전체보기</a></h3>
 		<div class="list-group">
 		<c:forEach var="qnalist" items="${list}">
 		<c:if test="${not doneLoop}">
@@ -30,19 +29,9 @@
 				<c:set var="doneLoop" value="true"/>
 			</c:if>
 			<c:if test="${qnalist.DEL == 'N'}">
-				<c:choose>
-        			<c:when test="${fn:length(qnalist.SUBJECT) gt 15}">
-        				 <a class="list-group-item black" href="#" onclick="javascript:check(${qnalist.NUM},'${qnalist.ID}','${qnalist.RE_ID}')">
-							<h5 class="list-group-item-heading">&nbsp;${fn:substring(qnalist.SUBJECT, 0, 15)}...<font class="pull-right">${qnalist.DATE}</font></h5>
-						 </a>
-       	
-       				</c:when>
-        			<c:otherwise>
-        				<a class="list-group-item black" href="#" onclick="javascript:check(${qnalist.NUM},'${qnalist.ID}','${qnalist.RE_ID}')">
-							<h5 class="list-group-item-heading">&nbsp;${qnalist.SUBJECT}<font class="pull-right">${qnalist.DATE}</font></h5>
-						</a>
-        			</c:otherwise>
-				</c:choose>
+        		<a class="list-group-item qna-box" href="#" onclick="javascript:check(${qnalist.NUM},'${qnalist.ID}','${qnalist.RE_ID}')">
+					<div class="list-group-item-heading qna-subj">&nbsp;${qnalist.SUBJECT}</div><div class="date qna-date">${qnalist.DATE}</div>
+				</a>
 				<c:set var="check" value="${check+1}" />
 			</c:if>
 		</c:if>

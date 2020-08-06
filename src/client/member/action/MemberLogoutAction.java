@@ -6,6 +6,8 @@ import javax.servlet.http.HttpSession;
 
 import aqua.module.Action;
 import aqua.module.ActionForward;
+import client.member.db.MemberBean;
+import client.member.db.MemberDAO;
 
 public class MemberLogoutAction implements Action {
 	public ActionForward execute(HttpServletRequest request,
@@ -14,8 +16,8 @@ public class MemberLogoutAction implements Action {
 		ActionForward forward = new ActionForward();
 
 		HttpSession session = request.getSession();
-//		MemberDAO memberdao = new MemberDAO();
-//		MemberBean member = new MemberBean();
+		MemberDAO memberdao = new MemberDAO();
+		MemberBean member = new MemberBean();
 		
 		String id = (String) session.getAttribute("userid");
 		

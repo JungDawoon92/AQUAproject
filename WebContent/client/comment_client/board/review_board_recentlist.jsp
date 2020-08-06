@@ -63,11 +63,10 @@
 	</script>
 	
   </head>
-  <body>
-    <jsp:include page="../../include/nav.jsp"></jsp:include>
+  <body><jsp:include page="/client/include/nav.jsp"/><section class="wrap">
 
-	<nav class="col-xs-1 content_div pull-right">
-      <ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="205">
+	<nav class="col-xs-1 content_div pull-right updownCont">
+      <ul class="nav nav-pills nav-stacked">
         <li><a href="#homeup" id="homeup"><span class="glyphicon glyphicon-triangle-top"></span></a></li>
         <li><a href="#homedown" id="homedown"><span class="glyphicon glyphicon-triangle-bottom"></span></a></li>
       </ul>
@@ -76,7 +75,7 @@
     <div class="container">
       <h1>Review</h1>
       <div class="dropdown pull-right">
-    	<button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown">정렬방식
+    	<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-th-list"></span>
     	<span class="caret"></span></button>
     	<ul class="dropdown-menu">
       		<li><a href="./BoardList.bo">기본게시판</a></li>
@@ -196,17 +195,10 @@
  
 			</ul>
 		</div>
-    </div>
     
 
     <br />
 
-    <footer class="container-fluid text-center">
-      <p>Footer Text</p>
-    </footer>
+</section><jsp:include page="/copyright.html"/>
   </body>
-</html>
-
-
-</body>
 </html>

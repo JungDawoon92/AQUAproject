@@ -5,22 +5,20 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import admin.member.db.MemberBean;
 import admin.member.db.MemberBiz;
 import aqua.module.Action;
 import aqua.module.ActionForward;
+import aqua.module.AdminCheck;
+
 
 
 public class MemberAddViewAction implements Action {
-	public ActionForward execute(HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward = new ActionForward();
-		HttpSession session = request.getSession();
-		String id = (String) session.getAttribute("adminid");
-		
-		if(id.equals("admin") && !id.equals("null")) {
+		AdminCheck result = new AdminCheck();
+		if(result.adminCheck(request, forward) == true) {
 			List<MemberBean> bean = MemberBiz.list();
 			ArrayList<String> ids = new ArrayList<>();
 			for (int i = 0; i < bean.size(); i++) {
@@ -32,12 +30,10 @@ public class MemberAddViewAction implements Action {
 			request.setAttribute("ids", ids);
 			forward.setRedirect(false);
 			forward.setPath("./admin/loginAdmin/MemberAdd.jsp");
-			
-		} else {
-			forward.setRedirect(true);
-			forward.setPath("loginfromM.jsp");
 		}
+		
 
-		return forward;	
+		return forward;
+
 	}
 }

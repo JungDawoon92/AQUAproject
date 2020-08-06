@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import aqua.module.Action;
 import aqua.module.ActionForward;
@@ -16,6 +17,9 @@ public class MemberJoinView implements Action {
 			HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("UTF-8");
 		ActionForward forward = new ActionForward();
+
+		HttpSession session = request.getSession();
+		MemberDAO memberdao = new MemberDAO();
 		
 		List<MemberBean> member = MemberDAO.idMember();
 		ArrayList<String> id = new ArrayList<>();

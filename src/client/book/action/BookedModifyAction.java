@@ -17,7 +17,6 @@ public class BookedModifyAction implements Action {
 		ActionForward forward = new ActionForward();
 		String pNum = request.getParameter("pno");
 		String page = request.getParameter("page");
-		System.out.println(pNum + ":" + page);
 		if(page==null||page.equals("")) {
 			page = "1";
 		}

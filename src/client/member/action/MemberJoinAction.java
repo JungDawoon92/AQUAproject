@@ -15,7 +15,7 @@ public class MemberJoinAction implements Action {
 
 		ActionForward forward = new ActionForward();
 
-	//	MemberDAO memberdao = new MemberDAO();
+		MemberDAO memberdao = new MemberDAO();
 		MemberBean member = new MemberBean();
 
 		boolean result = false;

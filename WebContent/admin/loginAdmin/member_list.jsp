@@ -7,18 +7,19 @@
 	List<MemberBean> list = (List)request.getAttribute("member");
 	// list.jsp?pageNo=1과 같은 형식으로 호출
 	String tempNo = request.getParameter("pageNo");
-
 	int pageNo = 1;
-	try { pageNo = Integer.parseInt(tempNo); } 
+	try { pageNo = Integer.parseInt(tempNo);
+	 if(pageNo<0){ pageNo = 1; }} 
 	catch (Exception e) {	} 	// null 이거나, 문자를 숫자로 바꾸려 해서 에러가 나거나 무조건 pageNo=1
 
 	final int ROW_PER_PAGE = 10; // 페이지당 레코드 출력 갯수
 	int totalRows = list.size(); // 전체 게시물 갯수
+	int totalPages = (int) Math.ceil((double) totalRows / ROW_PER_PAGE);// 전체 페이지 갯수
+	if(pageNo>totalPages){	pageNo=totalPages;}
 	int begin = (pageNo - 1) * ROW_PER_PAGE;
 	int end = pageNo * ROW_PER_PAGE -1;
 	if (end >= totalRows){	end = totalRows-1;	}
 	int Rend = (int) Math.ceil((double) totalRows / 10);
-	int totalPages = (int) Math.ceil((double) totalRows / ROW_PER_PAGE);// 전체 페이지 갯수
 	final int PAGE_PER_PAGE = 5; // 화면당 페이지 출력 갯수
 	int totalRanges = (int) Math.ceil((double) totalPages / PAGE_PER_PAGE); // 전체 Range 갯수
 	int currentRange = (int) Math.ceil((double) pageNo / PAGE_PER_PAGE); //요청된 pageNo의 현재 range
@@ -38,7 +39,6 @@
 
 <!DOCTYPE html>
 <html><head>
-<jsp:include page="/admin/module/Navbar.jsp" />
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -57,19 +57,14 @@ h2 {text-align:center;}
 .pagination a:hover:not(.active) {background-color: #ddd;}
 #clear {clear:both;}
 </style>
-</head><body>
+</head><body><jsp:include page="/admin/module/Navbar.jsp" /><section class="wrap">
 	<div class="container" style=" background: whitesmoke;">
 	<br><br><br><h2>회원 목록</h2>
 		<table class="table table-condensed">
-			<thead>
-				<tr>
-					<th>회원 번호</th>
-					<th>아이디</th>
-					<th>이름</th>
-					<th>이메일</th>
-					<th>휴대폰 번호</th>
-				</tr>
-			</thead>
+			<thead><tr>
+					<th>회원 번호</th><th>아이디</th><th>이름</th>
+					<th>이메일</th><th>휴대폰 번호</th>
+				</tr></thead>
 			<c:forEach var="member" items="${member}"  begin="<%=begin%>" end="<%=end %>" >
 			<tr><th>${member.num }</th>
 				<th><a href="MemberViewAction.ad?id=${member.id}&pageNo=<%=pageNo%>">
@@ -78,19 +73,15 @@ h2 {text-align:center;}
 				<th>${member.email }</th>
 				<th>${member.phone }</th></tr>
 		</c:forEach>
-			<tr>
-			<th></th><th></th><th></th><th></th>
-			<th><button type="button" class="btn btn-default"  onclick="location.href='MemberAddView.ad?pageNo=<%=pageNo%>'">회원추가</button></th></tr>
-			</table>
-			
-				</div>
-	<div class="center">
-			
+			<tr><th></th><th></th><th></th><th></th>
+			<th><button type="button" class="btn btn-default"  onclick="location.href='MemberAddView.ad?pageNo=<%=pageNo%>'">회원추가</button>
+			</th></tr></table></div>
+			<div class="center">
 			<div id="pager" class="flex-container">
 			<ul class="pager pagination">
-					<li class="previous"><a href="member_list.ad?pageNo=1" >FIRST</a></li>
+					<li class="previous"><a href="member_list.ad?pageNo=1" >&lt;&lt;</a></li>
 			<%if (prevPage != 0) { %>
-					<li> <a href="member_list.ad?pageNo=<%=prevPage%>" >Prev</a> </li>
+					<li> <a href="member_list.ad?pageNo=<%=prevPage%>" >&lt;</a> </li>
 					 <%	}%> 
 			<%for (int i = beginPage; i <= endPage; i++) {
  						if(i==pageNo){%>
@@ -99,9 +90,9 @@ h2 {text-align:center;}
  				<li><a href="member_list.ad?pageNo=<%=i%>" class="btn btn-primary text-wrap"><%=i%></a> </li>
  					<%}	} %> 
 				<%if (nextPage != 0) { %> 
- 					<li><a href="member_list.ad?pageNo=<%=nextPage%>" class="btn btn-primary text-wrap" >Next</a></li> 
+ 					<li><a href="member_list.ad?pageNo=<%=nextPage%>" class="btn btn-primary text-wrap" >&gt;</a></li> 
  					<% 	} %>
-				<li class="next"><a href="member_list.ad?pageNo=<%=totalPages%>">END</a></li>
+				<li class="next"><a href="member_list.ad?pageNo=<%=totalPages%>">&gt;&gt;</a></li>
 			</ul>
 		</div>
  		<form method="post" action="./Membersearch.ad">
@@ -110,4 +101,12 @@ h2 {text-align:center;}
 		</form>
 		</div>
 		<br><br><br>
+		<script>
+		if(self.name != 'reload'){
+			self.name = 'reload';
+			self.location.reload(true);
+		}
+		else self.name = "";
+		</script>
+</section><jsp:include page="/copyright.html"/>
 </body></html>

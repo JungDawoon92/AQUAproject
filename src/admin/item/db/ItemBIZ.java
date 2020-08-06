@@ -2,7 +2,6 @@ package admin.item.db;
 
 import java.io.IOException;
 import java.io.Reader;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,9 +12,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 
-
-
-public class ItemBIZ {
+public class ItemBIZ implements ItemDAO {
 	private static SqlSessionFactory sqlSessionFactory;
 	private static ItemBIZ biz = new ItemBIZ();
 	
@@ -63,7 +60,7 @@ public class ItemBIZ {
 		return list;
 	}
 	
-	public int getItemListCount() throws SQLException {
+	public int getItemListCount() {
 		SqlSession session = sqlSessionFactory.openSession();
 		int count = 0;
 		try { count = session.selectOne("itemListCount"); }

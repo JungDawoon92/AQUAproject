@@ -20,7 +20,7 @@
 <body>
 
   <div>
-  <h2>REVIEW<a href="./BoardList.bo" class="btn pull-right" role="button">전체보기</a></h2>
+  <h3 class="brd-name">&nbsp;후기게시판<a href="./BoardList.bo" class="btn pull-right" role="button">전체보기</a></h3>
   <div class="list-group">
   		  <%
 			for (int i = 0; i < boardlist.size(); i++) {

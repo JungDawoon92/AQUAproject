@@ -23,24 +23,24 @@
       crossorigin="anonymous"
     ></script>
 </head>
-<body>
-<jsp:include page="/client/include/nav.jsp"></jsp:include>
+<body><jsp:include page="/client/include/nav.jsp"/><section class="wrap">
+<section class="wrap">
 	<div role="article" class="container">
-    <h2 title="마이페이지" alt="마이페이지 보기" class="maintitle">마이 페이지</h2>
-    <h3 title="회원 탈퇴" alt="회원 탈퇴 페이지">회원 탈퇴</h3>
+    <h2 title="마이페이지" alt="마이페이지 보기" class="maintitle titles">마이 페이지</h2>
+    <h3 title="회원 탈퇴" alt="회원 탈퇴 페이지" class="titles">회원 탈퇴</h3>
+    <br/><br/><br/>
     <div class="container" title="탈퇴 여부 확인"
      alt="안녕하세요 <%=id %> 회원님. 정말로 탈퇴하시겠습니까? 탈퇴를 원하지 않는 경우 취소를 눌러주세요. 감사합니다.">
-		<h3>안녕하세요 <%=id %> 회원님</h3><br/><h4>정말로 탈퇴하시겠습니까?</h4>
-		탈퇴를 원하지 않는 경우 취소를 눌러주세요.<br/>
-		감사합니다.<br/><br/>
+		<h3 class="bolder">안녕하세요 <%=id %> 회원님</h3><br/><h4 class="bolder">정말로 탈퇴하시겠습니까?</h4>
+		<h4>탈퇴를 원하지 않는 경우 취소를 눌러주세요.<br/>
+		감사합니다.</h4><br/><br/>
 	</div>
 		<input class="submit" type="button" name="back" value=" 취 소 " 
 		onclick="location.href='./MemberViewAction.me';" title="취소" alt="탈퇴 취소 버튼" />
 		<input class="retry" type="button" name="success" value="탈퇴하기" 
 		onclick="location.href='./MemberLeaveAction.me';" title="탈퇴하기" alt="탈퇴하기 버튼" />
 	</div>
-<footer class="container-fluid text-center">
-  <p>Footer Text</p>
-</footer>
+</section>
+</section><jsp:include page="/copyright.html"/>
 </body>
 </html>

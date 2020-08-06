@@ -4,10 +4,10 @@
 
 <div class="center flex-container">
 	<ul class="pager pagination">
-    <li class="previous"><a href="javascript:goPage('${servletPath}', ${param.firstPageNo})" class="prev previous">FIRST</a></li>
+    <li class="previous"><a href="javascript:goPage('${servletPath}', ${param.firstPageNo})" class="prev previous">&lt;&lt;</a></li>
 	
     <c:if test="${param.currentPageNo ne param.firstPageNo}">
-        <li><a href="javascript:goPage('${servletPath}', ${param.prevPageNo})" class="prev">Prev</a></li>
+        <li><a href="javascript:goPage('${servletPath}', ${param.prevPageNo})" class="prev">&lt;</a></li>
     </c:if>
     
     
@@ -24,10 +24,10 @@
     
     
     <c:if test="${param.endPageNo ne param.finalPageNo}">
-        <li><a href="javascript:goPage('${servletPath}', ${param.nextPageNo})" class="next btn-primary text-wrap">Next</a></li>
+        <li><a href="javascript:goPage('${servletPath}', ${param.nextPageNo})" class="next btn-primary text-wrap">&gt;</a></li>
     </c:if>
     
-    <li class="next"><a href="javascript:goPage('${servletPath}', ${param.finalPageNo})" class="next">END</a></li>
+    <li class="next"><a href="javascript:goPage('${servletPath}', ${param.finalPageNo})" class="next">&gt;&gt;</a></li>
 	</ul>
 </div>
 

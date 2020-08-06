@@ -24,7 +24,7 @@ public class LastBookedListAction implements Action {
 		List<Booked> lastBookedList = (List<Booked>) MybatisDAO.lastBookedList(uid);
 		if(uid==null) {
 			forward.setRedirect(true);
-			forward.setPath("/aqua/index.bk");
+			forward.setPath("./Index.me");
 			return forward;
 		}
 		int bListCut = 6;
@@ -49,7 +49,7 @@ public class LastBookedListAction implements Action {
 			}
 		} catch (Exception e) {
 			forward.setRedirect(true);
-			forward.setPath("/aqua/lastBookedList.bk?page=1");
+			forward.setPath("/lastBookedList.bk?page=1");
 			return forward;
 		}
 		

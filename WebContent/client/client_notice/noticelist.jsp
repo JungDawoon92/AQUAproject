@@ -33,11 +33,9 @@
 <title>공지 게시판</title>
 
 </head>
-<body>
-
-	 <jsp:include page="../include/nav.jsp"></jsp:include>
+<body><jsp:include page="/client/include/nav.jsp"/><section class="wrap">
 	<div class="container">
-		<h1>공지 게시판</h1>
+		<h2 class="pull-right">공지 게시판</h2>
 	</div>
 	
 	<div class="container content_div">
@@ -105,5 +103,6 @@
 			</ul>
 		</div>
 	</div>
+</section><jsp:include page="/copyright.html"/>
 </body>
 </html>

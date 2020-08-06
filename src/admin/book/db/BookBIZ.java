@@ -3,7 +3,6 @@ package admin.book.db;
 
 import java.io.IOException;
 import java.io.Reader;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,7 +12,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-public class BookBIZ {
+public class BookBIZ implements BookDAO {
 	private static SqlSessionFactory sqlSessionFactory;
 	private static BookBIZ biz = new BookBIZ();
 	
@@ -60,7 +59,7 @@ public class BookBIZ {
 		return list;
 	}
 	
-	public int getBookListCount() throws SQLException {
+	public int getBookListCount(){
 		
 		SqlSession session = sqlSessionFactory.openSession();
 		int count = 0;

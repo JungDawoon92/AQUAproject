@@ -141,26 +141,21 @@ public List getSearchList_Content(int page, String search_content) {
 	}
 
 	public int boardInsert(BoardBean board) {
-		int num = 0;
+		
 		int result = 0;
+		int num = 0;
 		
 		SqlSession ss = FactoryService.getFactory().openSession();
-		num = ss.selectOne("getListmaxnum");
-		
-		if (num != 0)
-			num = num+1;
-		else
-			num = 1;
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		
-		map.put("BOARD_NUM", num);
 		map.put("BOARD_ID", board.getBOARD_ID());
 		map.put("BOARD_SUBJECT", board.getBOARD_SUBJECT());
 		map.put("BOARD_CONTENT", board.getBOARD_CONTENT());
 		map.put("BOARD_FILE", board.getBOARD_FILE() );
 		result = ss.insert("boardInsert", map);
 		ss.commit();
+		num = ss.selectOne("getListmaxnum");
 		ss.close();
 		
 		return num;

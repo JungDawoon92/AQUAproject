@@ -17,7 +17,10 @@ public interface QnaBoardDAO {
 	public int boardReply(QnaBoardBean board);
 	public boolean boardModify(QnaBoardBean board);
 	public boolean boardDelete(int num);
+	public boolean boardAllDelete(int num);
 	public List<QnaBoardBean> getAllList();
 	public int getAllListCount();
+	public QnaBoardBean getReplyDetail(int num);
+	public List<QnaBoardBean> getQnaIndexBoardList();  
 	
 }

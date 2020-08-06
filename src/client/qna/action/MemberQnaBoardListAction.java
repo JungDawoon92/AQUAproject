@@ -31,10 +31,10 @@ public class MemberQnaBoardListAction implements Action {
 				if(page < 1) {
 					page = 1;
 				}
-			} catch (NumberFormatException e) {
-				System.out.println("문자로 숫자 변환 ㄴㄴ" + e.getMessage());
+			} catch (Exception e) {
+				e.printStackTrace();
 				
-			}
+			}	
 		}
 
 		int listcount = boarddao.getListCount();

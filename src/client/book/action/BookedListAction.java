@@ -24,7 +24,7 @@ public class BookedListAction implements Action {
 		List<Booked> bookedList = (List<Booked>) MybatisDAO.bookedList(uid);
 		if(uid==null) {
 			forward.setRedirect(true);
-			forward.setPath("/aqua/index.bk");
+			forward.setPath("./Index.me");
 			return forward;
 		}
 		
@@ -54,7 +54,7 @@ public class BookedListAction implements Action {
 		} catch (Exception e) {
 		
 			forward.setRedirect(true);
-			forward.setPath("/aqua/bookedList.bk?page=1");
+			forward.setPath("/bookedList.bk?page=1");
 			return forward;
 			
 		}

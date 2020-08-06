@@ -16,8 +16,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="/admin/module/Navbar.jsp" />
- <jsp:include page="membermodal.jsp" />
+<jsp:include page="membermodal.jsp" />
 <meta charset="UTF-8">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -27,7 +26,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
 </head>
-<body>
+<body><jsp:include page="/admin/module/Navbar.jsp" /><section class="wrap">
 	<div class="container"
 		style="background: whitesmoke; margin-top: 40px;">
 		<h2><%=id%>
@@ -46,20 +45,53 @@
 		<button id="check">확인</button>
 		<button type="button" id="cansel">취소</button>
 	</div>
+</section><jsp:include page="/copyright.html"/>
 </body>
 
 
 <script>
-var repass = userpass.modipass.value
-var pass = userpass.pass.value
+	var rpass = false;
+	var rpass2 = false;
+	var repass = null;
+	var repass2 = null;
+	var pase = "${pass}";
+	
+	function passCheck() {
+		var pass3 = userpass.Rpass.value
+		if (pass3 == pase) {
+			document.getElementById('psad').innerHTML = "<font color=#0c0>비밀번호가 동일합니다.</font>"
+			rpass = true;
+		} else {
+			document.getElementById('psad').innerHTML = "<font color=#f00>비밀번호가 동일하지 않습니다.</font>"
+			rpass = false;
+		}
+	}
+	function passModi() {
+		var pass = userpass.modipass.value;
+		var passcheck = userpass.modipass2.value;
 
+		if (pass == passcheck) {
+			document.getElementById('pamo').innerHTML = "<font color=#0c0>비밀번호가 동일합니다.</font>"
+			rpass2 = true;
+			repass = pass;
+			repass2 = passcheck;
+		} else if (passcheck == pase) {
+			document.getElementById('pamo').innerHTML = "<font color=#f00>현재비밀번호와 동일한 비밀번호 입니다..</font>"
+		} else {
+			document.getElementById('pamo').innerHTML = "<font color=#f00>비밀번호가 동일하지 않습니다.</font>"
+		}
+	}
+	
+	
 	$(document).ready(function() {
 		$("#check").click(function() {
 			if(rpass != true){
 				$("#check001").modal(); 
+			}else if(rpass2 != true){
+				$("#check003").modal(); 
 			}else if (repass == pase){
 				$("#check002").modal(); 
-			}else if(repass != pass){
+			}else if(repass2 != repass){
 				$("#check003").modal(); 
 			}else{
 				$("#check004").modal(); 
@@ -76,34 +108,6 @@ var pass = userpass.pass.value
 		});
 	});
 	
-	var rpass = false;
-	var repass = null;
-	var pase = "${pass}";
-
-	function passCheck() {
-		var pass3 = userpass.Rpass.value
-		if (pass3 == pase) {
-			document.getElementById('psad').innerHTML = "<font color=#0c0>비밀번호가 동일합니다.</font>"
-			rpass = true;
-		} else {
-			document.getElementById('psad').innerHTML = "<font color=#f00>비밀번호가 동일하지 않습니다.</font>"
-		}
-	}
-	function passModi() {
-		var pass = userpass.modipass.value
-		var passcheck = userpass.modipass2.value
-
-		if (pass == passcheck) {
-			document.getElementById('pamo').innerHTML = "<font color=#0c0>비밀번호가 동일합니다.</font>"
-			rpass = true;
-			repass = pass;
-		} else if (passcheck == pase) {
-			document.getElementById('pamo').innerHTML = "<font color=#f00>현재비밀번호와 동일한 비밀번호 입니다..</font>"
-		} else {
-			document.getElementById('pamo').innerHTML = "<font color=#f00>비밀번호가 동일하지 않습니다.</font>"
-		}
-	}
-
 	$(document).ready(function() {
 		$("#cansel").click(function() {
 			$("#cansel01").modal();
@@ -111,6 +115,18 @@ var pass = userpass.pass.value
 		$("#check01").click(function() {
 			window.history.back();
 		});
+	});
+	$("#Rpass").bind("keyup",function(){
+		 var a = $('#Rpass').val().replace(/ /gi, '');
+	        $('#Rpass').val(a);
+	});
+	$("#modipass2").bind("keyup",function(){
+		 var a = $('#modipass2').val().replace(/ /gi, '');
+	        $('#modipass2').val(a);
+	});
+	$("#modipass").bind("keyup",function(){
+		 var a = $('#modipass').val().replace(/ /gi, '');
+	        $('#modipass').val(a);
 	});
 </script>
 </html>

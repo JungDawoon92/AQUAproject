@@ -14,9 +14,7 @@
   	.modalbtn { display:none; }
   </style>
 </head>
-<body>
-
-<jsp:include page="/admin/module/Navbar.jsp" />
+<body><jsp:include page="/admin/module/Navbar.jsp" /><section class="wrap">
 
 <%@ include file="/admin/module/BookForm.jsp" %>
 
@@ -51,5 +49,6 @@ document.getElementById("deleteTRUE-btn").onclick = function () {
 	location.replace("./BookDeleteAction.ady?pno=${bookMap.pno}&pages=${pages}");
 }
 </script>
+</section><jsp:include page="/copyright.html"/>
 </body>
 </html>

@@ -28,9 +28,7 @@
     <link href="./client/css/qna_modify.css" rel="stylesheet"/>
     <title>AQUA</title>
   </head>
-  <body>
-
-	<jsp:include page="/client/include/nav.jsp" />
+  <body><jsp:include page="/client/include/nav.jsp"/><section class="wrap">
 	<div class="container">
 		<h1>Q&A게시판</h1>
 	</div>
@@ -43,7 +41,7 @@
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="subject">제목</label>
 				<div class="col-sm-10">
-					<input class="form-control" name="SUBJECT" type="text"
+					<input class="form-control check_null" name="SUBJECT" type="text"
 					 maxlength="40" id="subject" value="<%=board.getSUBJECT()%>"/>
 				</div>
 			</div>
@@ -63,7 +61,7 @@
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="content">내용</label>
 				<div class="col-sm-10">
-					<textarea class="form-control" name="CONTENT" class="content"
+					<textarea class="form-control check_null content" name="CONTENT"
 							rows="10" cols="67" maxlength="1050" placeholder="1000자 이내"><%=board.getCONTENT()%></textarea>
 				</div>
 			</div>
@@ -107,10 +105,11 @@
 	function checkFields() {
 
 		var result = true;
-		var frm = $("#frm :input").not(":input[type=hidden]");
+		var frm = $(".check_null");
+		console.log(frm);
 		
 		frm.each(function(idx, ele) {
-			if ("" == $(ele).val() || null == $(ele).val()) {
+			if (ele.value.replace(/\s|　/gi, '') == '') {
 				alert("값을 입력하세요");
 				$(ele).focus();
 				result = false;
@@ -128,5 +127,6 @@
 
 	}
 </script>
+</section><jsp:include page="/copyright.html"/>
 </body>
 </html>

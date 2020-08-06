@@ -24,8 +24,9 @@ public class BookedDelAction implements Action {
 			for(String chk_pno : values) {
 				pno = Integer.parseInt(chk_pno);
 				book = MybatisDAO.bookInfo(pno);
-				MybatisDAO.bookDel(pno);
 				MybatisDAO.itemCntUp(book);
+				MybatisDAO.bookDel(pno);
+				System.out.println("삭제한 일련번호 >>"+ pno);
 			}
 		}
 		forward.setRedirect(true);

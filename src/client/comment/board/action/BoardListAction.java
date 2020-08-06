@@ -50,6 +50,12 @@ public class BoardListAction implements Action {
 			}
 		}
 		
+		
+		HashMap<Integer, Integer> likemap = new HashMap<Integer, Integer>();
+		likemap = likedao.isLikecount();
+		request.setAttribute("boardlikecount", likemap);
+		
+		
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		int page = 1;
 		int limit = 5;

@@ -22,10 +22,10 @@ public class MemberLeaveView implements Action {
 		MemberDAO memberdao = new MemberDAO();
 		MemberBean member = new MemberBean();
 		
-		member.setId(request.getParameter("id"));
+		member.setId((String)session.getAttribute("userid"));
 		member.setPass(request.getParameter("pass"));
 		
-		String id = request.getParameter("id");
+		String id = (String)session.getAttribute("userid");
 		
 		if (id == null) {
 			forward.setRedirect(true);

@@ -28,6 +28,7 @@
 			.intValue();
 	
 	HashMap<Integer, Integer> boardcommentcount = (HashMap) request.getAttribute("boardcommentcount");
+	HashMap<Integer, Integer> boardlikecount = (HashMap) request.getAttribute("boardlikecount");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,23 +42,22 @@
     
     <title>AQUA</title>
   </head>
-  <body>
-    <jsp:include page="../../include/nav.jsp"></jsp:include>
+  <body><jsp:include page="/client/include/nav.jsp"/><section class="wrap">
+    
 
     <div class="container">
-      <h1>Review</h1>
-      <div class="dropdown pull-right">
-    	<button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown">정렬방식
+      <h2 class="pull-right">후기게시판</h2>
+    </div>
+    <br />
+    <div class="container" align="left">글 개수 : ${listcount} <div class="dropdown pull-right">
+    	<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-th-list"></span>
     	<span class="caret"></span></button>
     	<ul class="dropdown-menu">
       		<li class="disabled"><a href="#">기본게시판</a></li>
       		<li class="divider"></li>
       		<li><a href="./BoardrecentList.bo">현대식게시판</a></li>
     	</ul>
-  	</div>
-    </div>
-    <br />
-    <div class="container" align="right">글 개수 : ${listcount}</div>
+  	</div></div>
 
 
     <div class="container content_div"> <!-- content_div class 추가로줌. 하얀색->검은색  -->
@@ -69,6 +69,7 @@
               <th>작성자</th>
               <th>날짜</th>
               <th>조회수</th>
+              <th><span class="glyphicon glyphicon-thumbs-up"></span></th>
             </tr>
           </thead>
           
@@ -111,6 +112,14 @@
 			<td>
 				<div><%=bl.getBOARD_READCOUNT()%></div>
 			</td>
+			<td>
+				<%		try{ 
+ 							if (boardlikecount.get(bl.getBOARD_NUM()) != 0) {%>
+ 						+<%=boardlikecount.get(bl.getBOARD_NUM()) %> <%}
+ 						} catch (Exception ex) {%>
+ 							+0
+ 						<%}%>
+			</td>
 		</tr>
 		<%
 			}
@@ -118,7 +127,7 @@
 		
 		
 		<tr>
-			<td colspan="5">
+			<td colspan="6">
 			<% if(id != null) { %>
 				 <form action="./BoardSearch.bo" method="post">
  					<div class="controls text-center margintop20">
@@ -222,8 +231,6 @@
     
 
 
-    <footer class="container-fluid text-center">
-      <p>Footer Text</p>
-    </footer>
+</section><jsp:include page="/copyright.html"/>
   </body>
 </html>

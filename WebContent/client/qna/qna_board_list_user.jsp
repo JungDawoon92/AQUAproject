@@ -51,17 +51,15 @@
     <script src="main.js" defer></script>
     <title>AQUA</title>
   </head>
-  <body>
-
-	<jsp:include page="/client/include/nav.jsp" />
+  <body><jsp:include page="/client/include/nav.jsp" />
 	<div class="container">
-		<h1>Q&A게시판</h1>
+		<h2 class="pull-right">Q&A게시판</h2>
 	</div>
 	<br />
 	<div class="container content_list">
 		<div class="row">
 		<div class="col-sm-12">
-		<table class="table table-hover">
+		<table class="table">
 			<thead>
 				<tr>
 					<th class="col-sm-1 hidden-xs">번호</th>
@@ -122,10 +120,10 @@
 					</td>
 					<td>
 						<c:if test="${list.RE_CHE == 1}">
-							<button class="btn">답변완료</button>
+							<button class="btn non-effect">답변완료</button>
 						</c:if>
 						<c:if test="${list.RE_CHE == 0}">
-							<button class="btn btn-default">답변대기</button>
+							<button class="btn btn-default non-effect">답변대기</button>
 						</c:if>			
 					</td>
 				</tr>
@@ -183,10 +181,10 @@
 					<div id="pager" class="flex-container" >
 						<ul class="pager pagination">
 						<c:if test="${nowpage > 1}">
-							<li class="previous"><a href="./QnABoardList.qa?page=1">FIRST</a></li>
+							<li class="previous"><a href="./QnABoardList.qa?page=1">&lt;&lt;</a></li>
 						</c:if>
 						<c:if test="${prevpage != 0}">
-							<li><a href="./QnABoardList.qa?page=${prevpage}">Prev</a></li>
+							<li><a href="./QnABoardList.qa?page=${prevpage}">&lt;</a></li>
 						</c:if>
 						<c:forEach var="i" begin="${beginpage}" end="${endpage}" step="1">
 							<c:choose>
@@ -199,10 +197,10 @@
 							</c:choose>
 						</c:forEach>
 						<c:if test="${nextpage != 0}">
-							<li><a href="./QnABoardList.qa?page=${nextpage}">Next</a></li>
+							<li><a href="./QnABoardList.qa?page=${nextpage}">&gt;</a></li>
 						</c:if>
 						<c:if test="${nowpage != maxpage}">
-							<li><a href="./QnABoardList.qa?page=${maxpage}">END</a></li>
+							<li><a href="./QnABoardList.qa?page=${maxpage}">&gt;&gt;</a></li>
 						</c:if>
 						</ul>
 					</div>				
@@ -210,28 +208,47 @@
 			</tr>
 	
 			<tr id="write">
-				<td colspan="8">
-					<button class="btn btn-default pull-right" onclick="location.href='./QnABoardWrite.qa'">
-					글쓰기
-					</button>
-				</td>
-			</tr>
+						<td colspan="8">
+							<c:choose>
+								<c:when test="${id == '비회원'}">
+									<button type="button"
+										class="btn btn-default pull-right margintop20"
+										data-toggle="modal" data-target="#myModal">글쓰기</button>
+								</c:when>
+								<c:otherwise>
+								<button class="btn btn-default pull-right"
+									onclick="location.href='./QnABoardWrite.qa'">글쓰기</button>
+								</c:otherwise>
+							</c:choose></td>
+					</tr>
 		</table>
 		</div>
 		</div>
 	</div>
 	<br />
 
-	<footer class="container-fluid text-center">
-		<p>Footer Text</p>
-	</footer>
-	
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Alert</h4>
+				</div>
+				<div class="modal-body">
+					<p>로그인이 필요한 서비스입니다.</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
 	<script>
 		function content(num,nowpage){
 			location.href="./QnABoardDetailAction.qa?num="+num+"&page="+nowpage;
 		}
 		
 	</script>
-	
+</section><jsp:include page="/copyright.html"/>
 </body>
 </html>

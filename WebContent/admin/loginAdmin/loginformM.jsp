@@ -35,7 +35,7 @@ h1 { text-align:center;
 				<div class="panel-body">
 					<form id="login-form" action="loginAction.ad" method="post">
 						<div>
-							<input type="text" class="form-control" name="adminid"
+							<input type="text" class="form-control" name="admin_id"
 								placeholder="Admin Id" autofocus>
 						</div>
 						<div>

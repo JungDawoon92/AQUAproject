@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import aqua.module.Action;
 import aqua.module.ActionForward;
-import aqua.module.Encoding;
+import aqua.module.QEncoding;
 import client.qna.db.QnaBoardBean;
 import client.qna.db.QnaBoardDAO;
 import client.qna.db.QnaBoardSql;
@@ -15,7 +15,7 @@ public class AdminQnaBoardReplyAction implements Action {
 		
 		request.setCharacterEncoding("UTF-8");
 		ActionForward forward = new ActionForward();
-		Encoding encoding = new Encoding();
+		QEncoding encoding = new QEncoding();
 		QnaBoardDAO boarddao = new QnaBoardSql();
 		QnaBoardBean boarddata = new QnaBoardBean();
 		

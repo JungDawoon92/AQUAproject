@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import aqua.module.Action;
 import aqua.module.ActionForward;
 import client.comment.board.action.BoardAddAction;
+import client.comment.board.action.BoardAjaxLikeAction;
 import client.comment.board.action.BoardDeleteAction;
 import client.comment.board.action.BoardDetailAction;
 import client.comment.board.action.BoardListAction;
@@ -90,6 +91,13 @@ public class BoardFrontController extends javax.servlet.http.HttpServlet
 			
 			try {
 				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/BoardAjaxLike.bo")) {
+			BoardAjaxLikeAction AjaxLike = new BoardAjaxLikeAction();
+			try {
+				AjaxLike.ajax(request);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

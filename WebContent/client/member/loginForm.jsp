@@ -20,7 +20,11 @@
       src="https://kit.fontawesome.com/2d323a629b.js"
       crossorigin="anonymous"
     ></script>
-
+<script type="text/javascript">
+$(document).ready(function(){
+	  $("#id").focus();
+	});
+</script>
     <script type="text/javascript">
      
     	function check_onclick() {
@@ -39,8 +43,7 @@
 		}
     </script>
 </head>
-<body class="gray-body">
-	<jsp:include page="/client/include/nav.jsp"></jsp:include>
+<body class="gray-body"><jsp:include page="/client/include/nav.jsp"/>
     <div class="wrap vcenter">
     <div class="container">
     <div class="row">
@@ -50,7 +53,7 @@
 <form role="form" class="form-horizontal" name="loginform" action="./MemberLoginAction.me" method="post" onsubmit="return check_onclick()">
 	<div class="form-group">
 	<div class="col-sm-12">
-		<input class="form-control login" type="text" name="id" placeholder="아이디" title="아이디" alt="아이디 입력란"
+		<input class="form-control login" type="text" id="id" name="id" placeholder="아이디" title="아이디" alt="아이디 입력란"
 		onkeypress="if(event.keyCode == 13){ return false; }"/>
 	</div></div>
 	<div class="form-group">
@@ -72,8 +75,6 @@
 </div>
 </div>
 </div>
-<footer class="container-fluid text-center">
-  <p>Footer Text</p>
-</footer>
+</section><jsp:include page="/copyright.html"/>
 </body>
 </html>

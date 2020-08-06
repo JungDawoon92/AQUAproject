@@ -26,9 +26,14 @@ public class ItemListAction implements Action {
 			if(admin.adminCheck(request, forward) == true) {
 		        int currentPageNo = 1;        
 		
-		        if (request.getParameter("pages") != null)
+		        if (request.getParameter("pages") != null) {
+		        	int finalPageNo =  (int)Math.ceil((double)itembiz.getItemListCount() / 10);
 		            currentPageNo = Integer.parseInt(request.getParameter("pages"));
-		
+		            if(currentPageNo < 1)
+		            	currentPageNo = 1;
+		            else if(currentPageNo > finalPageNo)
+		            	currentPageNo = finalPageNo;
+		        }	
 		
 		        Paging paging = new Paging(currentPageNo);
 		        

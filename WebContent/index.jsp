@@ -8,11 +8,13 @@
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="./client/css/index.css" />
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
     <title>AQUA</title>
   </head>
   <body>
     <jsp:include page="client/include/nav.jsp"/>
-	
+	<article class="wrap">
+	    <section class="container">
 	    <div id="myCarousel" class="carousel slide" data-ride="carousel">
 		    <!-- Indicators -->
 		    <ol class="carousel-indicators">
@@ -27,38 +29,18 @@
 		    <div class="carousel-inner" role="listbox">
 		      <div class="item active">
 		        <img src="./img/seoul.jpg" alt="Image">
-		        <div class="carousel-caption">
-		          <h3>Sell $</h3>
-		          <p>Money Money.</p>
-		        </div>
 		      </div>
 		      <div class="item">
 		        <img src="./img/incheon.jpg" alt="Image">
-		        <div class="carousel-caption">
-		          <h3>More Sell $</h3>
-		          <p>Lorem ipsum...</p>
-		        </div>
 		      </div>
 		      <div class="item">
 		        <img src="./img/busan.jpg" alt="Image">
-		        <div class="carousel-caption">
-		          <h3>More Sell $</h3>
-		          <p>Lorem ipsum...</p>
-		        </div>
 		      </div>
 		      <div class="item">
 		        <img src="./img/jeju.jpg" alt="Image">
-		        <div class="carousel-caption">
-		          <h3>More Sell $</h3>
-		          <p>Lorem ipsum...</p>
-		        </div>
 		      </div>
 		      <div class="item">
-		        <img src="./img/cheonan.jpg" alt="Image">
-		        <div class="carousel-caption">
-		          <h3>More Sell $</h3>
-		          <p>Lorem ipsum...</p>
-		        </div>
+		        <img src="./img/spring_jeju.jpg" alt="Image">
 		      </div>
 		    </div>
 	
@@ -72,10 +54,9 @@
 		      <span class="sr-only">Next</span>
 		    </a>
 		</div>
+		</section>
 		
-		
-<div class="container content_div">
-  <h3>What We Do</h3><br>
+<div class="container">
   <div class="row">
     <div class="col-sm-4">
       <jsp:include page="client/include/recentnotice.jsp"></jsp:include>
@@ -88,9 +69,7 @@
     </div>
   </div>
 </div>
-
-<footer class="container-fluid text-center">
-  <p>Footer Text</p>
-</footer>
+</article>
+<jsp:include page="/copyright.html"/>
   </body>
 </html>

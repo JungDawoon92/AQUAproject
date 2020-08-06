@@ -173,6 +173,27 @@ public class QnaBoardSql implements QnaBoardDAO {
 		}
 		
 	}
+	
+	public boolean boardAllDelete(int num) {
+		SqlSession session = sqlSessionFactory.openSession();
+		int result = 0;
+		try {
+			result = session.delete("QnaAllDelete",num);
+			if(result > 0) {
+				session.commit();
+			} else {
+				session.close();
+				return false;
+			}
+			session.close();
+			return true;
+			
+		} catch (Exception e) {
+			session.rollback();
+			session.close();
+			return false;
+		}
+	}
 
 	public boolean boardDelete(int num) {
 		SqlSession session = sqlSessionFactory.openSession();
@@ -221,5 +242,28 @@ public class QnaBoardSql implements QnaBoardDAO {
 		count = session.selectOne("QnaAllListCount");
 		session.close();
 		return count;
-	};
+	}
+	
+	public QnaBoardBean getReplyDetail(int num) {
+		QnaBoardBean board = null;
+		SqlSession session = sqlSessionFactory.openSession();
+		board = session.selectOne("getReplyDetail", num);
+		session.close();
+		return board;
+	}
+	
+	
+	public List<QnaBoardBean> getQnaIndexBoardList(){
+
+		SqlSession session = sqlSessionFactory.openSession();
+
+		List<QnaBoardBean> list = null;
+
+		list = session.selectList("getQnaIndexBoardList");
+
+		session.close();
+
+		return list;
+	}
+	
 }

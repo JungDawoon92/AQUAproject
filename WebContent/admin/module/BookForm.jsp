@@ -18,87 +18,87 @@
 		<form id="book-form" class="bookform" action="./BookAddAction.ady" name="book_form" method="post" >
 	
 		<div class="form-group row" id="pno-div">
-	      <label class="control-label col-xs-4 col-sm-1" for="pno">번호 :</label>
+	      <label class="control-label col-xs-4 col-sm-1 col-sm-offset-2" for="pno">번호 :</label>
 	      <div class="col-xs-6">
 	        <input type="text" class="form-control" id="pno" placeholder="Only Read" name="pno" readonly="readonly">
 	      </div>
 	    </div>
 	    <div class="form-group row" id="id-div">
-	      <label class="control-label col-xs-4 col-sm-1" for="id">ID :</label>
+	      <label class="control-label col-xs-4 col-sm-1 col-sm-offset-2" for="id">ID :</label>
 	      <div class="col-xs-6">
 	        <input type="text" class="form-control" id="id" placeholder="Enter Id" name="id" required="required">
 	      </div>
 	    </div>
 	    <div class="form-group row" id="no-div">
-		      <label class="control-label col-xs-4 col-sm-1" for="no">상품번호 :</label>
+		      <label class="control-label col-xs-4 col-sm-1 col-sm-offset-2" for="no">상품번호 :</label>
 		      <div class="col-xs-6">
 		        <input type="number" class="form-control" id="no" placeholder="Enter no" name="no" min="0" required="required">
 		      </div>
 		</div>
 	    <div class="form-group row" id="categ-div">
-	    	<label class="control-label col-xs-4 col-sm-1" for="categ">카테고리 :</label>
+	    	<label class="control-label col-xs-4 col-sm-1 col-sm-offset-2" for="categ">카테고리 :</label>
 	    	<div class="col-xs-6">
 	    	</div>
 		</div>
 		<div class="form-group row" id="i_name-div">
-	      <label class="control-label col-xs-4 col-sm-1" for="i_name">상품이름 :</label>
+	      <label class="control-label col-xs-4 col-sm-1 col-sm-offset-2" for="i_name">상품이름 :</label>
 	      <div class="col-xs-6">
 	      </div>
 	    </div>
 	    <div class="form-group row" id="cnt-div">
-	      <label class="control-label col-xs-4 col-sm-1" for="cnt" >수량 :</label>
+	      <label class="control-label col-xs-4 col-sm-1 col-sm-offset-2" for="cnt" >수량 :</label>
 	      <div class="col-xs-6">
 	        <input type="number" class="form-control num" id="cnt" placeholder="Enter cnt" name="cnt" min="1" max="100" required="required">
 	      </div>
 	    </div>
 	    <div class="form-group row" id="price-div">
-	      <label class="control-label col-xs-4 col-sm-1" for="price">가격 :</label>
+	      <label class="control-label col-xs-4 col-sm-1 col-sm-offset-2" for="price">가격 :</label>
 	      <div class="col-xs-6">          
 	      </div>
 	    </div>
 	    <div class="form-group row" id="st-date-div">
-	      <label class="control-label col-xs- col-sm-1" for="st-date">출발날짜 :</label>
+	      <label class="control-label col-xs- col-sm-1 col-sm-offset-2" for="st-date">출발날짜 :</label>
 	      <div class="col-xs-6">          
 	      </div>
 	    </div>
 	    <div class="form-group row" id="ed-date-div">
-	      <label class="control-label col-xs-4 col-sm-1" for="ed-date">도착날짜 :</label>
+	      <label class="control-label col-xs-4 col-sm-1 col-sm-offset-2" for="ed-date">도착날짜 :</label>
 	      <div class="col-xs-6">
 	      </div>
 	    </div>
 		<div class="form-group row" id="up-date-div">
-	      <label class="control-label col-xs-4 col-sm-1" for="up-date">구매날짜 :</label>
+	      <label class="control-label col-xs-4 col-sm-1 col-sm-offset-2" for="up-date">구매날짜 :</label>
 	      <div class="col-xs-6">          
 	      </div>
 	    </div>
-	    <div class="form-group row" id="member-name-div">
-	      <label class="control-label col-xs-4 col-sm-1" for="member-name">회원이름 :</label>
+	    <div class="form-group row" id="memberName-div">
+	      <label class="control-label col-xs-4 col-sm-1 col-sm-offset-2" for="member-name">회원이름 :</label>
 	      <div class="col-xs-6">
 	      </div>
 	    </div>
 	    <div class="form-group row" id="birthday-div">
-	      <label class="control-label col-xs-4 col-sm-1" for="birthday">생년월일 :</label>
+	      <label class="control-label col-xs-4 col-sm-1 col-sm-offset-2" for="birthday">생년월일 :</label>
 	      <div class="col-xs-6">          
 	      </div>
 	    </div>
 	    <div class="form-group row" id="gender-div">
-	      <label class="control-label col-xs-4 col-sm-1" for="gender">성별 :</label>
+	      <label class="control-label col-xs-4 col-sm-1 col-sm-offset-2" for="gender">성별 :</label>
 	      <div class="col-xs-6">          
 	      </div>
 	    </div>
 	    <div class="form-group row" id="email-div">
-	      <label class="control-label col-xs-4 col-sm-1" for="email">email :</label>
+	      <label class="control-label col-xs-4 col-sm-1 col-sm-offset-2" for="email">email :</label>
 	      <div class="col-xs-6">          
 	      </div>
 	    </div>
 	    <div class="form-group row" id="phone-div">
-	      <label class="control-label col-xs-4 col-sm-1" for="phone">휴대폰 :</label>
+	      <label class="control-label col-xs-4 col-sm-1 col-sm-offset-2" for="phone">휴대폰 :</label>
 	      <div class="col-xs-6">          
 	      </div>
 	    </div>
 	    
 		<div class="row"> 
-	       <div class="col-xs-7">
+	       <div class="col-xs-7 col-sm-offset-2">
 	          <button type="submit" class="btn btn-default" id="add-btn" >확인</button>
 	          <button type="button" class="btn btn-default" id="list-btn">목록</button>
 	          <button type="reset" class="btn btn-default" id="reset-btn" >리셋</button>
@@ -127,7 +127,7 @@ $(window).ready(function () {
 		$("#modal-btn").trigger("click");
 	</c:if>
 	<c:if test="${dateInputError eq 'trueError' }" >
-		$("#msg").text("날짜 등록 에러(출발 날짜가 도착날짜가 큽니다.)");
+		$("#msg").text("날짜 등록 에러(출발 날짜가 도착날짜보다 큽니다.)");
 		$("#modal-btn").trigger("click");
 	</c:if>
 	<c:if test="${dataInsertError eq 'trueError' }" >

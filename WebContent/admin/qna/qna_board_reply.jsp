@@ -22,8 +22,7 @@
     <link href="./client/css/qna_list.css" rel="stylesheet"/>
     <title>AQUA</title>
   </head>
-  <body>	
-	<jsp:include page="/admin/module/Navbar.jsp" />
+  <body><jsp:include page="/admin/module/Navbar.jsp" /><section class="wrap">
 	<form action="./QnABoardReplyAction.adq" method="post" name="boardform">
 		<input type="hidden" name="NUM" value="<%=board.getNUM()%>">
 		<input type="hidden" name="RE_REF" value="<%=board.getRE_REF()%>">
@@ -76,5 +75,6 @@
 		boardform.submit();
 	}
 	</script>
+</section><jsp:include page="/copyright.html"/>
 </body>
 </html>

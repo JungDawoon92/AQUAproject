@@ -19,23 +19,24 @@
 </head>
 <body>
 	<jsp:include page="/client/include/nav.jsp"></jsp:include>
+<section class="wrap">
     <article class="container item-box">
 	    <div class="row">
 		    <c:set var="iinf" value="${iInfo}" />
 		    <c:set var="pinf" value="${pInfo}" />
-		    <div class="col-sm-7" >
+		    <div class="col-lg-7" >
 		    	<img class="img-responsive" title="상품이미지" alt="상품이미지" src="./img/${iinf.img}">
 		    </div>
-			<div class="col-sm-5">
-				<div class="col-sm-1"></div>
-				<div class="col-sm-11">
+			<div class="col-lg-5">
+				<div class="col-lg-1"></div>
+				<div class="col-lg-11">
 					<h2>${iinf.i_name}</h2><br>
 		    		<ul>
 			    		<li>비용 : ${iinf.price}</li><br>
 			    		<li>분류 : ${iinf.categ}</li><br>
 			    		<li>상세 내용 : ${iinf.content}</li><br>
 			    		<li>여행 기간 : ${iinf.st_date} ~ ${iinf.ed_date}</li><br>
-			    		<li>남은 수량 : ${iinf.cnt}/${iinf.tot}</li><br>
+			    		<li>남은 자리 : ${iinf.cnt}/${iinf.tot}</li><br>
 		    		</ul>
 		    		<form method="post" name="form" onsubmit="return false">
 		    			<c:set var="pg" value="${page}"/>
@@ -55,7 +56,7 @@
 			</div>
 		</div>
     </article>
-    <footer class="container-fluid text-center">
-    </footer>
+</section>    
+<jsp:include page="/copyright.html"/>
 </body>
 </html>

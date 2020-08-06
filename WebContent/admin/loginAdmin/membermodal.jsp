@@ -23,18 +23,13 @@
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
 						<h4 class="modal-title">알 림</h4>
-					</div>
-					<div class="modal-body">
+					</div><div class="modal-body">
 						<p>다시 작성하시겠습니까?</p>
-					</div>
-					<div class="modal-footer">
+					</div><div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal"
 							id="clear">확인</button>
 						<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-					</div>
-				</div>
-			</div>
-		</div>
+					</div></div></div></div>
 
 		<div class="modal fade" id="myreturn" role="dialog">
 			<div class="modal-dialog">
@@ -51,10 +46,7 @@
 						<button type="button" class="btn btn-default" data-dismiss="modal"
 							id="listreturn">확인</button>
 						<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-					</div>
-				</div>
-			</div>
-		</div>
+					</div></div></div></div>
 		<script>
 			$(document).ready(function() {
 				$("#myBtn").click(function() {
@@ -77,6 +69,7 @@
 
 			});
 		</script>
+		
 		<!-- modal -->
 		<div class="modal fade" id="cansel01" role="dialog">
 			<div class="modal-dialog">
@@ -93,10 +86,7 @@
 						<button type="button" class="btn btn-default" data-dismiss="modal"
 							id="check013">확인</button>
 						<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-					</div>
-				</div>
-			</div>
-		</div>
+					</div></div></div></div>
 		<script>
 			$(document).ready(function() {
 				$("#cansel").click(function() {
@@ -124,10 +114,7 @@
 						<button type="button" class="btn btn-default" data-dismiss="modal"
 							id="modiback">확인</button>
 						<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-					</div>
-				</div>
-			</div>
-		</div>
+					</div></div></div></div>
 
 		<script>
 			$(document).ready(function() {
@@ -155,10 +142,7 @@
 						<button type="button" class="btn btn-default" data-dismiss="modal"
 							id="check01">확인</button>
 						<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-					</div>
-				</div>
-			</div>
-		</div>
+					</div></div></div></div>
 
 		<!-- modal -->
 		<div class="modal fade" id="check001" role="dialog">
@@ -170,15 +154,13 @@
 						<h4 class="modal-title">알 림</h4>
 					</div>
 					<div class="modal-body">
-						<p>비밀번호를 입력해주세요</p>
+						<p>현재 비밀번호를 입력해주세요</p>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal"
 							id="check01">확인</button>
-					</div>
-				</div>
-			</div>
-		</div>
+					</div></div></div></div>
+					
 		<!-- modal -->
 		<div class="modal fade" id="check002" role="dialog">
 			<div class="modal-dialog">
@@ -194,10 +176,7 @@
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal"
 							id="check02">확인</button>
-					</div>
-				</div>
-			</div>
-		</div>
+					</div></div></div></div>
 
 		<!-- modal -->
 		<div class="modal fade" id="check003" role="dialog">
@@ -214,11 +193,7 @@
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal"
 							id="check02">확인</button>
-					</div>
-				</div>
-			</div>
-		</div>
-
+					</div></div></div></div>
 
 
 		<div class="modal fade" id="check004" role="dialog">
@@ -237,10 +212,8 @@
 							id="check03">확인</button>
 						<button type="button" class="btn btn-default" data-dismiss="modal">
 							취소</button>
-					</div>
-				</div>
-			</div>
-		</div>
+					</div></div></div></div>
+					
 		<!-- modal -->
 		<div class="modal fade" id="sendemail" role="dialog">
 			<div class="modal-dialog">
@@ -256,10 +229,7 @@
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal"
 							id="sendemail">확인</button>
-					</div>
-				</div>
-			</div>
-		</div>
+					</div></div></div></div>
 		<!-- modal -->
 		<div class="modal fade" id="sendoverbirthday" role="dialog">
 			<div class="modal-dialog">
@@ -275,10 +245,8 @@
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal"
 							id="sendoverbirthday">확인</button>
-					</div>
-				</div>
-			</div>
-		</div>
+					</div></div></div></div>
+					
 		<!-- modal -->
 		<div class="modal fade" id="sendphone" role="dialog">
 			<div class="modal-dialog">
@@ -294,10 +262,8 @@
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal"
 							id="sendphone">확인</button>
-					</div>
-				</div>
-			</div>
-		</div>
+					</div></div></div></div>
+					
 		<!-- modal -->
 		<div class="modal fade" id="sendaddr" role="dialog">
 			<div class="modal-dialog">
@@ -313,10 +279,8 @@
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal"
 							id="sendaddr">확인</button>
-					</div>
-				</div>
-			</div>
-		</div>
+					</div></div></div></div>
+					
 		<!-- modal -->
 		<div class="modal fade" id="sendmodi2" role="dialog">
 			<div class="modal-dialog">
@@ -332,10 +296,8 @@
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal"
 							id="subsend_1">확인</button>
-					</div>
-				</div>
-			</div>
-		</div>
+						<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+					</div></div></div></div>
 
 		<!--modal -->
 		<div class="modal fade" id="memberid" role="dialog">
@@ -352,10 +314,8 @@
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal"
 							id="memberid">확인</button>
-					</div>
-				</div>
-			</div>
-		</div>
+					</div></div></div></div>
+					
 		<!--modal -->
 		<div class="modal fade" id="memberid2" role="dialog">
 			<div class="modal-dialog">
@@ -371,10 +331,8 @@
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal"
 							id="memberid2">확인</button>
-					</div>
-				</div>
-			</div>
-		</div>
+					</div></div></div></div>
+					
 		<!--modal -->
 		<div class="modal fade" id="memberpass" role="dialog">
 			<div class="modal-dialog">
@@ -391,10 +349,8 @@
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal"
 							id="memberpass">확인</button>
-					</div>
-				</div>
-			</div>
-		</div>
+					</div></div></div></div>
+					
 		<!--modal -->
 		<div class="modal fade" id="membername" role="dialog">
 			<div class="modal-dialog">
@@ -410,10 +366,8 @@
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal"
 							id="membername">확인</button>
-					</div>
-				</div>
-			</div>
-		</div>
+					</div></div></div></div>
+					
 		<!--modal -->
 		<div class="modal fade" id="memberaddr" role="dialog">
 			<div class="modal-dialog">
@@ -429,10 +383,8 @@
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal"
 							id="memberaddr">확인</button>
-					</div>
-				</div>
-			</div>
-		</div>
+					</div></div></div></div>
+					
 		<!--modal -->
 		<div class="modal fade" id="memberbirth" role="dialog">
 			<div class="modal-dialog">
@@ -448,10 +400,8 @@
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal"
 							id="memberbirth">확인</button>
-					</div>
-				</div>
-			</div>
-		</div>
+					</div></div></div></div>
+					
 		<!--modal -->
 		<div class="modal fade" id="memberemail" role="dialog">
 			<div class="modal-dialog">
@@ -467,10 +417,7 @@
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal"
 							id="memberemail">확인</button>
-					</div>
-				</div>
-			</div>
-		</div>
+					</div></div></div></div>	
 		<!--modal -->
 		<div class="modal fade" id="sendmember" role="dialog">
 			<div class="modal-dialog">
@@ -485,13 +432,8 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal"
-							id="sendmember">확인</button>
-						<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-					</div>
-				</div>
-			</div>
-		</div>
-
-	</div>
-</body>
-</html>
+							id="sendmembersub">확인</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal"
+							id="sendcansel">취소</button>
+					</div></div></div></div></div>
+</body></html>

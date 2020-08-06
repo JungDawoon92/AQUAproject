@@ -6,9 +6,9 @@ import java.util.List;
 public interface ItemDAO {
 	public List<ItemVO> itemPageList(int begin, int end);
 	public List<ItemVO> itemList();
-	public int itemListCount();
+	public int getItemListCount();
 	public ItemVO itemInfo(int no);
-	public int itemInsert(ItemVO item);
-	public int itemUpdate(ItemVO item);
-	public int itemDelete(int no);
+	public boolean itemInsert(ItemVO item);
+	public boolean itemUpdate(ItemVO item);
+	public boolean itemDelete(int no);
 }

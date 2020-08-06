@@ -14,9 +14,7 @@
   .modalbtn { display:none; }
   </style>
 </head>
-<body>
-
-<jsp:include page="/admin/module/Navbar.jsp" />
+<body><jsp:include page="/admin/module/Navbar.jsp" /><section class="wrap">
   
 <div class="container">
   <h3>관리자 home</h3>
@@ -69,5 +67,6 @@ $(window).ready(function () {
 	</c:if>
 })
 </script>
+</section><jsp:include page="/copyright.html"/>
 </body>
 </html>

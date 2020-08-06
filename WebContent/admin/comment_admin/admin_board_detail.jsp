@@ -48,24 +48,26 @@
 	</script>
 	
 	<style>
-		.affix {
-	    top: 20px;
-	    z-index: 9999 !important; }
+		.updownCont{
+				position: fixed;
+				display: table;
+				right: 120px;
+				bottom: 90px;
+				width: inherit;
+		}
 	</style>
 	</head>
 	
 	
-<body>
-
-<jsp:include page="/admin/module/Navbar.jsp" />
+<body><jsp:include page="/admin/module/Navbar.jsp" /><section class="wrap">
 
 	<div class="container">
       <h2 align="left">관리자모드</h2>
     </div>
     <br />
     
-    <nav class="col-xs-1 content_div pull-right">
-      <ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="205">
+    <nav class="col-xs-1 content_div pull-right updownCont">
+      <ul class="nav nav-pills nav-stacked">
         <li><a href="#homeup" id="homeup"><span class="glyphicon glyphicon-triangle-top"></span></a></li>
         <li><a href="#homedown" id="homedown"><span class="glyphicon glyphicon-triangle-bottom"></span></a></li>
       </ul>
@@ -224,5 +226,6 @@
 	
 	
 	<br />
+</section><jsp:include page="/copyright.html"/>
 </body>
 </html>

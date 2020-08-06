@@ -15,7 +15,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 public class MemberBiz {
 	private static SqlSessionFactory sqlSessionFactory;
 	static {
-		try {Reader reader = Resources.getResourceAsReader("/SqlMapConfig.xml");
+		try {Reader reader = Resources.getResourceAsReader("SqlMapConfig.xml");
 		sqlSessionFactory =new SqlSessionFactoryBuilder().build(reader);
 		reader.close();			
 		} catch (Exception e) {
@@ -74,26 +74,28 @@ public class MemberBiz {
 		session.close();
 		return result;
 	}
-	public static void insert(Map param) {
-		SqlSession session = sqlSessionFactory.openSession();
-		session.insert("memberInsert", param);
-		session.commit();
-		session.close();
-	}
-	
-	
-	public static int update(Map param) {
+	public static int insert(MemberBean member) {
 		int result = 0;
 		SqlSession session = sqlSessionFactory.openSession();
-		result = session.update("memberUpdate", param);
+		result = session.insert("memberInsert", member);
 		session.commit();
 		session.close();
 		return result;
 	}
-	public static int updatepass(Map param) {
+	
+	
+	public static int update(MemberBean member) {
 		int result = 0;
 		SqlSession session = sqlSessionFactory.openSession();
-		result = session.update("adminpassmodi", param);
+		result = session.update("memberUpdate", member);
+		session.commit();
+		session.close();
+		return result;
+	}
+	public static int updatepass(MemberBean member) {
+		int result = 0;
+		SqlSession session = sqlSessionFactory.openSession();
+		result = session.update("adminpassmodi", member);
 		if(result == 1 ) {
 			session.commit();
 		}else {
@@ -102,4 +104,5 @@ public class MemberBiz {
 		session.close();
 		return result;
 	}
+
 }

@@ -47,8 +47,7 @@
     <script src="main.js" defer></script>
     <title>AQUA</title>
   </head>
-  <body>
-	<jsp:include page="/admin/module/Navbar.jsp" />
+  <body><jsp:include page="/admin/module/Navbar.jsp" /><section class="wrap">
 	<div class="container">
 		<h1>관리자 Q&A게시판</h1>
 		<font size=2>글 개수 : ${listcount}</font>
@@ -113,10 +112,10 @@
 							<div id="pager" class="flex-container" >
 								<ul class="pager pagination">
 									<c:if test="${nowpage > 1}">
-										<li class="previous"><a href="./QnABoardList.adqpage=1">FIRST</a></li>
+										<li class="previous"><a href="./QnABoardList.adq?page=1">&lt;&lt;</a></li>
 									</c:if>
 									<c:if test="${prevpage != 0}">
-										<li><a href="./QnABoardList.adq?page=${prevpage}">Prev</a></li>
+										<li><a href="./QnABoardList.adq?page=${prevpage}">&lt;</a></li>
 									</c:if>
 									<c:forEach var="i" begin="${beginpage}" end="${endpage}" step="1">
 										<c:choose>
@@ -129,10 +128,10 @@
 										</c:choose>
 									</c:forEach>
 									<c:if test="${nextpage != 0}">
-										<li><a href="./QnABoardList.adq?page=${nextpage}">Next</a></li>
+										<li><a href="./QnABoardList.adq?page=${nextpage}">&gt;</a></li>
 									</c:if>
 									<c:if test="${nowpage != maxpage}">
-										<li><a href="./QnABoardList.adq?page=${maxpage}">END</a></li>
+										<li><a href="./QnABoardList.adq?page=${maxpage}">&gt;&gt;</a></li>
 									</c:if>
 								</ul>
 							</div>				
@@ -150,10 +149,6 @@
 	</div>
 	<br />
 
-	<footer class="container-fluid text-center">
-		<p>Footer Text</p>
-	</footer>
-	
 	<script>
 	$(document).ready(function(){
 	    //체크박스 전체 선탣&해제
@@ -194,6 +189,6 @@
 	 
 	});﻿
 	</script>
-	
+</section><jsp:include page="/copyright.html"/>	
 </body>
 </html>

@@ -30,6 +30,7 @@ public class BoardDetailAction implements Action {
 		ActionForward forward = new ActionForward();
 		
 		int num = Integer.parseInt(request.getParameter("num"));
+		session.setAttribute("likenum", num);
 		
 		int pager=1;
 		if (request.getParameter("pager") != null) {

@@ -26,6 +26,9 @@
 	<delete id="likedelete" parameterType="java.util.HashMap">
 		DELETE FROM MEMBERLIKE WHERE LIKE_ID= #{LIKE_ID} AND LIKE_BOARD_NUM = #{LIKE_BOARD_NUM}
 	</delete>
+	<select id="boardnumlikecount" resultType="client.comment.like.db.BoardLikeBean">
+		SELECT LIKE_BOARD_NUM,COUNT(*) AS LIKE_COUNT FROM MEMBERLIKE GROUP BY LIKE_BOARD_NUM
+	</select>
 	
 	
 	
@@ -69,7 +72,8 @@
 	</select>
 	
 	<insert id="boardInsert" parameterType="java.util.HashMap">
-		INSERT INTO MEMBERBOARD VALUES ( #{BOARD_NUM}, #{BOARD_ID}, #{BOARD_SUBJECT}, #{BOARD_CONTENT}, #{BOARD_FILE}, 0, sysdate())
+		  INSERT INTO MEMBERBOARD(BOARD_ID, BOARD_SUBJECT, BOARD_CONTENT, BOARD_FILE, BOARD_READCOUNT, BOARD_DATE) 
+    	  VALUES ( #{BOARD_ID}, #{BOARD_SUBJECT}, #{BOARD_CONTENT}, #{BOARD_FILE}, 0, sysdate())
 	</insert>
 	
 	<update id="setReadCountUpdate" parameterType="int">

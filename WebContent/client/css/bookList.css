@@ -18,7 +18,7 @@ html,body{
 .wrap {
    min-height:100%;
    position:relative;
-   padding-bottom:100px;
+   padding-bottom:5vh;
 }
 
 .filter-btn{
@@ -53,22 +53,38 @@ html,body{
 .form-control{
 	margin-bottom: 14px;
 }
+.undraggable{
+	-ms-user-select: none;
+	-moz-user-select: -moz-none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	user-select:none;
+}
+
+#checkall2{
+	margin: 0;
+}
 
 @media screen and (max-width: 815px) {
 	.filter-btn{
 		display: inline;
 		position: absolute;
 		top:24px;
-		right: 32px;
+		right: 24px;
 	}
 	.my-4{
 		border-radius: 5px;
-		border: 1px solid;
-		border-color: rgb(200,200,200);
+		border: 1px solid rgba(200, 200, 200, 0.42);
 	}
 	.my-4:hover{
 		cursor: pointer;
-		background-color: rgba(120,120,120,0.2);
+		background-color: var(--accent-color);
+		border: none;
+	}
+	.my-4:active{
+		background-color: var(--accent-color);
+		border: none;
+		box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.42);
 	}
 	.list-group{
 		display: none;

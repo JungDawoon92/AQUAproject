@@ -1,6 +1,7 @@
 package client.comment.like.db;
 
 import java.util.HashMap;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -9,6 +10,7 @@ import javax.sql.DataSource;
 import org.apache.ibatis.session.SqlSession;
 
 import aqua.module.FactoryService;
+import client.comment.comment.db.CommentBean;
 
 public class BoardLikeDAO {
 	DataSource ds;
@@ -75,6 +77,22 @@ public class BoardLikeDAO {
 		ss.close();
 		
 		return likecount;
+		
+	}
+	
+	public HashMap<Integer, Integer> isLikecount() {
+		
+		SqlSession ss = FactoryService.getFactory().openSession();
+		List<BoardLikeBean> list = null;
+		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+		list = ss.selectList("boardnumlikecount");
+		
+		for( int i =0; i<list.size(); i++){
+			BoardLikeBean a = (BoardLikeBean) list.get(i);
+				map.put(a.getLIKE_BOARD_NUM(),a.getLIKE_COUNT());
+			}
+		ss.close();
+		return map;	
 		
 	}
 }

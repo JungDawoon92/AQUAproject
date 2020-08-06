@@ -18,9 +18,7 @@
   	.modalbtn { display:none; }
   </style>
 </head>
-<body>
-
-<jsp:include page="/admin/module/Navbar.jsp" />
+<body><jsp:include page="/admin/module/Navbar.jsp" /><section class="wrap">
 
 <%@ include file="/admin/module/ItemForm.jsp" %>
 
@@ -52,5 +50,6 @@ document.getElementById("deleteTRUE-btn").onclick = function () {
 	location.replace("./ItemDeleteAction.adx?no=${item.getNo()}&pages=${pages}");
 }
 </script>
+</section><jsp:include page="/copyright.html"/>
 </body>
 </html>

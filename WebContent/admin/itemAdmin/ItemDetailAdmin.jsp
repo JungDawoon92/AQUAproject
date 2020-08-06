@@ -23,9 +23,7 @@
 	.modalbtn { display:none; }
 </style>
 </head>
-<body>
-
-<jsp:include page="/admin/module/Navbar.jsp" />
+<body><jsp:include page="/admin/module/Navbar.jsp" /><section class="wrap">
 
 <jsp:include page="/admin/module/ItemForm.jsp" />
 
@@ -43,7 +41,7 @@ $("div#price-div div").html("${item.getPrice()}");
 $("div#categ-div div").html("${item.getCateg()}");
 $("div#st-date-div div").html("${item.getSt_date()}");
 $("div#ed-date-div div").html("${item.getEd_date()}");
-$("div#up-date-div div").html("${item.getUp_date()}");
+$("div#update-div div").html("${item.getUp_date()}");
 $("div#img-div div").html("${item.getImg()}");
 
 $("#add-btn").attr("id","modify-btn");
@@ -73,5 +71,6 @@ document.getElementById("deleteTRUE-btn").onclick = function () {
 }
 
 </script>
+</section><jsp:include page="/copyright.html"/>
 </body>
 </html>

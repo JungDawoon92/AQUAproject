@@ -10,7 +10,7 @@
 		<typeAlias alias="filter" type="client.book.db.Filter"/>
 		<typeAlias alias="book" type="client.book.db.Book"/>
 		<typeAlias alias="booked" type="client.book.db.Booked"/>
-		<typeAlias alias="clientMember" type="client.member.db.MemberBean" />
+		<typeAlias alias="cmember" type="client.member.db.MemberBean" />
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">

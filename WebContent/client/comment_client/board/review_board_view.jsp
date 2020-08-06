@@ -115,14 +115,14 @@
 		    });
 	    </script>
     </nav>
-
+<section class="wrap">
 	<div class="container">
       <h2 align="left">Reivew</h2>
     </div>
     <br />
     
-	<nav class="col-xs-1 content_div pull-right">
-      <ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="205">
+	<nav class="col-xs-1 content_div pull-right updownCont">
+      <ul class="nav nav-pills nav-stacked">
         <li><a href="#homeup" id="homeup"><span class="glyphicon glyphicon-triangle-top"></span></a></li>
         <li><a href="#homedown" id="homedown"><span class="glyphicon glyphicon-triangle-bottom"></span></a></li>
       </ul>
@@ -147,7 +147,28 @@
 		<tr>
 			<td>
 				<div>내 용&nbsp; &nbsp;:</div>
+			</td>
+			<td>
+			<%
+				if (!(board.getBOARD_FILE() == null)) {
+			%> <img src="./boardupload/<%=board.getBOARD_FILE()%>" class="img-thumbnail" ><%
+				}
+			%> 
+				<table>
+					<tr>
+						<td class="comment_td" valign=top>
+							<pre class="comment"><%=content%></pre>
+						</td>
+					</tr>
+				</table>
+			</td>
 			
+		</tr>
+
+
+		
+		<tr align="right" valign="middle">
+			<td colspan="5">
 			<% if(!(id.equals("null"))) { 
 				if(likecheck ==1) {%>
 					<button type="button" class="btn btn-sm btn-danger button-class1" data-toggle="popover" data-trigger="hover" data-content="'좋아요' 는 큰 힘이됩니다!"><span class="glyphicon glyphicon-heart-empty"></span></button>
@@ -161,10 +182,10 @@
 						      <div class="modal-content">
 						        <div class="modal-header">
 						          <button type="button" class="close" data-dismiss="modal">&times;</button>
-						          <h4 class="modal-title">Alert</h4>
+						          <h4 class="modal-title pull-left">Alert</h4>
 						        </div>
-						        <div class="modal-body">
-						          <p>로그인이 필요한 서비스입니다.</p>
+						        <div class="modal-body" style="margin-bottom: 10px;">
+						          <p><font class="pull-left">로그인이 필요한 서비스입니다.</font></p>
 						        </div>
 						        <div class="modal-footer">
 						          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -173,27 +194,6 @@
 						    </div>
 						  </div>
 					<% } %>
-			</td>
-			<td>
-				<table>
-					<tr>
-						<%
-							if (!(board.getBOARD_FILE() == null)) {
-						%> <img src="./boardupload/<%=board.getBOARD_FILE()%>" class="img-thumbnail"></span> <%
- 						}
- 						%> 
-						<td class="comment_td" valign=top>
-							<pre class="comment"><%=content%></pre>
-						</td>
-					</tr>
-				</table>
-			</td>
-			
-		</tr>
-		<br>
-		
-		<tr align="right" valign="middle">
-			<td colspan="5">
 		<%if (id.equals(board.getBOARD_ID())) {%>
 		<a href="./BoardDeleteAction.bo?num=<%=board.getBOARD_NUM()%>" class="btn btn-default pull-right btn-sm"> 삭제 </a>&nbsp;&nbsp;
 		<a href="./BoardModify.bo?num=<%=board.getBOARD_NUM()%>&pager=<%=pager%>" class="btn btn-default pull-right btn-sm modify_botton"> 수정 </a>&nbsp;&nbsp;
@@ -332,9 +332,6 @@
 	
 	<br />
 
-    <footer class="container-fluid text-center">
-      <p>Footer Text</p>
-    </footer>
     
     <script>
     var like = document.getElementById("link2").getAttribute("href");
@@ -359,9 +356,6 @@
     	    }
     	  }
     
-    </script>
-    
-    <script>
 	$(document).ready(function(){
 	    $('[data-toggle="popover"]').popover();   
 	});
@@ -374,7 +368,10 @@
 	    	 	like1.x = "&like=1";
 	    		document.getElementById("link2").setAttribute("href",like1.x);
 	    		like2.x = like1.x;
-	    		document.getElementById("link1").setAttribute("onclick",like2.x);	    	 	
+	    		document.getElementById("link1").setAttribute("onclick",like2.x);
+	    		$.ajax({
+		    	    url: "./BoardAjaxLike.bo?like=1"
+		    	});
 	         }
 	     if( !$(this).hasClass('btn-danger') ) 
 	    	{
@@ -382,9 +379,13 @@
 		    	document.getElementById("link2").setAttribute("href",like1.x);
 		    	like2.x = like1.x;
 		    	document.getElementById("link1").setAttribute("onclick",like2.x);
+		    	$.ajax({
+		    	    url: "./BoardAjaxLike.bo?like=0"
+		    	});
 	         }
 	}); 
 	</script>
-
+</section>	
+</section><jsp:include page="/copyright.html"/>
 </body>
 </html>

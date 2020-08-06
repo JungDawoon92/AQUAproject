@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="client.qna.db.*"%>
 <%@ page import="client.qna.db.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <% request.setCharacterEncoding("UTF-8"); %>
 <%
 	String id = (String) session.getAttribute("userid");
@@ -22,8 +23,7 @@
     <script src="https://kit.fontawesome.com/2d323a629b.js" crossorigin="anonymous"></script>
     <title>AQUA</title>
   </head>
-  <body>	
-	<jsp:include page="/admin/module/Navbar.jsp" />
+  <body><jsp:include page="/admin/module/Navbar.jsp" /><section class="wrap">
 	<form action="./QnABoardModifyAction.adq" method="post" name="modifyform">
 		<input type="hidden" name="NUM"	value="<%=board.getNUM()%>"> 
 		<input type="hidden" name="ID" value="<%=id%>">
@@ -41,22 +41,25 @@
 					value="<%=board.getSUBJECT()%>"></td>
 			</tr>
 			
-				<tr>
+			<tr>
 				<td height="16" style="font-family: 돋음; font-size: 12">
-					<div align="center">분류</div>
+					<label for="select">분류</label>
 				</td>
 				<td>
-					<label for="sel1">분류</label>
+					<%if(board.getRE_LEV() == 1){ %>
+					<input name="CATEGORY" value="답변" />
+					<% } else {%>
 					<div>
-						<select name="CATEGORY" id="sel1">
-        					<option>예약문의</option>
-        					<option>취소문의</option>
-       				 		<option>기타</option>
-      					</select>	
+						<select name="CATEGORY" id="select">
+							<option value="예약문의">예약문의</option>
+							<option value="취소문의">취소문의</option>
+							<option value="상품문의">상품문의</option>
+							<option value="기타">기타</option>
+						</select>
 					</div>
-				
+					<%} %>
 				</td>
-			</tr>
+			</tr> 
 			
 			<tr>
 				<td style="font-family: 돋음; font-size: 12">
@@ -83,9 +86,19 @@
 		</table>
 	</form>
 	<script language="javascript">
-	function modifyboard() {
-		modifyform.submit();
-	}
+		function modifyboard() {
+			modifyform.submit();
+		}
+
+		$(document).ready(function() {
+
+			$("#select option").each(function() {
+				if ($(this).val() == "${category}") {
+					$(this).attr("selected", "selected");
+				}
+			});
+		});
 	</script>
+</section><jsp:include page="/copyright.html"/>
 </body>
 </html>

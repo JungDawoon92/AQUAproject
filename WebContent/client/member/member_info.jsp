@@ -26,8 +26,7 @@
       crossorigin="anonymous"
     ></script>
 </head>
-<body>
-<jsp:include page="/client/include/nav.jsp"></jsp:include>
+<body><jsp:include page="/client/include/nav.jsp"/><section class="wrap">
 <section class="wrap">    
 <div class="row">
 <article class="container marg-bott">
@@ -48,13 +47,13 @@
 </div>
 	<article class="container">
 				<div class="row">
-				<div class="col-sm-2">아이디 : </div><div class="col-sm-9"><input class="form-control" type="text" value="<%=member.getId() %>" disabled /></div><div class="col-sm-1"></div></div>
-				<br/><div class="row"><div class="col-sm-2 subject">이름 : </div><div class="col-sm-9"><input class="form-control" type="text" value="<%=member.getName() %>" disabled /></div><div class="col-sm-1"></div></div>
-				<br/><div class="row"><div class="col-sm-2 subject">성별 : </div><div class="col-sm-9"><input class="form-control" type="text" value="<%=member.getGen() %>" disabled /></div><div class="col-sm-1"></div></div>
-				<br/><div class="row"><div class="col-sm-2 subject">이메일 : </div><div class="col-sm-9"><input class="form-control" type="text" value="<%=member.getEmail() %>" disabled /></div><div class="col-sm-1"></div></div>
-				<br/><div class="row"><div class="col-sm-2 subject">생년월일 : </div><div class="col-sm-9"><input class="form-control" type="text" value="<%=member.getBirthday() %>" disabled /></div><div class="col-sm-1"></div></div>
-				<br/><div class="row"><div class="col-sm-2 subject">전화번호 : </div><div class="col-sm-9"><input class="form-control" type="text" value="<%=member.getPhone() %>" disabled /></div><div class="col-sm-1"></div></div>
-				<br/><div class="row"><div class="col-sm-2 subject">주소 : </div><div class="col-sm-9"><input class="form-control" type="text" value="<%=member.getAddr() %>" disabled /></div><div class="col-sm-1"></div></div>
+				<div class="col-sm-2">아이디 : </div><div class="col-sm-9"><input class="form-control curs" type="text" value="<%=member.getId() %>" disabled /></div><div class="col-sm-1"></div></div>
+				<br/><div class="row"><div class="col-sm-2 subject">이름 : </div><div class="col-sm-9"><input class="form-control curs" type="text" value="<%=member.getName() %>" disabled /></div><div class="col-sm-1"></div></div>
+				<br/><div class="row"><div class="col-sm-2 subject">성별 : </div><div class="col-sm-9"><input class="form-control curs" type="text" value="<%=member.getGen() %>" disabled /></div><div class="col-sm-1"></div></div>
+				<br/><div class="row"><div class="col-sm-2 subject">이메일 : </div><div class="col-sm-9"><input class="form-control curs" type="text" value="<%=member.getEmail() %>" disabled /></div><div class="col-sm-1"></div></div>
+				<br/><div class="row"><div class="col-sm-2 subject">생년월일 : </div><div class="col-sm-9"><input class="form-control curs" type="text" value="<%=member.getBirthday() %>" disabled /></div><div class="col-sm-1"></div></div>
+				<br/><div class="row"><div class="col-sm-2 subject">전화번호 : </div><div class="col-sm-9"><input class="form-control curs" type="text" value="<%=member.getPhone() %>" disabled /></div><div class="col-sm-1"></div></div>
+				<br/><div class="row"><div class="col-sm-2 subject">주소 : </div><div class="col-sm-9"><input class="form-control curs" type="text" value="<%=member.getAddr() %>" disabled /></div><div class="col-sm-1"></div></div>
 				<br/>
 		<div class="row">
 				<div class="col-sm-6" >
@@ -66,8 +65,6 @@
 		</div>
 	</article>
 </section>
-<footer class="container-fluid text-center">
-  <p>Footer Text</p>
-</footer>
+</section><jsp:include page="/copyright.html"/>
 </body>
 </html>

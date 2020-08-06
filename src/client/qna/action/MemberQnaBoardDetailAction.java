@@ -2,6 +2,7 @@ package client.qna.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import aqua.module.Action;
 import aqua.module.ActionForward;
@@ -12,28 +13,40 @@ import client.qna.db.QnaBoardSql;
 public class MemberQnaBoardDetailAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("userid");
+
 		request.setCharacterEncoding("UTF-8");
 		ActionForward forward = new ActionForward();
 		QnaBoardDAO boarddao = new QnaBoardSql();
 		QnaBoardBean boarddata = new QnaBoardBean();
 
-		int num = Integer.parseInt(request.getParameter("num"));
-		int page = Integer.parseInt(request.getParameter("page"));
-		boarddata = boarddao.getDetail(num);
-		if (boarddata == null) {
-			return null;
+		try {
+			int num = Integer.parseInt(request.getParameter("num"));
+			int page = Integer.parseInt(request.getParameter("page"));
+			boarddata = boarddao.getDetail(num);
+
+			if (boarddata == null || !boarddata.getID().equals(id) || boarddata.getDEL().equals("Y")) {
+				forward.setRedirect(false);
+				forward.setPath("/client/qna/nopage.jsp");
+				return forward;
+
+			}
+
+			request.setAttribute("boarddata", boarddata);
+			request.setAttribute("page", page);
+
+			forward.setRedirect(false);
+			forward.setPath("/client/qna/qna_board_view.jsp");
+
+			return forward;
+
+		} catch (Exception e) {
+			System.out.println(e);
+			forward.setRedirect(true);
+			forward.setPath("./QnABoardList.qa");
+			return forward;
 		}
-		
-		request.setAttribute("boarddata", boarddata);
-		request.setAttribute("page", page);
-
-		forward.setRedirect(false);
-		forward.setPath("/client/qna/qna_board_view.jsp");
-
-		return forward;
-
-	}
 	
-
-	
+}
 }

@@ -16,11 +16,14 @@ public class MemberLoginAction implements Action {
 		ActionForward forward = new ActionForward();
 
 		HttpSession session = request.getSession();
-	
 		String Id = "admin";
 		String pass = "admin";
 		
-		if (Id.equals(request.getParameter("adminid")) && pass.equals(request.getParameter("admin_pass"))) {
+		System.out.println(request.getParameter("admin_id"));
+		System.out.println(request.getParameter("admin_pass"));
+		
+		
+		if (Id.equals(request.getParameter("admin_id")) && pass.equals(request.getParameter("admin_pass"))) {
 			session.setAttribute("adminid", Id);
 			forward.setRedirect(true);
 			forward.setPath("./member_list.ad");
@@ -47,7 +50,7 @@ public class MemberLoginAction implements Action {
 			out.println("</div></div></div>");
 			out.println("<script>");
 			out.println("jQuery(document).ready(function() { $('#myModal').show();});");
-			out.println("function close_pop(flag) {location.href='./admin/loginAdmin/loginfromM.jsp';};  ");
+			out.println("function close_pop(flag) {location.href='./loginformM.ad';};  ");
 			out.println("</script></body>");
 			out.close();
 			return null;

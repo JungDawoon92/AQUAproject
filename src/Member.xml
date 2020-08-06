@@ -18,15 +18,15 @@
  	<select id="memberDelete" >
  	delete from member where id = #{id}
  	</select>
- 	<select id="memberInsert"  parameterType="hashMap">
+ 	<select id="memberInsert"  parameterType="admin.member.db.MemberBean">
  	insert into member (id,pass,name,addr,birthday,gen,email,phone,joindate)
  	values (#{id},#{pass},#{name},#{addr},#{birthday},#{gen},#{email},#{phone},sysdate())
  	</select>
- 	<select id="memberUpdate"  parameterType="hashMap">
+ 	<select id="memberUpdate"  parameterType="admin.member.db.MemberBean">
  	update member set addr=#{addr}, birthday=#{birthday}, gen=#{gen}, email=#{email}, phone=#{phone}
  	where id = #{id}
  	</select>
- 	<select id="adminpassmodi" parameterType="String">
+ 	<select id="adminpassmodi" parameterType="admin.member.db.MemberBean">
  	update member set pass=#{pass} where id=#{id}
  	</select>
  </mapper>

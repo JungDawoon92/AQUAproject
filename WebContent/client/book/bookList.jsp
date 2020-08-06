@@ -62,18 +62,18 @@ $(document).ready(function(){
 		}    	
     });
     $("#resetFt").click(function(){
-
-    	$("#orderByDef").attr("selected", "selected");
+        $("#limitSelect option:eq(1)").prop("selected", true);
+        $("#orderBySelect option:eq(0)").prop("selected", true);
     	$("input[name=st_date]").val("");
     	$("input[name=ed_date]").val("");
-    	
+    	$("#submitFt").trigger("click");
     });
 });
 </script>
 <jsp:useBean id="now" class="java.util.Date"/>
 <fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today"/>
     <div class="row">
-      <div class="col-lg-3">
+      <div class="col-lg-3 undraggable">
 		<div id="toggle" class="my-4">
         	<span class="filter-head">FILTER </span><span class="filter-btn">&#x25BC;</span>
         </div>
@@ -108,16 +108,16 @@ $(document).ready(function(){
 		    	  	<option value="descPrice">높은가격 순</option>
 		    	  </select>
 		    	  <small>출발일 필터</small>
-		    	  	<input type="date" class="form-control" name="st_date" min="${today}" />
+		    	  	<input type="date" class="form-control" name="st_date" min="${today}" max="9999-12-31"/>
 		    	  <small>복귀일 필터</small>
-		    	  	<input type="date" class="form-control" name="ed_date" min="${today}" />
+		    	  	<input type="date" class="form-control" name="ed_date" min="${today}" max="9999-12-31"/>
 		    	  <small>여행기간 필터 옵션</small>
 		    	  <fieldset class="form-control">
 			    	<label class="radio-inline"><input id="periodDef" type="radio" name="period_option" value="and" checked>and</label>
 			    	<label class="radio-inline"><input type="radio" name="period_option" value="or" >or</label>
 		    	  </fieldset>
 		          <button id="submitFt" class="btn btn-primary" title="필터적용버튼" onclick="javascript:form.action='bookList.bk';form.submit()">적용</button>
-		          <button id="resetFt" class="btn btn-default" title="필터해제버튼">리셋</button>
+		          <button id="resetFt" class="btn btn-default" title="리셋버튼">리셋</button>
 		    </form>
 	        </div>       
         </div>
@@ -128,6 +128,7 @@ $(document).ready(function(){
         <div class="row">
 		<div class="col-sm-12"><h2 class="pull-right marg-bott">예약페이지</h2></div>
 		<c:set var="iList" value="${iListForPage}"/>
+		<c:if test="${fn:length(iList) eq 0}"><div class="center-block text-secondary"><h2>상품이 존재하지 않습니다.</h2></div></c:if>
 		<c:forEach var="item" items="${iList}" varStatus="status">
 		<!-- img는 16:9 와이드 스크린 비율 사용 -->
           <div class="col-lg-4 col-md-6 mb-4">
@@ -146,7 +147,7 @@ $(document).ready(function(){
 						<h5 class="cart-text"><strong>품절된 상품입니다.</strong></h5>
 					</c:when>
 					<c:otherwise>
-						<h5 class="cart-text">수량 : ${item.cnt}/${item.tot}</h5>
+						<h5 class="cart-text">남은 자리 : ${item.cnt}/${item.tot}</h5>
 					</c:otherwise>
 				</c:choose>
                 <h5 class="card-text">가격 : ${item.price} 원</h5>
@@ -165,12 +166,6 @@ $(document).ready(function(){
   <jsp:include page="pager.jsp"/>
 </section>
 	<!-- Footer -->
-  <footer class="container-fluid text-center bg-dark">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
-    <!-- /.container -->
-  </footer>
-
-
-
+<jsp:include page="/copyright.html"/>
 </body>
 </html>

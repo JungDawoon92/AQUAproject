@@ -20,9 +20,7 @@
 	<title>관리자모드 게시판</title>
 
 </head>
-<body>
-
-<jsp:include page="/admin/module/Navbar.jsp" />
+<body><jsp:include page="/admin/module/Navbar.jsp" /><section class="wrap">
 
 	<div class="container">
       <h1>관리자모드</h1>
@@ -89,5 +87,6 @@
 			</ul>
 		</div>
 	</div>
+</section><jsp:include page="/copyright.html"/>
 </body>
 </html>

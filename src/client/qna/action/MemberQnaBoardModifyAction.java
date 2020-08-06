@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import aqua.module.Action;
 import aqua.module.ActionForward;
-import aqua.module.Encoding;
+import aqua.module.QEncoding;
 import client.qna.db.QnaBoardBean;
 import client.qna.db.QnaBoardDAO;
 import client.qna.db.QnaBoardSql;
@@ -17,7 +17,7 @@ public class MemberQnaBoardModifyAction implements Action {
 		ActionForward forward = new ActionForward();
 		QnaBoardDAO boarddao = new QnaBoardSql();
 		QnaBoardBean boarddata = new QnaBoardBean();
-		Encoding encoding = new Encoding();
+		QEncoding encoding = new QEncoding();
 
 		int num = Integer.parseInt(request.getParameter("NUM"));
 		int page = Integer.parseInt(request.getParameter("page"));
@@ -47,6 +47,8 @@ public class MemberQnaBoardModifyAction implements Action {
 
 		} catch (Exception ex) {
 			ex.printStackTrace();
+			forward.setRedirect(true);
+			forward.setPath("./QnABoardList.qa");
 		}
 
 		return forward;

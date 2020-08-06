@@ -26,9 +26,7 @@
     <script src="main.js" defer></script>
     <title>AQUA</title>
   </head>
-  <body>
-
-	<jsp:include page="/client/include/nav.jsp" />
+  <body><jsp:include page="/client/include/nav.jsp"/><section class="wrap">
 	<div class="container">
 		<h1>Q&A게시판</h1>
 	</div>
@@ -115,5 +113,6 @@
 		formName.submit();
 	}
 </script>
+</section><jsp:include page="/copyright.html"/>
 </body>
 </html>
